@@ -260,6 +260,9 @@ JM.editor = (root, { value, onChange, templates = () => [], imports = false }) =
 
   // Suggestions -------------------------------------------------------------
 
+  // The list lives on <body> with fixed coordinates, so no surrounding text or panel can overlap it.
+  let box = null;
+
   function openSuggest(force) {
     const target = wordBeforeCaret();
     const list = templates();
@@ -272,7 +275,6 @@ JM.editor = (root, { value, onChange, templates = () => [], imports = false }) =
     const index = Math.max(0, items.findIndex(item => item.name === keep));
     suggest = { items, index, from: target.from, to: target.to };
 
-    let box = pane.querySelector('.suggest');
     if (!box) {
       box = document.createElement('div');
       box.className = 'suggest';
@@ -282,18 +284,18 @@ JM.editor = (root, { value, onChange, templates = () => [], imports = false }) =
         const option = event.target.closest('[data-index]');
         if (option) accept(Number(option.dataset.index));
       });
-      pane.append(box);
+      document.body.append(box);
     }
     box.innerHTML = items
       .map(
         (item, i) =>
-          `<div class="opt${i === index ? ' on' : ''}" role="option" data-index="${i}" aria-selected="${i === index}"><b>${JM.esc(item.name)}</b><span>${JM.esc(item.description)}</span></div>`
+          `<div class="opt${i === index ? ' on' : ''}" role="option" data-index="${i}" aria-selected="${i === index}"><b>${JM.esc(item.name)}</b><span>${JM.esc(item.description.replace(/^[A-ZÁÉÍÓÚÑ]+:\s*/, ''))}</span></div>`
       )
       .join('');
-    placeSuggest(box);
+    placeSuggest();
   }
 
-  function placeSuggest(box) {
+  function placeSuggest() {
     const before = input.value.slice(0, suggest.from);
     const line = before.split('\n').length - 1;
     const column = before.length - before.lastIndexOf('\n') - 1;
@@ -304,18 +306,26 @@ JM.editor = (root, { value, onChange, templates = () => [], imports = false }) =
     const charWidth = probe.getBoundingClientRect().width / 40;
     probe.remove();
     const lineHeight = parseFloat(getComputedStyle(input).lineHeight);
-    box.style.left = `${Math.max(0, column * charWidth - input.scrollLeft)}px`;
-    box.style.top = `${(line + 1) * lineHeight + 4}px`;
+    const area = pane.getBoundingClientRect();
+    const left = Math.min(area.left + Math.max(0, column * charWidth - input.scrollLeft), innerWidth - box.offsetWidth - 12);
+    let top = area.top + (line + 1) * lineHeight + 6;
+    if (top + box.offsetHeight > innerHeight - 12) top = area.top + line * lineHeight - box.offsetHeight - 6;
+    box.style.left = `${Math.max(12, left)}px`;
+    box.style.top = `${top}px`;
   }
 
   function closeSuggest() {
     suggest = null;
-    pane.querySelector('.suggest')?.remove();
+    box?.remove();
+    box = null;
   }
+
+  addEventListener('scroll', () => suggest && closeSuggest(), { passive: true });
+  addEventListener('resize', () => suggest && closeSuggest());
 
   function moveSuggest(step) {
     suggest.index = (suggest.index + step + suggest.items.length) % suggest.items.length;
-    pane.querySelectorAll('.suggest .opt').forEach((option, i) => {
+    box.querySelectorAll('.opt').forEach((option, i) => {
       option.classList.toggle('on', i === suggest.index);
       option.setAttribute('aria-selected', String(i === suggest.index));
     });
