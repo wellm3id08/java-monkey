@@ -145,6 +145,30 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--ink) 22%, transparent) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--ink) 22%, transparent);
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
 ::selection {
   background: color-mix(in srgb, var(--accent) 24%, transparent);
 }
@@ -395,8 +419,10 @@ code {
   border-radius: 999px;
   padding: 15px 34px;
   min-height: 54px;
-  background: var(--accent);
+  background: color-mix(in srgb, var(--accent) 86%, transparent);
   color: var(--on-accent);
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
   font-weight: 600;
   font-size: 16px;
   cursor: pointer;
@@ -1381,8 +1407,8 @@ th {
   padding: 22px;
   border-radius: 28px;
   border: 1px solid var(--line);
-  background: color-mix(in srgb, var(--surface-solid) 82%, transparent);
-  backdrop-filter: blur(24px) saturate(1.5);
+  background: color-mix(in srgb, var(--surface-solid) 58%, transparent);
+  backdrop-filter: blur(30px) saturate(1.6);
   -webkit-backdrop-filter: blur(24px) saturate(1.5);
   box-shadow: 0 30px 60px -30px rgba(10, 20, 50, 0.35);
   transform-origin: top right;
@@ -1489,9 +1515,9 @@ th {
   display: grid;
   place-items: center;
   padding: 16px;
-  background: var(--scrim);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--scrim) 70%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   animation: fade 0.3s both;
 }
 
@@ -1502,9 +1528,10 @@ th {
   padding: clamp(24px, 5vw, 44px);
   border-radius: 32px;
   border: 1px solid var(--line);
-  background: color-mix(in srgb, var(--surface-solid) 92%, transparent);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: color-mix(in srgb, var(--surface-solid) 60%, transparent);
+  backdrop-filter: blur(32px) saturate(1.6);
+  -webkit-backdrop-filter: blur(32px) saturate(1.6);
+  box-shadow: 0 40px 90px -50px rgba(10, 20, 50, 0.5);
   animation: sheet-in 0.55s var(--spring) both;
 }
 
@@ -1578,6 +1605,8 @@ kbd {
 
 .hint-key {
   margin-top: 18px;
+  padding: 6px 12px;
+  border-radius: 999px;
   border: 0;
   background: none;
   color: var(--muted);
@@ -1833,10 +1862,27 @@ kbd {
 
 /* Shortcut list */
 
-.keys {
+.sheet.wide .sheet-card {
+  width: min(820px, 100%);
+}
+
+.key-groups {
   display: grid;
-  gap: 2px;
-  margin-top: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px 36px;
+  margin-top: 22px;
+}
+
+.key-group {
+  animation: rise 0.5s var(--ease) both;
+  animation-delay: calc(var(--i) * 70ms + 80ms);
+}
+
+.key-group h4 {
+  margin: 10px 0 6px;
+  color: var(--accent-ink);
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .key-row {
@@ -1844,14 +1890,30 @@ kbd {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 9px 0;
-  border-bottom: 1px solid var(--line);
-  animation: line-in 0.45s var(--ease) both;
-  animation-delay: calc(var(--i) * 30ms);
+  padding: 7px 0;
+  font-size: 15px;
 }
 
-.key-row kbd {
+.key-set {
+  display: flex;
+  gap: 4px;
+}
+
+.key-row kbd,
+.sheet .btn kbd {
+  min-width: 26px;
+  height: 26px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--chip);
+  color: var(--accent-ink);
+  font-size: 12px;
   opacity: 1;
+}
+
+.sheet .btn kbd {
+  background: rgba(255, 255, 255, 0.2);
+  color: inherit;
 }
 
 /* Soft, see-through prompt after a lesson */
@@ -1909,9 +1971,9 @@ kbd {
 .side {
   position: fixed;
   z-index: 35;
-  top: 12px;
-  right: 12px;
-  bottom: 12px;
+  top: 80px;
+  right: 16px;
+  bottom: 16px;
   width: min(380px, calc(100vw - 24px));
   display: flex;
   flex-direction: column;
@@ -1919,8 +1981,8 @@ kbd {
   padding: 20px;
   border-radius: 28px;
   border: 1px solid var(--line);
-  background: color-mix(in srgb, var(--surface-solid) 74%, transparent);
-  backdrop-filter: blur(26px) saturate(1.5);
+  background: color-mix(in srgb, var(--surface-solid) 56%, transparent);
+  backdrop-filter: blur(30px) saturate(1.6);
   -webkit-backdrop-filter: blur(26px) saturate(1.5);
   box-shadow: 0 30px 70px -40px rgba(10, 20, 50, 0.5);
   animation: side-in 0.5s var(--spring) both;
@@ -2005,6 +2067,8 @@ kbd {
   margin: 6px 0 0;
   max-height: 140px;
   overflow: hidden;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   font-size: 12.5px;
   line-height: 1.6;
   mask-image: linear-gradient(to bottom, #000 75%, transparent);
@@ -2013,8 +2077,7 @@ kbd {
 @media (min-width: 1180px) {
   body.side-open .stage,
   body.side-open .topics,
-  body.side-open .notes-page,
-  body.side-open .home {
+  body.side-open .notes-page {
     padding-right: 400px;
   }
 
@@ -2058,15 +2121,17 @@ kbd {
 }
 
 .suggest {
-  position: absolute;
-  z-index: 5;
+  position: fixed;
+  z-index: 70;
   min-width: 260px;
   max-width: min(420px, 80vw);
   padding: 6px;
   border-radius: 16px;
   border: 1px solid var(--line);
-  background: var(--surface-solid);
-  box-shadow: 0 20px 40px -20px rgba(10, 20, 50, 0.4);
+  background: color-mix(in srgb, var(--surface-solid) 86%, transparent);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  box-shadow: 0 24px 50px -24px rgba(10, 20, 50, 0.45);
   font-family: var(--sans);
   white-space: normal;
   animation: pop-in 0.3s var(--spring) both;
@@ -2230,34 +2295,48 @@ kbd {
   color: var(--muted);
 }
 
-/* Drawer that peeks from the bottom of lessons */
+/* Notes drawer: a small pill at the bottom that grows into a panel */
 
 body.with-drawer .dock {
-  padding-bottom: calc(66px + env(safe-area-inset-bottom));
+  padding-bottom: calc(70px + env(safe-area-inset-bottom));
 }
 
 .drawer {
   position: fixed;
   z-index: 25;
   left: 50%;
-  bottom: 0;
-  width: min(680px, calc(100vw - 24px));
-  max-height: min(70dvh, 560px);
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  width: 190px;
+  height: 44px;
   display: flex;
   flex-direction: column;
-  border-radius: 26px 26px 0 0;
+  overflow: hidden;
+  border-radius: 22px;
   border: 1px solid var(--line);
-  border-bottom: 0;
-  background: color-mix(in srgb, var(--surface-solid) 70%, transparent);
-  backdrop-filter: blur(26px) saturate(1.5);
-  -webkit-backdrop-filter: blur(26px) saturate(1.5);
-  box-shadow: 0 -20px 60px -40px rgba(10, 20, 50, 0.45);
-  transform: translate(-50%, calc(100% - 46px));
-  transition: transform 0.6s var(--spring);
+  background: color-mix(in srgb, var(--surface-solid) 52%, transparent);
+  backdrop-filter: blur(26px) saturate(1.6);
+  -webkit-backdrop-filter: blur(26px) saturate(1.6);
+  box-shadow: 0 16px 40px -28px rgba(10, 20, 50, 0.5);
+  transform: translateX(-50%);
+  transition:
+    width 0.55s var(--spring),
+    height 0.55s var(--spring),
+    bottom 0.45s var(--ease),
+    border-radius 0.45s var(--ease),
+    background 0.3s;
+}
+
+.drawer:not(.open):hover {
+  width: 204px;
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 .drawer.open {
-  transform: translate(-50%, 0);
+  width: min(680px, calc(100vw - 24px));
+  height: min(52dvh, 440px);
+  bottom: 0;
+  border-radius: 26px 26px 0 0;
+  background: color-mix(in srgb, var(--surface-solid) 78%, transparent);
 }
 
 .drawer-handle {
@@ -2266,12 +2345,14 @@ body.with-drawer .dock {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  height: 46px;
+  height: 42px;
+  padding: 0 16px;
   border: 0;
   background: none;
   color: var(--muted);
   font-size: 14px;
   font-weight: 500;
+  white-space: nowrap;
   cursor: pointer;
 }
 
@@ -2280,22 +2361,40 @@ body.with-drawer .dock {
 }
 
 .drawer-handle .grip {
-  width: 34px;
-  height: 4px;
-  border-radius: 4px;
-  background: var(--line);
-  transition: background 0.2s, width 0.3s var(--spring);
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-135deg) translate(-2px, -2px);
+  transition: transform 0.45s var(--spring);
 }
 
-.drawer-handle:hover .grip {
-  width: 44px;
-  background: var(--accent);
+.drawer.open .drawer-handle .grip {
+  transform: rotate(45deg) translate(-2px, -2px);
+}
+
+.drawer-handle kbd {
+  margin: 0;
 }
 
 .drawer-body {
   flex: 1;
   overflow: auto;
   padding: 0 22px 22px;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.drawer.open .drawer-body {
+  opacity: 1;
+  transition-delay: 0.15s;
+}
+
+.drawer .note-input {
+  margin-top: 4px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: var(--chip);
 }
 
 .drawer-list .note:last-child {
@@ -2311,8 +2410,11 @@ body.with-drawer .dock {
   bottom: 110px;
   padding: 12px 22px;
   border-radius: 999px;
-  background: var(--ink);
-  color: var(--bg);
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface-solid) 62%, transparent);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  color: var(--ink);
   font-size: 14px;
   font-weight: 500;
   opacity: 0;

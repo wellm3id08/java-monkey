@@ -512,7 +512,7 @@
     drawer.innerHTML = `
       <section class="drawer" aria-label="${esc(t('notesTitle'))}">
         <button class="drawer-handle" type="button" data-act="drawer" aria-expanded="false">
-          <i class="grip"></i><span class="label">${esc(drawerLabel())}</span>${kbd('N')}
+          <span class="label">${esc(drawerLabel())}</span>${kbd('Alt N')}<i class="grip"></i>
         </button>
         <div class="drawer-body">
           <textarea class="note-input" data-role="note-drawer" rows="3" placeholder="${esc(t('notePlaceholder'))}"></textarea>
@@ -744,6 +744,7 @@
     primary.classList.remove('swap');
     void primary.offsetWidth;
     primary.classList.add('swap');
+    updateKeyHint();
   }
 
   function renderStep(direction) {
@@ -753,6 +754,7 @@
     if (player.mode === 'lesson') store.setJSON('jm.pos', { id: player.lesson.id, step: player.index });
     if (step.kind === 'done') markDone(step.lesson.id);
 
+    $$('body > .suggest').forEach(element => element.remove());
     const stepView = views[step.kind](step);
     const stage = $('#stage');
     const old = $('.step', stage);
@@ -764,6 +766,7 @@
       animateWords(stage);
       stepView.setup?.(stage);
       if (!player.editor) $('#primary')?.focus({ preventScroll: true });
+      updateKeyHint();
       window.scrollTo(0, 0);
       player.busy = false;
     };
@@ -1098,10 +1101,10 @@
     return true;
   }
 
-  function openSheet(html, { soft = false, label = '' } = {}) {
+  function openSheet(html, { soft = false, wide = false, label = '' } = {}) {
     if (!layer.innerHTML) returnFocus = document.activeElement;
     layer.innerHTML = `
-      <div class="sheet${soft ? ' soft' : ''}" data-act="close-sheet">
+      <div class="sheet${soft ? ' soft' : ''}${wide ? ' wide' : ''}" data-act="close-sheet">
         <div class="sheet-card" role="dialog" aria-modal="true" aria-label="${esc(label)}">${html}</div>
       </div>`;
     const first = $('textarea, input:not([type="file"]):not([type="checkbox"]), .btn, button', layer);
@@ -1252,12 +1255,24 @@
   }
 
   function openShortcuts() {
-    const rows = JM.ui[state.lang].shortcutList
-      .map(([keys, label], i) => `<div class="key-row" style="--i:${i}"><span>${keys.split(/\s{2,}/).map(key => `<kbd>${esc(key)}</kbd>`).join(' ')}</span><span>${esc(label)}</span></div>`)
+    const groups = JM.ui[state.lang].shortcutGroups
+      .map(
+        ({ title, items }, g) => `
+          <section class="key-group" style="--i:${g}">
+            <h4>${esc(title)}</h4>
+            ${items
+              .map(([keys, label]) => `<div class="key-row"><span>${esc(label)}</span><span class="key-set">${keys.split(/\s{2,}/).map(key => `<kbd>${esc(key)}</kbd>`).join('')}</span></div>`)
+              .join('')}
+          </section>`
+      )
       .join('');
-    openSheet(`<h3>${t('shortcuts')}</h3><div class="keys">${rows}</div><div class="row"><button class="btn" type="button" data-act="close-sheet">${t('close')}</button></div>`, {
-      label: t('shortcuts'),
-    });
+    openSheet(
+      `<h3>${t('shortcuts')}</h3>
+       <p class="muted small">${t('shortcutsIntro')}</p>
+       <div class="key-groups">${groups}</div>
+       <div class="row"><button class="btn" type="button" data-act="close-sheet">${t('close')}${kbd('Esc')}</button></div>`,
+      { label: t('shortcuts'), wide: true }
+    );
   }
 
   function resetProgress() {
@@ -1639,9 +1654,11 @@
       return (global[key] ?? global[lower])();
     }
 
+    const inPanel = event.target.closest('#side, #drawer');
     if (player) {
       const step = player.steps[player.index];
-      if ((key === 'Enter' && !event.target.closest('button, a')) || key === 'ArrowRight') {
+      // Enter always presses the button that shows ↵, wherever the focus was left; Space still presses the focused one.
+      if ((key === 'Enter' && !inPanel) || key === 'ArrowRight') {
         event.preventDefault();
         return $('#primary')?.click();
       }
@@ -1694,15 +1711,31 @@
       }
     }
 
-    if (key === 'Enter' && !event.target.closest('button, a, summary')) $('[data-act="resume"]', app)?.click();
+    if (key === 'Enter' && !view() && !inPanel) {
+      event.preventDefault();
+      $('[data-act="resume"], .home [data-act="topics"]', app)?.click();
+    }
   }
 
   document.addEventListener('keydown', onKey);
+
+  // Inside a multi-line editor Enter adds a line, so the primary button advertises Ctrl+Enter instead.
+  function updateKeyHint() {
+    const hint = $('#primary kbd');
+    if (!hint || !player) return;
+    const step = player.steps[player.index];
+    const inEditor = player.editor && document.activeElement === player.editor.input;
+    const multiline = step.kind === 'practice' || step.item?.code.includes('\n');
+    hint.textContent = inEditor && multiline ? 'Ctrl ↵' : '↵';
+  }
+  document.addEventListener('focusin', updateKeyHint);
+  document.addEventListener('focusout', () => setTimeout(updateKeyHint));
 
   // Router -------------------------------------------------------------------
 
   function route() {
     const [, name, id] = location.hash.split('/');
+    $$('body > .suggest').forEach(element => element.remove());
     player = null;
     window.scrollTo(0, 0);
 
