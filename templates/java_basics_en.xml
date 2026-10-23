@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates>
+<template autoinsert="true" context="java-statements" deleted="false" description="PRINT: System.out.println" enabled="true" name="print">System.out.println(${cursor});</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="PRINTNL: System.out.print (no new line)" enabled="true" name="printnl">System.out.print(${cursor});</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="PRINTVAR: label + variable" enabled="true" name="printvar">System.out.println("${label}: " + ${variable});${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="PRINTF: formatted output" enabled="true" name="printf">System.out.printf("${cursor}%n");</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="SCANNER: keyboard reader (adds the import)" enabled="true" name="scanner">${imp:import(java.util.Scanner)}Scanner keyboard = new Scanner(System.in);
+${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="READLINE: read a line of text" enabled="true" name="readline">String ${text} = keyboard.nextLine();${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="READINT: read an integer" enabled="true" name="readint">int ${number} = keyboard.nextInt();
+keyboard.nextLine();
+${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="READDOUBLE: read a decimal" enabled="true" name="readdouble">double ${value} = keyboard.nextDouble();
+keyboard.nextLine();
+${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="CLOSE: close the Scanner" enabled="true" name="close">keyboard.close();</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="IF: if" enabled="true" name="if">if (${condition}) {
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="IFELSE: if / else" enabled="true" name="ifelse">if (${condition}) {
+	${cursor}
+} else {
+	
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="SWITCH: switch with default" enabled="true" name="switch">switch (${variable}) {
+case ${value1}:
+	${cursor}
+	break;
+default:
+	
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="EQUALS: compare texts" enabled="true" name="equals">if (${text1}.equals(${text2})) {
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="FOR: counting loop" enabled="true" name="for">for (int ${i} = 0; ${i} &lt; ${limit}; ${i}++) {
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="WHILE: while loop" enabled="true" name="while">while (${condition}) {
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="DOWHILE: do-while loop" enabled="true" name="dowhile">do {
+	${cursor}
+} while (${condition});</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="ARRAY: array with a size" enabled="true" name="array">${int}[] ${name} = new ${int}[${size}];
+${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="EACH: visit every element of an array" enabled="true" name="each">for (int ${i} = 0; ${i} &lt; ${array}.length; ${i}++) {
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="CONST: constant" enabled="true" name="const">final ${int} ${NAME} = ${value};${cursor}</template>
+<template autoinsert="true" context="java-members" deleted="false" description="MAIN: main method" enabled="true" name="main">public static void main(String[] args) {
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-members" deleted="false" description="METHOD: method that returns a value" enabled="true" name="method">public static ${int} ${name}(${}) {
+	${cursor}
+	return ${result};
+}</template>
+</templates>

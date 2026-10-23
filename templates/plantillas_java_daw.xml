@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates>
+<template autoinsert="true" context="java-statements" deleted="false" description="IMPRIMIR: System.out.println" enabled="true" name="imprimir">System.out.println(${cursor});</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="IMPRIMIRSIN: System.out.print (sin salto)" enabled="true" name="imprimirsin">System.out.print(${cursor});</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="IMPRIMIRVAR: texto + variable" enabled="true" name="imprimirvar">System.out.println("${texto}: " + ${variable});${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="IMPRIMIRF: printf con formato" enabled="true" name="imprimirf">System.out.printf("${cursor}%n");</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="IMPORT: crea el Scanner teclado (con import)" enabled="true" name="import">${imp:import(java.util.Scanner)}Scanner teclado = new Scanner(System.in);
+${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="LEER: lee texto" enabled="true" name="leer">String ${texto} = teclado.nextLine();${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="LEERINT: lee un entero" enabled="true" name="leerint">int ${numero} = teclado.nextInt();
+teclado.nextLine();
+${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="LEERDOUBLE: lee un decimal" enabled="true" name="leerdouble">double ${decimal} = teclado.nextDouble();
+teclado.nextLine();
+${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="LEERCHAR: lee un caracter" enabled="true" name="leerchar">char ${letra} = teclado.nextLine().charAt(0);${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="CERRAR: cierra el Scanner" enabled="true" name="cerrar">teclado.close();</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="SI: if" enabled="true" name="si">if (${condicion}) {
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="SINO: if / else" enabled="true" name="sino">if (${condicion}) {
+	${cursor}
+} else {
+	
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="SISINO: if / else if / else" enabled="true" name="sisino">if (${condicion1}) {
+	${cursor}
+} else if (${condicion2}) {
+	
+} else {
+	
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="SEGUN: switch" enabled="true" name="segun">switch (${variable}) {
+case ${valor1}:
+	${cursor}
+	break;
+case ${valor2}:
+	
+	break;
+default:
+	
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="IGUAL: comparar textos con equals" enabled="true" name="igual">if (${texto1}.equals(${texto2})) {
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="PARA: for" enabled="true" name="para">for (int ${i} = 0; ${i} &lt; ${limite}; ${i}++) {
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="PARACADA: for-each" enabled="true" name="paracada">for (${Tipo} ${elemento} : ${coleccion}) {
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="MIENTRAS: while" enabled="true" name="mientras">while (${condicion}) {
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="HACER: do-while" enabled="true" name="hacer">do {
+	${cursor}
+} while (${condicion});</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="MENU: menu con do-while y switch (necesita teclado)" enabled="true" name="menu">int opcion;
+do {
+	System.out.println("1. ${opcion1}");
+	System.out.println("2. ${opcion2}");
+	System.out.println("0. Salir");
+	System.out.print("Elige una opcion: ");
+	opcion = teclado.nextInt();
+	teclado.nextLine();
+	switch (opcion) {
+	case 1:
+		${cursor}
+		break;
+	case 2:
+		
+		break;
+	case 0:
+		System.out.println("Adios");
+		break;
+	default:
+		System.out.println("Opcion no valida");
+	}
+} while (opcion != 0);</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="INTENTAR: try / catch" enabled="true" name="intentar">try {
+	${cursor}
+} catch (${Exception} e) {
+	System.out.println("Error: " + e.getMessage());
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="ARRAY: con tamano" enabled="true" name="array">${int}[] ${nombre} = new ${int}[${tamano}];
+${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="ARRAYVALORES: con valores" enabled="true" name="arrayvalores">${int}[] ${nombre} = {${valores}};
+${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="RECORRERARRAY: for sobre un array" enabled="true" name="recorrerarray">for (int ${i} = 0; ${i} &lt; ${array}.length; ${i}++) {
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="MATRIZ: array 2D" enabled="true" name="matriz">${int}[][] ${nombre} = new ${int}[${filas}][${columnas}];
+${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="RECORRERMATRIZ: dos for anidados" enabled="true" name="recorrermatriz">for (int ${i} = 0; ${i} &lt; ${matriz}.length; ${i}++) {
+	for (int ${j} = 0; ${j} &lt; ${matriz}[${i}].length; ${j}++) {
+		${cursor}
+	}
+}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="LISTA: ArrayList" enabled="true" name="lista">${imp:import(java.util.ArrayList,java.util.List)}List&lt;${String}&gt; ${lista} = new ArrayList&lt;&gt;();
+${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="ALEATORIO: numero entre min y max" enabled="true" name="aleatorio">${imp:import(java.util.Random)}Random aleatorio = new Random();
+int ${numero} = aleatorio.nextInt(${max} - ${min} + 1) + ${min};
+${cursor}</template>
+<template autoinsert="true" context="java-statements" deleted="false" description="CONSTANTE: final" enabled="true" name="constante">final ${int} ${NOMBRE} = ${valor};${cursor}</template>
+<template autoinsert="true" context="java-members" deleted="false" description="PRINCIPAL: metodo main" enabled="true" name="principal">public static void main(String[] args) {
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-members" deleted="false" description="METODO: static void" enabled="true" name="metodo">public static void ${nombre}(${}) {
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-members" deleted="false" description="FUNCION: metodo con return" enabled="true" name="funcion">public static ${int} ${nombre}(${}) {
+	${cursor}
+	return ${resultado};
+}</template>
+<template autoinsert="true" context="java" deleted="false" description="CLASE: clase con atributo y constructor" enabled="true" name="clase">public class ${Nombre} {
+
+	private ${String} ${atributo};
+
+	public ${Nombre}(${String} ${atributo}) {
+		this.${atributo} = ${atributo};
+	}
+
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-members" deleted="false" description="CONSTRUCTOR" enabled="true" name="constructor">public ${Clase}(${Tipo} ${param}) {
+	this.${param} = ${param};
+	${cursor}
+}</template>
+<template autoinsert="true" context="java-members" deleted="false" description="GETTER" enabled="true" name="getter">public ${Tipo} get${Nombre}() {
+	return ${nombre};
+}${cursor}</template>
+<template autoinsert="true" context="java-members" deleted="false" description="SETTER" enabled="true" name="setter">public void set${Nombre}(${Tipo} ${nombre}) {
+	this.${nombre} = ${nombre};
+}${cursor}</template>
+<template autoinsert="true" context="java-members" deleted="false" description="TOSTRING" enabled="true" name="tostring">@Override
+public String toString() {
+	return "${Clase} [${atributo}=" + ${atributo} + "]";
+}${cursor}</template>
+<template autoinsert="true" context="java" deleted="false" description="HELP: ayuda resumida de Java (tipos, operadores, if, bucles...)" enabled="true" name="help">/*-
+=================== AYUDA JAVA (borra este bloque cuando quieras) ===================
+
+------------------------ 1. TIPOS DE VARIABLES ------------------------
+int      numeros enteros          int edad = 18;
+double   numeros con decimales    double precio = 9.99;
+boolean  verdadero o falso        boolean mayor = true;
+char     UNA letra (comilla ')    char letra = 'a';
+String   texto (comillas ")       String nombre = "Ana";
+final    constante (no cambia)    final int MAX = 10;
+
+------------------------ 2. OPERADORES ARITMETICOS ------------------------
++   sumar                 5 + 2   -&gt;  7
+-   restar                5 - 2   -&gt;  3
+*   multiplicar           5 * 2   -&gt;  10
+/   dividir               5 / 2   -&gt;  2     (entre enteros no hay decimales)
+                          5.0 / 2 -&gt;  2.5   (con un decimal si hay)
+%   resto de dividir      5 % 2   -&gt;  1     (n % 2 == 0 -&gt; n es par)
+++  suma 1                i++     (igual que i = i + 1)
+--  resta 1               i--
++=  suma y guarda         x += 5  (igual que x = x + 5)
+
+------------------------ 3. OPERADORES RELACIONALES ------------------------
+Comparan dos valores y dan true o false
+==  igual                 5 == 5  -&gt; true
+!=  distinto              5 != 3  -&gt; true
+&gt;   mayor                 5 &gt; 3   -&gt; true
+&lt;   menor                 5 &lt; 3   -&gt; false
+&gt;=  mayor o igual         5 &gt;= 5  -&gt; true
+&lt;=  menor o igual         5 &lt;= 3  -&gt; false
+Textos: a.equals(b)   (NUNCA a == b)
+
+------------------------ 4. OPERADORES LOGICOS ------------------------
+&amp;&amp;  Y   las dos ciertas   edad &gt; 17 &amp;&amp; edad &lt; 65
+||  O   basta una         dia == 6 || dia == 7
+!   NO  invierte          !(edad &gt; 17)
+
+------------------------ 5. IF / ELSE IF / ELSE ------------------------
+if (nota &gt;= 9) {
+	System.out.println("Sobresaliente");
+} else if (nota &gt;= 5) {      // si no, prueba esta
+	System.out.println("Aprobado");
+} else {                     // si no se cumple ninguna
+	System.out.println("Suspenso");
+}
+Se prueban en orden y entra solo en la primera cierta.
+
+------------------------ 6. SWITCH ------------------------
+Elige segun el VALOR de una variable (en vez de muchos if)
+switch (opcion) {
+case 1:
+	System.out.println("Uno");
+	break;                   // break = salir del switch
+default:                     // si no coincide ningun case
+	System.out.println("Otro");
+}
+Sin break sigue ejecutando el siguiente case.
+
+------------------------ 7. WHILE ------------------------
+Repite MIENTRAS la condicion sea cierta (puede no entrar nunca)
+int i = 1;
+while (i &lt;= 3) {
+	System.out.println(i);   // 1 2 3
+	i++;                     // sin esto: bucle infinito
+}
+
+------------------------ 8. DO WHILE ------------------------
+Igual, pero entra SIEMPRE una vez (comprueba al final)
+do {
+	System.out.println("Hola");
+} while (condicion);         // lleva ; al final
+
+------------------------ 9. FOR ------------------------
+Repite un numero conocido de veces
+for (int i = 0; i &lt; 3; i++) {    // inicio; condicion; paso
+	System.out.println(i);       // 0 1 2
+}
+for-each (cada elemento):  for (String n : nombres) { ... }
+
+------------------------ 10. BREAK Y CONTINUE ------------------------
+break      sale del bucle (o switch) ya
+continue   salta a la siguiente vuelta
+for (int i = 1; i &lt;= 5; i++) {
+	if (i == 2) continue;    // se salta el 2
+	if (i == 4) break;       // sale al llegar a 4
+	System.out.println(i);   // 1 3
+}
+
+------------------------ 11. ARRAYS ------------------------
+Varios valores del MISMO tipo. Tamano fijo. Empieza en 0
+int[] notas = new int[3];        // 3 huecos: 0, 1, 2
+int[] notas = {5, 7, 9};         // con valores
+notas[0] = 8;                    // guarda en la posicion 0
+notas.length                     // tamano (3)
+
+------------------------ 12. MATRICES ------------------------
+Tabla de filas y columnas: matriz[fila][columna]
+int[][] m = new int[2][3];       // 2 filas, 3 columnas
+m[1][2] = 5;                     // fila 1, columna 2
+m.length = filas      m[0].length = columnas
+Se recorre con un for dentro de otro for
+
+------------------------ 13. TEXTO (String) ------------------------
+t.length()  t.charAt(0)  t.toUpperCase()  t.toLowerCase()
+t.substring(0, 3)  t.contains("a")  t.replace("a", "b")  t.trim()
+
+------------------------ 14. METODOS ------------------------
+static int sumar(int a, int b) {   // devuelve un int
+	return a + b;
+}
+int r = sumar(2, 3);               // r vale 5
+void = no devuelve nada
+*/</template>
+<template autoinsert="true" context="java" deleted="false" description="PLANTILLAS: lista de todos los comandos" enabled="true" name="plantillas">/*-
+=========== PLANTILLAS (nombre + Ctrl+Espacio) ===========
+PANTALLA  : imprimir imprimirsin imprimirvar imprimirf
+TECLADO   : import leer leerint leerdouble leerchar cerrar
+CONDICION : si sino sisino segun igual
+BUCLES    : para paracada mientras hacer menu
+ERRORES   : intentar
+ARRAYS    : array arrayvalores recorrerarray matriz
+            recorrermatriz lista
+OTROS     : aleatorio constante
+ESTRUCTURA: principal metodo funcion clase constructor
+            getter setter tostring
+AYUDA     : help plantillas
+*/</template>
+</templates>
