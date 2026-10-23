@@ -3,6 +3,7 @@ JM.editor = (root, { value, onChange }) => {
   const input = root.querySelector('.inp');
   const code = root.querySelector('.hl code');
   const gutter = root.querySelector('.gutter');
+  const pane = root.querySelector('.pane');
 
   const INDENT = '    ';
   const pairs = { '(': ')', '[': ']', '{': '}', '"': '"', "'": "'" };
@@ -16,6 +17,11 @@ JM.editor = (root, { value, onChange }) => {
     }
     input.style.height = 'auto';
     input.style.height = `${input.scrollHeight}px`;
+  }
+
+  function trackCaret() {
+    const line = input.value.slice(0, input.selectionStart).split('\n').length - 1;
+    pane.style.setProperty('--caret-line', line);
   }
 
   function insert(text) {
@@ -110,9 +116,15 @@ JM.editor = (root, { value, onChange }) => {
     }
   });
 
-  input.addEventListener('focus', () => (trapTab = true));
+  input.addEventListener('focus', () => {
+    trapTab = true;
+    trackCaret();
+  });
+  input.addEventListener('keyup', trackCaret);
+  input.addEventListener('pointerup', trackCaret);
   input.addEventListener('input', () => {
     refresh();
+    trackCaret();
     onChange(input.value);
   });
   input.addEventListener('scroll', () => {
