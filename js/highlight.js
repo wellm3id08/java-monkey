@@ -41,10 +41,28 @@
     return tokens;
   }
 
-  JM.highlight = source =>
-    tokenize(source)
-      .map(({ text, type }) => (type ? `<span class="tok-${type}">${JM.esc(text)}</span>` : JM.esc(text)))
-      .join('');
+  // `marks` wrap character ranges in extra spans: placeholders of a template or freshly typed characters.
+  JM.highlight = (source, marks = []) => {
+    let offset = 0;
+    let html = '';
+    for (const { text, type } of tokenize(source)) {
+      const start = offset;
+      const end = (offset += text.length);
+      let inner = '';
+      let cursor = start;
+      for (const mark of marks) {
+        const from = Math.max(mark.start, start);
+        const to = Math.min(mark.end, end);
+        if (from >= to) continue;
+        inner += JM.esc(source.slice(cursor, from));
+        inner += `<span class="${mark.cls}">${JM.esc(source.slice(from, to))}</span>`;
+        cursor = to;
+      }
+      inner += JM.esc(source.slice(cursor, end));
+      html += type ? `<span class="tok-${type}">${inner}</span>` : inner;
+    }
+    return html;
+  };
 
   JM.highlightLines = source => source.split('\n').map(line => JM.highlight(line));
 })();
