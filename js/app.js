@@ -13,6 +13,8 @@
   const DAY = 24 * 60 * 60 * 1000;
   const INTERVALS = [0, 1, 2, 4, 7, 15, 30]; // Days until the next review, per box.
   const REVIEW_SIZE = 12;
+  const MIX_TYPED = 10; // Snippets typed from memory in one mixed round.
+  const MIX_PROGRAMS = 2; // Full exercises mixed into the round.
   const MAX_TYPED_LINES = 10;
   const ACCENTS = { blue: '#2f6bff', violet: '#7046f5', red: '#e5394a', green: '#0f9b74', orange: '#e5700b', mono: '' };
   const motion = !matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -345,6 +347,7 @@
         <div class="row rise" style="--delay:500ms">
           ${primary}
           ${due ? `<button class="btn ghost" type="button" data-act="review">${t('reviewCount', { n: Math.min(due, REVIEW_SIZE) })}</button>` : ''}
+          ${done ? `<button class="btn ghost" type="button" data-act="mix">${t('mix')}</button>` : ''}
           ${next ? `<button class="btn ghost" type="button" data-act="topics">${t('chooseTopic')}</button>` : ''}
         </div>
         ${
@@ -406,7 +409,10 @@
       <main class="topics">
         <div class="topics-head">
           <h2 data-words>${esc(t('topics'))}</h2>
-          ${due ? `<button class="btn ghost rise" type="button" data-act="review">${t('reviewCount', { n: Math.min(due, REVIEW_SIZE) })}</button>` : ''}
+          <span class="head-actions">
+            ${state.done.size ? `<button class="btn ghost rise" type="button" data-act="mix">${t('mix')}</button>` : ''}
+            ${due ? `<button class="btn ghost rise" type="button" data-act="review">${t('reviewCount', { n: Math.min(due, REVIEW_SIZE) })}</button>` : ''}
+          </span>
         </div>
         <div class="topic-grid">${sections.join('')}</div>
       </main>`;
@@ -703,6 +709,67 @@
     return [...steps, { kind: 'reviewDone' }];
   }
 
+  const shuffle = list => {
+    const copy = [...list];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  };
+
+  // Mixed practice draws only from finished lessons. Weaker snippets (lower Leitner box) are picked more
+  // often, and the order avoids two steps from the same lesson in a row.
+  function mixSteps() {
+    const finished = lessons().filter(lesson => state.done.has(lesson.id));
+    const known = cards();
+    const pool = finished.flatMap(lesson =>
+      lesson.recall
+        .map((item, index) => ({ lesson, item, key: `${lesson.id}#${index}` }))
+        .filter(card => typeable(card.item))
+    );
+    const picked = pool
+      .map(card => ({ card, rank: Math.random() ** (1 / (1 + INTERVALS.length - (known[card.key]?.box ?? 0))) }))
+      .sort((a, b) => b.rank - a.rank)
+      .slice(0, MIX_TYPED)
+      .map(({ card }) => ({ kind: 'type', mix: true, ...card }));
+    const programs = shuffle(finished)
+      .slice(0, MIX_PROGRAMS)
+      .map(lesson => ({ kind: 'practice', mix: true, lesson }));
+
+    // Take next from the lesson with the most snippets left that differs from the previous step;
+    // emptying the biggest group first is what keeps two steps of one lesson from ending up side by side.
+    const groups = new Map();
+    for (const step of shuffle(picked)) groups.set(step.lesson, [...(groups.get(step.lesson) ?? []), step]);
+    const steps = [];
+    while (steps.length < picked.length) {
+      const previous = steps.at(-1)?.lesson;
+      const open = shuffle([...groups].filter(([, list]) => list.length));
+      const choices = open.filter(([lesson]) => lesson !== previous);
+      const [, list] = (choices.length ? choices : open).sort((a, b) => b[1].length - a[1].length)[0];
+      steps.push(list.shift());
+    }
+
+    // Place each full exercise near an even spot, between neighbours from other lessons.
+    programs.forEach((program, i) => {
+      const ideal = Math.round(((i + 1) * steps.length) / (programs.length + 1));
+      const fits = at => steps[at - 1]?.lesson !== program.lesson && steps[at]?.lesson !== program.lesson;
+      let at = ideal;
+      for (let offset = 0; offset <= steps.length; offset++) {
+        if (ideal + offset <= steps.length && fits(ideal + offset)) {
+          at = ideal + offset;
+          break;
+        }
+        if (ideal - offset >= 0 && fits(ideal - offset)) {
+          at = ideal - offset;
+          break;
+        }
+      }
+      steps.splice(at, 0, program);
+    });
+    return [...steps, { kind: 'mixDone' }];
+  }
+
   function renderPlayer({ mode, lesson, steps, index }) {
     player = {
       mode,
@@ -876,7 +943,7 @@
     type: step => ({
       cls: 'wide',
       html: `
-        <p class="eyebrow rise">${esc(step.warmup ? t('warmup', { title: step.lesson.title }) : step.review ? step.lesson.title : t('fromMemory'))}</p>
+        <p class="eyebrow rise">${esc(step.warmup ? t('warmup', { title: step.lesson.title }) : step.mix ? `${t('mixLabel')} · ${step.lesson.title}` : step.review ? step.lesson.title : t('fromMemory'))}</p>
         <h2 class="big sm" data-words>${esc(step.item.do)}</h2>
         <div class="rise" style="--delay:250ms">${editorHtml({ line: true, label: step.item.do })}</div>
         <div class="msg" id="msg" aria-live="polite">${step.item.code.includes('\n') && finePointer ? `<p class="note-line">${t('multilineHint')}</p>` : ''}</div>
@@ -918,10 +985,10 @@
       },
     }),
 
-    practice: ({ lesson }) => ({
+    practice: ({ lesson, mix }) => ({
       cls: 'wide practice',
       html: `
-        <p class="eyebrow rise">${t('yourTurn')}</p>
+        <p class="eyebrow rise">${mix ? `${t('mixLabel')} · ${esc(lesson.title)}` : t('yourTurn')}</p>
         <h2 class="big sm" data-words>${inline(lesson.task)}</h2>
         <p class="muted rise" style="--delay:300ms">${inline(lesson.think)}</p>
         <div class="file rise" style="--delay:450ms">
@@ -938,14 +1005,15 @@
             .join('')}
         </div>
         <div class="panel" id="panel" hidden></div>`,
-      dock: { primary: { act: 'next', label: t('markDone') }, flow: true },
+      dock: { primary: { act: 'next', label: t(mix ? 'next' : 'markDone') }, flow: true },
       setup(stage) {
         bindEditor(
           JM.editor($('.ed', stage), {
-            value: store.get(draftKey(lesson)) ?? lesson.starter,
+            value: mix ? lesson.starter : store.get(draftKey(lesson)) ?? lesson.starter,
             templates: activeTemplates,
             imports: true,
             onChange: value => {
+              if (mix) return;
               if (value === lesson.starter) store.remove(draftKey(lesson));
               else store.set(draftKey(lesson), value);
             },
@@ -977,6 +1045,20 @@
         },
       };
     },
+
+    mixDone: () => ({
+      cls: 'center',
+      html: player.steps.length > 1
+        ? `<div class="medal">${icons.check(40)}</div>
+           <h2 class="big" data-words>${t('mixDone')}</h2>
+           ${statLine()}`
+        : `<h2 class="big sm" data-words>${t('mixEmpty')}</h2>`,
+      dock:
+        player.steps.length > 1
+          ? { primary: { act: 'mixAgain', label: t('mixAgain') }, secondary: { act: 'home', label: t('home') } }
+          : { primary: { act: 'home', label: t('home') } },
+      setup: player.steps.length > 1 ? celebrate : null,
+    }),
 
     reviewDone: () => ({
       cls: 'center',
@@ -1432,6 +1514,12 @@
       case 'review':
         nav('#/review');
         break;
+      case 'mix':
+        nav('#/mix');
+        break;
+      case 'mixAgain':
+        nav('#/mix');
+        break;
       case 'notesPage':
         nav('#/notes');
         break;
@@ -1686,6 +1774,7 @@
       h: () => nav('#/'),
       t: () => nav('#/topics'),
       r: () => dueCards().length && nav('#/review'),
+      m: () => state.done.size && nav('#/mix'),
     };
     if (global[key] || global[lower]) {
       event.preventDefault();
@@ -1785,6 +1874,7 @@
     }
     renderDrawer();
     if (name === 'review') renderPlayer({ mode: 'review', steps: reviewSteps(), index: 0 });
+    else if (name === 'mix') renderPlayer({ mode: 'mix', steps: mixSteps(), index: 0 });
     else if (name === 'topics') renderTopics();
     else if (name === 'notes') renderNotesPage();
     else renderHome();
