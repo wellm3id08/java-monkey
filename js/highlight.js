@@ -41,20 +41,10 @@
     return tokens;
   }
 
-  // Code without whitespace and comments, so answers are compared by meaning and not by layout.
-  const significant = source =>
-    tokenize(source)
-      .filter(({ text, type }) => type !== 'comment' && /\S/.test(text))
-      .map(({ text }) => text);
-
   JM.highlight = source =>
     tokenize(source)
       .map(({ text, type }) => (type ? `<span class="tok-${type}">${JM.esc(text)}</span>` : JM.esc(text)))
       .join('');
 
-  JM.sameCode = (a, b) => {
-    const left = significant(a);
-    const right = significant(b);
-    return left.length === right.length && left.every((token, i) => token === right[i]);
-  };
+  JM.highlightLines = source => source.split('\n').map(line => JM.highlight(line));
 })();
