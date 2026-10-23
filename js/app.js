@@ -73,7 +73,7 @@
       ${line ? '' : '<pre class="gutter" aria-hidden="true"></pre>'}
       <div class="pane">
         <pre class="hl" aria-hidden="true"><code></code></pre>
-        <textarea class="inp" aria-label="${esc(label)}" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off" rows="1"></textarea>
+        <textarea class="inp" aria-label="${esc(label)}" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="${line ? 'soft' : 'off'}" rows="1"></textarea>
       </div>
     </div>`;
 
@@ -408,7 +408,7 @@
           <h2 data-words>${esc(t('topics'))}</h2>
           ${due ? `<button class="btn ghost rise" type="button" data-act="review">${t('reviewCount', { n: Math.min(due, REVIEW_SIZE) })}</button>` : ''}
         </div>
-        ${sections.join('')}
+        <div class="topic-grid">${sections.join('')}</div>
       </main>`;
     animateWords(app);
     ($('.lrow.current .lstart', app) ?? $('.topic-head', app))?.focus({ preventScroll: true });
@@ -761,14 +761,19 @@
 
     const show = () => {
       if (!stage.isConnected) return;
-      stage.innerHTML = `<div class="step ${stepView.cls ?? ''}" style="--dir:${direction}">${stepView.html}</div>`;
-      renderDock({ primary: { act: 'next', label: t('next') }, wide: stepView.cls?.includes('wide'), ...stepView.dock });
-      animateWords(stage);
-      stepView.setup?.(stage);
-      if (!player.editor) $('#primary')?.focus({ preventScroll: true });
-      updateKeyHint();
-      window.scrollTo(0, 0);
-      player.busy = false;
+      try {
+        stage.className = `stage${stepView.cls?.includes('practice') ? ' practice' : ''}`;
+        stage.innerHTML = `<div class="step ${stepView.cls ?? ''}" style="--dir:${direction}">${stepView.html}</div>`;
+        renderDock({ primary: { act: 'next', label: t('next') }, wide: stepView.cls?.includes('wide'), ...stepView.dock });
+        animateWords(stage);
+        stepView.setup?.(stage);
+        if (!player.editor) $('#primary')?.focus({ preventScroll: true });
+        updateKeyHint();
+        fitStep();
+      } finally {
+        // Whatever happens while drawing a step, the learner must still be able to move on.
+        player.busy = false;
+      }
     };
 
     if (old && motion) {
@@ -779,6 +784,28 @@
       show();
     }
   }
+
+  // Shrinks a step that is taller than the screen so the page never needs scrolling.
+  // The practice step is the exception: its editor scrolls inside its own box instead.
+  function fitStep() {
+    const stage = $('#stage');
+    const step = stage && $('.step', stage);
+    if (!step) return;
+    step.style.zoom = '';
+    if (step.classList.contains('practice')) return;
+    const styles = getComputedStyle(stage);
+    const available = stage.clientHeight - parseFloat(styles.paddingTop) - parseFloat(styles.paddingBottom);
+    const needed = step.scrollHeight;
+    if (needed > available && available > 0) step.style.zoom = Math.max(0.5, available / needed).toFixed(3);
+  }
+
+  let fitFrame = 0;
+  const scheduleFit = () => {
+    cancelAnimationFrame(fitFrame);
+    fitFrame = requestAnimationFrame(fitStep);
+  };
+  addEventListener('resize', scheduleFit);
+  document.fonts?.ready.then(scheduleFit);
 
   function advance(direction) {
     if (!player || player.busy) return;
@@ -863,6 +890,7 @@
             value: '',
             templates: activeTemplates,
             onChange: value => {
+              scheduleFit();
               if (player.solved) return;
               root.classList.remove('err');
               // Solve live only on an exact match; a looser answer is accepted when the learner checks it,
@@ -891,7 +919,7 @@
     }),
 
     practice: ({ lesson }) => ({
-      cls: 'wide',
+      cls: 'wide practice',
       html: `
         <p class="eyebrow rise">${t('yourTurn')}</p>
         <h2 class="big sm" data-words>${inline(lesson.task)}</h2>
@@ -903,7 +931,7 @@
             <button class="link" type="button" data-act="download">${t('download')}</button>
           </span>
         </div>
-        <div class="rise" style="--delay:550ms">${editorHtml({ label: lesson.filename })}</div>
+        <div class="ed-box rise" style="--delay:550ms">${editorHtml({ label: lesson.filename })}</div>
         <div class="aids rise" style="--delay:650ms">
           ${['plan', 'hint', 'output', 'solution']
             .map((name, i) => `<button class="chip" type="button" data-act="aid" data-aid="${name}">${t(name)}${kbd(i + 1)}</button>`)
@@ -1008,6 +1036,7 @@
     $('#primary').focus({ preventScroll: true });
     burstFrom($('.tick', root), { count: 16, spread: 110 });
     flash();
+    fitStep();
   }
 
   function check() {
@@ -1024,12 +1053,14 @@
     void root.offsetWidth;
     root.classList.add('shake', 'err');
     player.editor.input.focus({ preventScroll: true });
+    fitStep();
   }
 
   function reveal() {
     const step = player.steps[player.index];
     player.revealed = true;
     $('#answer').innerHTML = codeView(step.item.code, 'static');
+    fitStep();
     typeOut($('#answer .code'), step.item.code, 0);
     $('#extra')?.remove();
     setPrimary('next', t('next'));
@@ -1445,6 +1476,13 @@
         const topic = target.closest('.topic');
         const open = topic.classList.toggle('open');
         target.setAttribute('aria-expanded', String(open));
+        if (open) {
+          $$('.topic.open').forEach(other => {
+            if (other === topic) return;
+            other.classList.remove('open');
+            $('.topic-head', other).setAttribute('aria-expanded', 'false');
+          });
+        }
         break;
       }
       case 'open':
@@ -1725,7 +1763,7 @@
     if (!hint || !player) return;
     const step = player.steps[player.index];
     const inEditor = player.editor && document.activeElement === player.editor.input;
-    const multiline = step.kind === 'practice' || step.item?.code.includes('\n');
+    const multiline = step.kind === 'practice' || step.item?.code?.includes('\n');
     hint.textContent = inEditor && multiline ? 'Ctrl ↵' : '↵';
   }
   document.addEventListener('focusin', updateKeyHint);
