@@ -305,9 +305,11 @@ JM.editor = (root, { value, onChange, templates = () => [], imports = false }) =
     pane.append(probe);
     const charWidth = probe.getBoundingClientRect().width / 40;
     probe.remove();
-    const lineHeight = parseFloat(getComputedStyle(input).lineHeight);
+    // The step may be zoomed to fit the screen; measure in on-screen pixels.
+    const scale = input.offsetHeight ? input.getBoundingClientRect().height / input.offsetHeight : 1;
+    const lineHeight = parseFloat(getComputedStyle(input).lineHeight) * scale;
     const area = pane.getBoundingClientRect();
-    const left = Math.min(area.left + Math.max(0, column * charWidth - input.scrollLeft), innerWidth - box.offsetWidth - 12);
+    const left = Math.min(area.left + Math.max(0, column * charWidth - input.scrollLeft * scale), innerWidth - box.offsetWidth - 12);
     let top = area.top + (line + 1) * lineHeight + 6;
     if (top + box.offsetHeight > innerHeight - 12) top = area.top + line * lineHeight - box.offsetHeight - 6;
     box.style.left = `${Math.max(12, left)}px`;

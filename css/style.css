@@ -2521,3 +2521,253 @@ body.with-drawer .dock {
     animation: none !important;
   }
 }
+
+/* Fit to screen ---------------------------------------------------------------
+   The page itself never scrolls. Lesson steps scale down to fit, the practice
+   editor and long lists scroll inside their own area. */
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+#app {
+  height: 100dvh;
+  min-height: 0;
+}
+
+.top {
+  flex: none;
+}
+
+.stage {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: clamp(4px, 2vh, 18px) 20px;
+}
+
+.stage.practice {
+  align-content: stretch;
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.dock,
+.dock.flow {
+  position: relative;
+  flex: none;
+  padding: clamp(10px, 2.4vh, 22px) 20px clamp(14px, 3vh, 26px);
+  pointer-events: auto;
+}
+
+body.with-drawer .dock {
+  padding-bottom: calc(68px + env(safe-area-inset-bottom));
+}
+
+.home,
+.topics,
+.notes-page {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.home {
+  gap: clamp(10px, 2.6vh, 22px);
+  padding-bottom: 6vh;
+}
+
+.home h1 {
+  font-size: clamp(36px, min(8.4vw, 11vh), 88px);
+}
+
+.big {
+  font-size: clamp(26px, min(6vw, 7vh), 54px);
+}
+
+.big.sm {
+  font-size: clamp(21px, min(4.4vw, 5.4vh), 40px);
+}
+
+.lead {
+  font-size: clamp(18px, min(3.8vw, 4.3vh), 32px);
+}
+
+.big + .lead {
+  margin-top: clamp(10px, 2.4vh, 22px);
+  font-size: clamp(16px, min(2.8vw, 3.3vh), 24px);
+}
+
+.eyebrow {
+  margin-bottom: clamp(6px, 1.6vh, 14px);
+}
+
+.lines li {
+  margin-bottom: clamp(10px, 2.4vh, 22px);
+  font-size: clamp(16px, min(3vw, 3.5vh), 24px);
+}
+
+.code,
+.ed {
+  font-size: clamp(13px, min(1.5vw, 2.15vh), 16px);
+}
+
+.code {
+  margin-top: clamp(12px, 3vh, 30px);
+}
+
+.ed {
+  margin-top: clamp(14px, 3.2vh, 30px);
+}
+
+.medal {
+  width: clamp(56px, 10vh, 84px);
+  height: clamp(56px, 10vh, 84px);
+  margin-bottom: clamp(14px, 3.4vh, 28px);
+}
+
+/* Practice: title, editor and aids share the height; the editor scrolls inside. */
+
+.step.practice {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.step.practice > * {
+  flex: none;
+}
+
+.step.practice .big.sm {
+  font-size: clamp(19px, min(3.4vw, 4.2vh), 34px);
+}
+
+.step.practice .file {
+  margin-top: clamp(10px, 2.2vh, 30px);
+}
+
+.step.practice .ed-box {
+  flex: 1 1 auto;
+  min-height: 96px;
+  overflow: auto;
+  margin-top: clamp(8px, 1.6vh, 18px);
+}
+
+.step.practice .ed {
+  margin-top: 0;
+}
+
+.step.practice .aids {
+  margin-top: clamp(8px, 1.8vh, 26px);
+}
+
+.step.practice .panel {
+  max-height: 34%;
+  overflow: auto;
+  margin-top: clamp(8px, 1.6vh, 18px);
+}
+
+/* The answer line wraps long answers instead of letting them run past the edge. */
+
+.ed.line .hl,
+.ed.line .inp {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+
+.ed.line .inp {
+  overflow: hidden;
+}
+
+.ed.line .pane {
+  margin-right: 44px;
+}
+
+@media (max-height: 680px) {
+  .top {
+    padding-block: 10px;
+  }
+
+  .hint-key,
+  .home .meta .meter {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .stage {
+    align-content: center;
+    padding-top: 8px;
+  }
+}
+
+/* Topics stay within short screens too */
+
+.topics-head {
+  margin: 0 0 clamp(12px, 3vh, 28px);
+}
+
+.topics h2,
+.notes-page h2 {
+  font-size: clamp(28px, min(5.4vw, 7vh), 48px);
+}
+
+.topic {
+  margin-bottom: clamp(6px, 1.3vh, 12px);
+}
+
+.topic-head {
+  padding: clamp(10px, 2.1vh, 20px) 24px;
+  font-size: clamp(16px, 2.4vh, 18px);
+}
+
+.lstart {
+  padding: clamp(7px, 1.4vh, 13px) 14px;
+  border-radius: 16px;
+}
+
+@media (min-width: 900px) {
+  .topics {
+    width: min(1080px, 100%);
+  }
+
+  .topic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 14px;
+    align-items: start;
+  }
+}
+
+@media (max-width: 560px) {
+  .topics {
+    padding-bottom: 16px;
+  }
+
+  .topic {
+    border-radius: 22px;
+  }
+
+  .topic-head {
+    padding: 9px 18px;
+    font-size: 15px;
+  }
+
+  .lstart {
+    padding: 6px 10px;
+    gap: 10px;
+  }
+
+  .lrow .link {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
+
+.lstart:focus-visible,
+.topic-head:focus-visible {
+  outline-offset: -3px;
+  border-radius: 16px;
+}
