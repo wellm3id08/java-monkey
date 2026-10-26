@@ -2,7 +2,13 @@
 
 Learn Java in small steps. Each lesson shows one idea at a time, asks you to type the code from memory, and ends with a short exercise.
 
+[![Live demo](https://img.shields.io/badge/demo-live-2ea44f)](https://wellm3id08.github.io/java-monkey/)
+[![License: MIT](https://img.shields.io/github/license/wellm3id08/java-monkey)](LICENSE)
+![No build step](https://img.shields.io/badge/build%20step-none-lightgrey)
+
 [Open the website](https://wellm3id08.github.io/java-monkey/)
+
+![Java Monkey home screen: "Learn Java, one small step at a time."](docs/screenshot.jpg)
 
 > [!IMPORTANT]
 > Your progress and saved code stay in your browser. Nothing is uploaded to a server.
