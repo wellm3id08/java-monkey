@@ -4,7 +4,8 @@ JM.content.es = {
       "title": "Primeros pasos",
       "lessons": [
         "fundamentals",
-        "first-program"
+        "first-program",
+        "programming-languages"
       ]
     },
     {
@@ -22,7 +23,8 @@ JM.content.es = {
         "comparisons",
         "logical-operators",
         "if-conditionals",
-        "switch-selection"
+        "switch-selection",
+        "advanced-control"
       ]
     },
     {
@@ -42,7 +44,17 @@ JM.content.es = {
         "money-percentages",
         "counters-accumulators",
         "max-min-position",
-        "menu-loop"
+        "menu-loop",
+        "string-methods",
+        "string-conversion"
+      ]
+    },
+    {
+      "title": "Métodos y recursividad",
+      "lessons": [
+        "java-methods",
+        "method-returns",
+        "recursion"
       ]
     },
     {
@@ -172,6 +184,55 @@ JM.content.es = {
       "output": "Me llamo Alex\nEstoy aprendiendo Java",
       "outputNote": "Cambia “Alex” por tu nombre. El formato de las dos líneas es lo importante.",
       "solution": "public class Ejercicio02 {\n    public static void main(String[] args) {\n        System.out.println(\"Me llamo Alex\");\n        System.out.println(\"Estoy aprendiendo Java\");\n    }\n}"
+    },
+    {
+      "id": "programming-languages",
+      "title": "Lenguajes, compilación y pseudocódigo",
+      "time": "5 min",
+      "idea": "Un algoritmo se puede representar con pseudocódigo antes de convertirlo en un programa Java.",
+      "theory": [
+        {
+          "title": "Lenguajes de alto y bajo nivel",
+          "text": "Los lenguajes de alto nivel facilitan expresar algoritmos; los de bajo nivel son más cercanos al hardware."
+        },
+        {
+          "title": "Traducción",
+          "text": "El compilador de Java convierte el código fuente en bytecode; la JVM lo ejecuta."
+        },
+        {
+          "title": "PSeInt",
+          "text": "Usa Algoritmo, Leer, Escribir, Si, Segun, Mientras, Repetir y Para para describir pasos."
+        }
+      ],
+      "exampleTitle": "Lenguajes, compilación y pseudocódigo",
+      "exampleLead": "Un algoritmo se puede representar con pseudocódigo antes de convertirlo en un programa Java.",
+      "example": "public class Demo27 {\n    public static void main(String[] args) {\n        int number = 4;\n        if (number > 0) {\n            System.out.println(\"Positive\");\n        }\n    }\n}",
+      "explain": [
+        "Los lenguajes de alto nivel facilitan expresar algoritmos; los de bajo nivel son más cercanos al hardware.",
+        "El compilador de Java convierte el código fuente en bytecode; la JVM lo ejecuta.",
+        "Usa Algoritmo, Leer, Escribir, Si, Segun, Mientras, Repetir y Para para describir pasos."
+      ],
+      "task": "Traduce a Java este pseudocódigo: asigna 4 a un número y muestra \"Positive\" si es mayor que 0.",
+      "think": "Escribe el programa y comprueba el resultado.",
+      "steps": [
+        "Escribe el programa y comprueba el resultado.",
+        "Compara la salida con el ejemplo."
+      ],
+      "hints": [
+        "Un algoritmo se puede representar con pseudocódigo antes de convertirlo en un programa Java.",
+        "Puedes usar este patrón: `if (number > 0) {`"
+      ],
+      "recall": [
+        {
+          "do": "Lenguajes, compilación y pseudocódigo",
+          "code": "if (number > 0) {\n    System.out.println(\"Positive\");\n}"
+        }
+      ],
+      "filename": "Ejercicio27.java",
+      "starter": "public class Ejercicio27 {\n    public static void main(String[] args) {\n        \n    }\n}",
+      "output": "Positive",
+      "outputNote": "Escribe el programa y comprueba el resultado.",
+      "solution": "public class Ejercicio27 {\n    public static void main(String[] args) {\n        int number = 4;\n        if (number > 0) {\n            System.out.println(\"Positive\");\n        }\n    }\n}"
     },
     {
       "id": "variables-constants",
@@ -671,6 +732,55 @@ JM.content.es = {
       "output": "Jugar",
       "outputNote": "Cambia opcion a 2 y después a 9 para probar los tres casos.",
       "solution": "public class Ejercicio10 {\n    public static void main(String[] args) {\n        int opcion = 1;\n        switch (opcion) {\n            case 1:\n                System.out.println(\"Jugar\");\n                break;\n            case 2:\n                System.out.println(\"Salir\");\n                break;\n            default:\n                System.out.println(\"Opción desconocida\");\n        }\n    }\n}"
+    },
+    {
+      "id": "advanced-control",
+      "title": "Operador ternario y bucles etiquetados",
+      "time": "5 min",
+      "idea": "El operador ternario selecciona un valor y las etiquetas permiten controlar bucles anidados.",
+      "theory": [
+        {
+          "title": "Operador ternario",
+          "text": "La expresión condición ? valorSi : valorNo elige entre dos valores."
+        },
+        {
+          "title": "Etiquetas",
+          "text": "Una etiqueta antes de un bucle permite usar break etiqueta o continue etiqueta."
+        },
+        {
+          "title": "Uso responsable",
+          "text": "Prefiere if y bucles normales cuando resulten más claros."
+        }
+      ],
+      "exampleTitle": "Operador ternario y bucles etiquetados",
+      "exampleLead": "El operador ternario selecciona un valor y las etiquetas permiten controlar bucles anidados.",
+      "example": "public class Demo33 {\n    public static void main(String[] args) {\n        int number = 3;\n        String result = number % 2 == 0 ? \"Even\" : \"Odd\";\n        System.out.println(result);\n    }\n}",
+      "explain": [
+        "La expresión condición ? valorSi : valorNo elige entre dos valores.",
+        "Una etiqueta antes de un bucle permite usar break etiqueta o continue etiqueta.",
+        "Prefiere if y bucles normales cuando resulten más claros."
+      ],
+      "task": "Usa el operador ternario para mostrar \"Odd\" si el número 3 es impar o \"Even\" si es par.",
+      "think": "Escribe el programa y comprueba el resultado.",
+      "steps": [
+        "Escribe el programa y comprueba el resultado.",
+        "Compara la salida con el ejemplo."
+      ],
+      "hints": [
+        "El operador ternario selecciona un valor y las etiquetas permiten controlar bucles anidados.",
+        "Puedes usar este patrón: `String result = number % 2 == 0 ? \"Even\" : \"Odd\";`"
+      ],
+      "recall": [
+        {
+          "do": "Operador ternario y bucles etiquetados",
+          "code": "String result = number % 2 == 0 ? \"Even\" : \"Odd\";"
+        }
+      ],
+      "filename": "Ejercicio33.java",
+      "starter": "public class Ejercicio33 {\n    public static void main(String[] args) {\n        \n    }\n}",
+      "output": "Odd",
+      "outputNote": "Escribe el programa y comprueba el resultado.",
+      "solution": "public class Ejercicio33 {\n    public static void main(String[] args) {\n        int number = 3;\n        String result = number % 2 == 0 ? \"Even\" : \"Odd\";\n        System.out.println(result);\n    }\n}"
     },
     {
       "id": "while-loop",
@@ -1221,6 +1331,251 @@ JM.content.es = {
       "output": "1) Ingresar  2) Retirar  3) Ver  0) Salir\nOpción: 1\nImporte: 10\nIngresado\n\n1) Ingresar  2) Retirar  3) Ver  0) Salir\nOpción: 2\nImporte: 50\nSaldo insuficiente\n\n1) Ingresar  2) Retirar  3) Ver  0) Salir\nOpción: 2\nImporte: 5\nRetirado\n\n1) Ingresar  2) Retirar  3) Ver  0) Salir\nOpción: 3\nSaldo: 25.0\nIngresos: 1, retiradas: 1\n\n1) Ingresar  2) Retirar  3) Ver  0) Salir\nOpción: 7\nOpción no válida\n\n1) Ingresar  2) Retirar  3) Ver  0) Salir\nOpción: 0\nHasta pronto",
       "outputNote": "Los valores después de \"Opción\" e \"Importe\" son lo que escribes. La retirada de 50 se rechaza.",
       "solution": "import java.util.Scanner;\n\npublic class Ejercicio20 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double saldo = 20.0;\n        int ingresos = 0;\n        int retiradas = 0;\n        double importe;\n        int opcion;\n        do {\n            System.out.println();\n            System.out.println(\"1) Ingresar  2) Retirar  3) Ver  0) Salir\");\n            System.out.print(\"Opción: \");\n            opcion = teclado.nextInt();\n            switch (opcion) {\n                case 1:\n                    System.out.print(\"Importe: \");\n                    importe = teclado.nextDouble();\n                    if (importe > 0) {\n                        saldo += importe;\n                        ingresos++;\n                        System.out.println(\"Ingresado\");\n                    } else {\n                        System.out.println(\"El importe debe ser mayor que 0\");\n                    }\n                    break;\n                case 2:\n                    System.out.print(\"Importe: \");\n                    importe = teclado.nextDouble();\n                    if (importe <= 0) {\n                        System.out.println(\"El importe debe ser mayor que 0\");\n                    } else if (importe > saldo) {\n                        System.out.println(\"Saldo insuficiente\");\n                    } else {\n                        saldo -= importe;\n                        retiradas++;\n                        System.out.println(\"Retirado\");\n                    }\n                    break;\n                case 3:\n                    System.out.println(\"Saldo: \" + saldo);\n                    System.out.println(\"Ingresos: \" + ingresos + \", retiradas: \" + retiradas);\n                    break;\n                case 0:\n                    System.out.println(\"Hasta pronto\");\n                    break;\n                default:\n                    System.out.println(\"Opción no válida\");\n            }\n        } while (opcion != 0);\n        teclado.close();\n    }\n}"
+    },
+    {
+      "id": "string-methods",
+      "title": "Cadenas: métodos e inmutabilidad",
+      "time": "5 min",
+      "idea": "String es una clase inmutable. Sus métodos permiten consultar y transformar texto sin modificar el original.",
+      "theory": [
+        {
+          "title": "Métodos habituales",
+          "text": "length(), charAt(), substring(), indexOf(), equals() y equalsIgnoreCase() permiten analizar texto."
+        },
+        {
+          "title": "Transformaciones",
+          "text": "toUpperCase(), toLowerCase(), trim() y replace() devuelven otra cadena."
+        },
+        {
+          "title": "Comparación",
+          "text": "Para comparar contenido usa equals() y no ==."
+        }
+      ],
+      "exampleTitle": "Cadenas: métodos e inmutabilidad",
+      "exampleLead": "String es una clase inmutable. Sus métodos permiten consultar y transformar texto sin modificar el original.",
+      "example": "public class Demo28 {\n    public static void main(String[] args) {\n        String word = \" Java \";\n        String clean = word.trim();\n        System.out.println(clean.length());\n        System.out.println(clean.toUpperCase());\n    }\n}",
+      "explain": [
+        "length(), charAt(), substring(), indexOf(), equals() y equalsIgnoreCase() permiten analizar texto.",
+        "toUpperCase(), toLowerCase(), trim() y replace() devuelven otra cadena.",
+        "Para comparar contenido usa equals() y no ==."
+      ],
+      "task": "Dada la cadena \" Java \", elimina espacios de los extremos y muestra su longitud y su versión en mayúsculas.",
+      "think": "Escribe el programa y comprueba el resultado.",
+      "steps": [
+        "Escribe el programa y comprueba el resultado.",
+        "Compara la salida con el ejemplo."
+      ],
+      "hints": [
+        "String es una clase inmutable. Sus métodos permiten consultar y transformar texto sin modificar el original.",
+        "Puedes usar este patrón: `String clean = word.trim();`"
+      ],
+      "recall": [
+        {
+          "do": "Cadenas: métodos e inmutabilidad",
+          "code": "String clean = word.trim();\nSystem.out.println(clean.length());"
+        }
+      ],
+      "filename": "Ejercicio28.java",
+      "starter": "public class Ejercicio28 {\n    public static void main(String[] args) {\n        \n    }\n}",
+      "output": "4\nJAVA",
+      "outputNote": "Escribe el programa y comprueba el resultado.",
+      "solution": "public class Ejercicio28 {\n    public static void main(String[] args) {\n        String word = \" Java \";\n        String clean = word.trim();\n        System.out.println(clean.length());\n        System.out.println(clean.toUpperCase());\n    }\n}"
+    },
+    {
+      "id": "string-conversion",
+      "title": "Texto: conversiones y expresiones regulares",
+      "time": "5 min",
+      "idea": "Convierte texto a números y valida formatos sencillos con expresiones regulares.",
+      "theory": [
+        {
+          "title": "Conversiones",
+          "text": "Integer.parseInt() y Double.parseDouble() convierten texto a números."
+        },
+        {
+          "title": "Caracteres especiales",
+          "text": "En cadenas Java se usan escapes como \\n, \\t y \\\"."
+        },
+        {
+          "title": "Patrones",
+          "text": "matches() comprueba una expresión regular; por ejemplo, [0-9]+ exige uno o más dígitos."
+        }
+      ],
+      "exampleTitle": "Texto: conversiones y expresiones regulares",
+      "exampleLead": "Convierte texto a números y valida formatos sencillos con expresiones regulares.",
+      "example": "public class Demo29 {\n    public static void main(String[] args) {\n        String input = \"123\";\n        if (input.matches(\"[0-9]+\")) {\n            int value = Integer.parseInt(input);\n            System.out.println(value + 1);\n        }\n    }\n}",
+      "explain": [
+        "Integer.parseInt() y Double.parseDouble() convierten texto a números.",
+        "En cadenas Java se usan escapes como \\n, \\t y \\\".",
+        "matches() comprueba una expresión regular; por ejemplo, [0-9]+ exige uno o más dígitos."
+      ],
+      "task": "Comprueba si \"123\" contiene solo dígitos; si es así, conviértelo a entero y muestra el número siguiente.",
+      "think": "Escribe el programa y comprueba el resultado.",
+      "steps": [
+        "Escribe el programa y comprueba el resultado.",
+        "Compara la salida con el ejemplo."
+      ],
+      "hints": [
+        "Convierte texto a números y valida formatos sencillos con expresiones regulares.",
+        "Puedes usar este patrón: `if (input.matches(\"[0-9]+\")) {`"
+      ],
+      "recall": [
+        {
+          "do": "Texto: conversiones y expresiones regulares",
+          "code": "if (input.matches(\"[0-9]+\")) {\n    int value = Integer.parseInt(input);\n}"
+        }
+      ],
+      "filename": "Ejercicio29.java",
+      "starter": "public class Ejercicio29 {\n    public static void main(String[] args) {\n        \n    }\n}",
+      "output": "124",
+      "outputNote": "Escribe el programa y comprueba el resultado.",
+      "solution": "public class Ejercicio29 {\n    public static void main(String[] args) {\n        String input = \"123\";\n        if (input.matches(\"[0-9]+\")) {\n            int value = Integer.parseInt(input);\n            System.out.println(value + 1);\n        }\n    }\n}"
+    },
+    {
+      "id": "java-methods",
+      "title": "Programación modular: métodos y procedimientos",
+      "time": "5 min",
+      "idea": "Divide un programa en métodos reutilizables. Un método void realiza acciones sin devolver un valor.",
+      "theory": [
+        {
+          "title": "Descomposición",
+          "text": "Cada método debe tener una tarea clara y puede llamarse desde main."
+        },
+        {
+          "title": "Parámetros",
+          "text": "Los parámetros reciben valores cuando se llama al método."
+        },
+        {
+          "title": "Procedimientos",
+          "text": "Un método void no tiene un valor de retorno."
+        }
+      ],
+      "exampleTitle": "Programación modular: métodos y procedimientos",
+      "exampleLead": "Divide un programa en métodos reutilizables. Un método void realiza acciones sin devolver un valor.",
+      "example": "public class Demo30 {\n    static void greet(String name) {\n        System.out.println(\"Hello \" + name);\n    }\n    public static void main(String[] args) {\n        greet(\"Java\");\n    }\n}",
+      "explain": [
+        "Cada método debe tener una tarea clara y puede llamarse desde main.",
+        "Los parámetros reciben valores cuando se llama al método.",
+        "Un método void no tiene un valor de retorno."
+      ],
+      "task": "Crea un método greet(String name) que muestre \"Hello \" y el nombre, y llámalo con \"Java\" desde main.",
+      "think": "Escribe el programa y comprueba el resultado.",
+      "steps": [
+        "Escribe el programa y comprueba el resultado.",
+        "Compara la salida con el ejemplo."
+      ],
+      "hints": [
+        "Divide un programa en métodos reutilizables. Un método void realiza acciones sin devolver un valor.",
+        "Puedes usar este patrón: `static void greet(String name) {`"
+      ],
+      "recall": [
+        {
+          "do": "Programación modular: métodos y procedimientos",
+          "code": "static void greet(String name) {\n    System.out.println(\"Hello \" + name);\n}"
+        }
+      ],
+      "filename": "Ejercicio30.java",
+      "starter": "public class Ejercicio30 {\n    \n    public static void main(String[] args) {\n        \n    }\n}",
+      "output": "Hello Java",
+      "outputNote": "Escribe el programa y comprueba el resultado.",
+      "solution": "public class Ejercicio30 {\n    static void greet(String name) {\n        System.out.println(\"Hello \" + name);\n    }\n    public static void main(String[] args) {\n        greet(\"Java\");\n    }\n}"
+    },
+    {
+      "id": "method-returns",
+      "title": "Funciones: parámetros y valor de retorno",
+      "time": "5 min",
+      "idea": "Un método puede calcular un resultado y devolverlo con return.",
+      "theory": [
+        {
+          "title": "Tipo de retorno",
+          "text": "Declara el tipo del resultado antes del nombre del método."
+        },
+        {
+          "title": "return",
+          "text": "La sentencia return devuelve el resultado a quien llamó al método."
+        },
+        {
+          "title": "Ámbito",
+          "text": "Las variables locales y los parámetros pertenecen al método donde se declaran."
+        }
+      ],
+      "exampleTitle": "Funciones: parámetros y valor de retorno",
+      "exampleLead": "Un método puede calcular un resultado y devolverlo con return.",
+      "example": "public class Demo31 {\n    static int add(int a, int b) {\n        return a + b;\n    }\n    public static void main(String[] args) {\n        System.out.println(add(3, 4));\n    }\n}",
+      "explain": [
+        "Declara el tipo del resultado antes del nombre del método.",
+        "La sentencia return devuelve el resultado a quien llamó al método.",
+        "Las variables locales y los parámetros pertenecen al método donde se declaran."
+      ],
+      "task": "Escribe un método add(int a, int b) que devuelva la suma y muestra add(3, 4).",
+      "think": "Escribe el programa y comprueba el resultado.",
+      "steps": [
+        "Escribe el programa y comprueba el resultado.",
+        "Compara la salida con el ejemplo."
+      ],
+      "hints": [
+        "Un método puede calcular un resultado y devolverlo con return.",
+        "Puedes usar este patrón: `static int add(int a, int b) {`"
+      ],
+      "recall": [
+        {
+          "do": "Funciones: parámetros y valor de retorno",
+          "code": "static int add(int a, int b) {\n    return a + b;\n}"
+        }
+      ],
+      "filename": "Ejercicio31.java",
+      "starter": "public class Ejercicio31 {\n    \n    public static void main(String[] args) {\n        \n    }\n}",
+      "output": "7",
+      "outputNote": "Escribe el programa y comprueba el resultado.",
+      "solution": "public class Ejercicio31 {\n    static int add(int a, int b) {\n        return a + b;\n    }\n    public static void main(String[] args) {\n        System.out.println(add(3, 4));\n    }\n}"
+    },
+    {
+      "id": "recursion",
+      "title": "Recursividad y caso base",
+      "time": "5 min",
+      "idea": "Un método recursivo se llama a sí mismo, pero necesita un caso base para terminar.",
+      "theory": [
+        {
+          "title": "Caso base",
+          "text": "Es la condición que detiene las llamadas recursivas."
+        },
+        {
+          "title": "Paso recursivo",
+          "text": "Cada llamada debe acercarse al caso base."
+        },
+        {
+          "title": "Pila de llamadas",
+          "text": "Las llamadas pendientes se resuelven al regresar de la recursión."
+        }
+      ],
+      "exampleTitle": "Recursividad y caso base",
+      "exampleLead": "Un método recursivo se llama a sí mismo, pero necesita un caso base para terminar.",
+      "example": "public class Demo32 {\n    static int sumTo(int n) {\n        if (n <= 0) return 0;\n        return n + sumTo(n - 1);\n    }\n    public static void main(String[] args) {\n        System.out.println(sumTo(4));\n    }\n}",
+      "explain": [
+        "Es la condición que detiene las llamadas recursivas.",
+        "Cada llamada debe acercarse al caso base.",
+        "Las llamadas pendientes se resuelven al regresar de la recursión."
+      ],
+      "task": "Implementa sumTo(int n) para sumar desde 1 hasta n recursivamente, con caso base n <= 0, y muestra sumTo(4).",
+      "think": "Escribe el programa y comprueba el resultado.",
+      "steps": [
+        "Escribe el programa y comprueba el resultado.",
+        "Compara la salida con el ejemplo."
+      ],
+      "hints": [
+        "Un método recursivo se llama a sí mismo, pero necesita un caso base para terminar.",
+        "Puedes usar este patrón: `if (n <= 0) return 0;`"
+      ],
+      "recall": [
+        {
+          "do": "Recursividad y caso base",
+          "code": "if (n <= 0) return 0;\nreturn n + sumTo(n - 1);"
+        }
+      ],
+      "filename": "Ejercicio32.java",
+      "starter": "public class Ejercicio32 {\n    \n    public static void main(String[] args) {\n        \n    }\n}",
+      "output": "10",
+      "outputNote": "Escribe el programa y comprueba el resultado.",
+      "solution": "public class Ejercicio32 {\n    static int sumTo(int n) {\n        if (n <= 0) return 0;\n        return n + sumTo(n - 1);\n    }\n    public static void main(String[] args) {\n        System.out.println(sumTo(4));\n    }\n}"
     },
     {
       "id": "problem-statistics",

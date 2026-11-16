@@ -4,7 +4,8 @@ JM.content.en = {
       "title": "Getting started",
       "lessons": [
         "fundamentals",
-        "first-program"
+        "first-program",
+        "programming-languages"
       ]
     },
     {
@@ -22,7 +23,8 @@ JM.content.en = {
         "comparisons",
         "logical-operators",
         "if-conditionals",
-        "switch-selection"
+        "switch-selection",
+        "advanced-control"
       ]
     },
     {
@@ -42,7 +44,17 @@ JM.content.en = {
         "money-percentages",
         "counters-accumulators",
         "max-min-position",
-        "menu-loop"
+        "menu-loop",
+        "string-methods",
+        "string-conversion"
+      ]
+    },
+    {
+      "title": "Methods and recursion",
+      "lessons": [
+        "java-methods",
+        "method-returns",
+        "recursion"
       ]
     },
     {
@@ -172,6 +184,55 @@ JM.content.en = {
       "output": "My name is Alex\nI am learning Java",
       "outputNote": "Replace “Alex” with your name. The two-line format is what matters.",
       "solution": "public class Exercise02 {\n    public static void main(String[] args) {\n        System.out.println(\"My name is Alex\");\n        System.out.println(\"I am learning Java\");\n    }\n}"
+    },
+    {
+      "id": "programming-languages",
+      "title": "Programming languages, compilation and pseudocode",
+      "time": "5 min",
+      "idea": "An algorithm can be described in pseudocode before being written in Java.",
+      "theory": [
+        {
+          "title": "Lenguajes de alto y bajo nivel",
+          "text": "High-level languages make algorithms easier to express; low-level languages are closer to hardware."
+        },
+        {
+          "title": "Traducción",
+          "text": "The Java compiler converts source code into bytecode; the JVM runs it."
+        },
+        {
+          "title": "PSeInt",
+          "text": "Use Algoritmo, Leer, Escribir, Si, Segun, Mientras, Repetir and Para to describe steps."
+        }
+      ],
+      "exampleTitle": "Programming languages, compilation and pseudocode",
+      "exampleLead": "An algorithm can be described in pseudocode before being written in Java.",
+      "example": "public class Demo27 {\n    public static void main(String[] args) {\n        int number = 4;\n        if (number > 0) {\n            System.out.println(\"Positive\");\n        }\n    }\n}",
+      "explain": [
+        "High-level languages make algorithms easier to express; low-level languages are closer to hardware.",
+        "The Java compiler converts source code into bytecode; the JVM runs it.",
+        "Use Algoritmo, Leer, Escribir, Si, Segun, Mientras, Repetir and Para to describe steps."
+      ],
+      "task": "Translate this pseudocode into Java: assign 4 to a number and print \"Positive\" if it is greater than 0.",
+      "think": "Write the program and check the result.",
+      "steps": [
+        "Write the program and check the result.",
+        "Compare the output with the example."
+      ],
+      "hints": [
+        "An algorithm can be described in pseudocode before being written in Java.",
+        "You can use this pattern: `if (number > 0) {`"
+      ],
+      "recall": [
+        {
+          "do": "Programming languages, compilation and pseudocode",
+          "code": "if (number > 0) {\n    System.out.println(\"Positive\");\n}"
+        }
+      ],
+      "filename": "Exercise27.java",
+      "starter": "public class Exercise27 {\n    public static void main(String[] args) {\n        \n    }\n}",
+      "output": "Positive",
+      "outputNote": "Write the program and check the result.",
+      "solution": "public class Exercise27 {\n    public static void main(String[] args) {\n        int number = 4;\n        if (number > 0) {\n            System.out.println(\"Positive\");\n        }\n    }\n}"
     },
     {
       "id": "variables-constants",
@@ -671,6 +732,55 @@ JM.content.en = {
       "output": "Play",
       "outputNote": "Change option to 2 and then 9 to test all three cases.",
       "solution": "public class Exercise10 {\n    public static void main(String[] args) {\n        int option = 1;\n        switch (option) {\n            case 1:\n                System.out.println(\"Play\");\n                break;\n            case 2:\n                System.out.println(\"Exit\");\n                break;\n            default:\n                System.out.println(\"Unknown option\");\n        }\n    }\n}"
+    },
+    {
+      "id": "advanced-control",
+      "title": "Ternary operator and labelled loops",
+      "time": "5 min",
+      "idea": "The ternary operator selects a value and labels allow control of nested loops.",
+      "theory": [
+        {
+          "title": "Operador ternario",
+          "text": "The expression condition ? ifTrue : ifFalse selects between two values."
+        },
+        {
+          "title": "Etiquetas",
+          "text": "A label before a loop allows break label or continue label."
+        },
+        {
+          "title": "Uso responsable",
+          "text": "Prefer ordinary if statements and loops when they are clearer."
+        }
+      ],
+      "exampleTitle": "Ternary operator and labelled loops",
+      "exampleLead": "The ternary operator selects a value and labels allow control of nested loops.",
+      "example": "public class Demo33 {\n    public static void main(String[] args) {\n        int number = 3;\n        String result = number % 2 == 0 ? \"Even\" : \"Odd\";\n        System.out.println(result);\n    }\n}",
+      "explain": [
+        "The expression condition ? ifTrue : ifFalse selects between two values.",
+        "A label before a loop allows break label or continue label.",
+        "Prefer ordinary if statements and loops when they are clearer."
+      ],
+      "task": "Use the ternary operator to print \"Odd\" if 3 is odd or \"Even\" if it is even.",
+      "think": "Write the program and check the result.",
+      "steps": [
+        "Write the program and check the result.",
+        "Compare the output with the example."
+      ],
+      "hints": [
+        "The ternary operator selects a value and labels allow control of nested loops.",
+        "You can use this pattern: `String result = number % 2 == 0 ? \"Even\" : \"Odd\";`"
+      ],
+      "recall": [
+        {
+          "do": "Ternary operator and labelled loops",
+          "code": "String result = number % 2 == 0 ? \"Even\" : \"Odd\";"
+        }
+      ],
+      "filename": "Exercise33.java",
+      "starter": "public class Exercise33 {\n    public static void main(String[] args) {\n        \n    }\n}",
+      "output": "Odd",
+      "outputNote": "Write the program and check the result.",
+      "solution": "public class Exercise33 {\n    public static void main(String[] args) {\n        int number = 3;\n        String result = number % 2 == 0 ? \"Even\" : \"Odd\";\n        System.out.println(result);\n    }\n}"
     },
     {
       "id": "while-loop",
@@ -1221,6 +1331,251 @@ JM.content.en = {
       "output": "1) Deposit  2) Withdraw  3) Show  0) Exit\nOption: 1\nAmount: 10\nDeposited\n\n1) Deposit  2) Withdraw  3) Show  0) Exit\nOption: 2\nAmount: 50\nNot enough balance\n\n1) Deposit  2) Withdraw  3) Show  0) Exit\nOption: 2\nAmount: 5\nWithdrawn\n\n1) Deposit  2) Withdraw  3) Show  0) Exit\nOption: 3\nBalance: 25.0\nDeposits: 1, withdrawals: 1\n\n1) Deposit  2) Withdraw  3) Show  0) Exit\nOption: 7\nInvalid option\n\n1) Deposit  2) Withdraw  3) Show  0) Exit\nOption: 0\nGoodbye",
       "outputNote": "The values after \"Option\" and \"Amount\" are what you type. The withdrawal of 50 is refused.",
       "solution": "import java.util.Scanner;\n\npublic class Exercise20 {\n    public static void main(String[] args) {\n        Scanner keyboard = new Scanner(System.in);\n        double balance = 20.0;\n        int deposits = 0;\n        int withdrawals = 0;\n        double amount;\n        int option;\n        do {\n            System.out.println();\n            System.out.println(\"1) Deposit  2) Withdraw  3) Show  0) Exit\");\n            System.out.print(\"Option: \");\n            option = keyboard.nextInt();\n            switch (option) {\n                case 1:\n                    System.out.print(\"Amount: \");\n                    amount = keyboard.nextDouble();\n                    if (amount > 0) {\n                        balance += amount;\n                        deposits++;\n                        System.out.println(\"Deposited\");\n                    } else {\n                        System.out.println(\"The amount must be greater than 0\");\n                    }\n                    break;\n                case 2:\n                    System.out.print(\"Amount: \");\n                    amount = keyboard.nextDouble();\n                    if (amount <= 0) {\n                        System.out.println(\"The amount must be greater than 0\");\n                    } else if (amount > balance) {\n                        System.out.println(\"Not enough balance\");\n                    } else {\n                        balance -= amount;\n                        withdrawals++;\n                        System.out.println(\"Withdrawn\");\n                    }\n                    break;\n                case 3:\n                    System.out.println(\"Balance: \" + balance);\n                    System.out.println(\"Deposits: \" + deposits + \", withdrawals: \" + withdrawals);\n                    break;\n                case 0:\n                    System.out.println(\"Goodbye\");\n                    break;\n                default:\n                    System.out.println(\"Invalid option\");\n            }\n        } while (option != 0);\n        keyboard.close();\n    }\n}"
+    },
+    {
+      "id": "string-methods",
+      "title": "Strings: methods and immutability",
+      "time": "5 min",
+      "idea": "String is an immutable class. Its methods inspect and transform text without changing the original.",
+      "theory": [
+        {
+          "title": "Métodos habituales",
+          "text": "length(), charAt(), substring(), indexOf(), equals() and equalsIgnoreCase() inspect text."
+        },
+        {
+          "title": "Transformaciones",
+          "text": "toUpperCase(), toLowerCase(), trim() and replace() return a different string."
+        },
+        {
+          "title": "Comparación",
+          "text": "Compare contents with equals(), not ==."
+        }
+      ],
+      "exampleTitle": "Strings: methods and immutability",
+      "exampleLead": "String is an immutable class. Its methods inspect and transform text without changing the original.",
+      "example": "public class Demo28 {\n    public static void main(String[] args) {\n        String word = \" Java \";\n        String clean = word.trim();\n        System.out.println(clean.length());\n        System.out.println(clean.toUpperCase());\n    }\n}",
+      "explain": [
+        "length(), charAt(), substring(), indexOf(), equals() and equalsIgnoreCase() inspect text.",
+        "toUpperCase(), toLowerCase(), trim() and replace() return a different string.",
+        "Compare contents with equals(), not ==."
+      ],
+      "task": "Given the string \" Java \", remove outer spaces and print its length and uppercase form.",
+      "think": "Write the program and check the result.",
+      "steps": [
+        "Write the program and check the result.",
+        "Compare the output with the example."
+      ],
+      "hints": [
+        "String is an immutable class. Its methods inspect and transform text without changing the original.",
+        "You can use this pattern: `String clean = word.trim();`"
+      ],
+      "recall": [
+        {
+          "do": "Strings: methods and immutability",
+          "code": "String clean = word.trim();\nSystem.out.println(clean.length());"
+        }
+      ],
+      "filename": "Exercise28.java",
+      "starter": "public class Exercise28 {\n    public static void main(String[] args) {\n        \n    }\n}",
+      "output": "4\nJAVA",
+      "outputNote": "Write the program and check the result.",
+      "solution": "public class Exercise28 {\n    public static void main(String[] args) {\n        String word = \" Java \";\n        String clean = word.trim();\n        System.out.println(clean.length());\n        System.out.println(clean.toUpperCase());\n    }\n}"
+    },
+    {
+      "id": "string-conversion",
+      "title": "Text: conversions and regular expressions",
+      "time": "5 min",
+      "idea": "Convert text to numbers and validate simple patterns with regular expressions.",
+      "theory": [
+        {
+          "title": "Conversiones",
+          "text": "Integer.parseInt() and Double.parseDouble() convert text into numbers."
+        },
+        {
+          "title": "Caracteres especiales",
+          "text": "Java strings use escapes such as \\n, \\t and \\\"."
+        },
+        {
+          "title": "Patrones",
+          "text": "matches() checks a regular expression; for example, [0-9]+ requires one or more digits."
+        }
+      ],
+      "exampleTitle": "Text: conversions and regular expressions",
+      "exampleLead": "Convert text to numbers and validate simple patterns with regular expressions.",
+      "example": "public class Demo29 {\n    public static void main(String[] args) {\n        String input = \"123\";\n        if (input.matches(\"[0-9]+\")) {\n            int value = Integer.parseInt(input);\n            System.out.println(value + 1);\n        }\n    }\n}",
+      "explain": [
+        "Integer.parseInt() and Double.parseDouble() convert text into numbers.",
+        "Java strings use escapes such as \\n, \\t and \\\".",
+        "matches() checks a regular expression; for example, [0-9]+ requires one or more digits."
+      ],
+      "task": "Check whether \"123\" contains only digits; if so, parse it as an integer and print the next number.",
+      "think": "Write the program and check the result.",
+      "steps": [
+        "Write the program and check the result.",
+        "Compare the output with the example."
+      ],
+      "hints": [
+        "Convert text to numbers and validate simple patterns with regular expressions.",
+        "You can use this pattern: `if (input.matches(\"[0-9]+\")) {`"
+      ],
+      "recall": [
+        {
+          "do": "Text: conversions and regular expressions",
+          "code": "if (input.matches(\"[0-9]+\")) {\n    int value = Integer.parseInt(input);\n}"
+        }
+      ],
+      "filename": "Exercise29.java",
+      "starter": "public class Exercise29 {\n    public static void main(String[] args) {\n        \n    }\n}",
+      "output": "124",
+      "outputNote": "Write the program and check the result.",
+      "solution": "public class Exercise29 {\n    public static void main(String[] args) {\n        String input = \"123\";\n        if (input.matches(\"[0-9]+\")) {\n            int value = Integer.parseInt(input);\n            System.out.println(value + 1);\n        }\n    }\n}"
+    },
+    {
+      "id": "java-methods",
+      "title": "Modular programming: methods and procedures",
+      "time": "5 min",
+      "idea": "Split programs into reusable methods. A void method performs actions without returning a value.",
+      "theory": [
+        {
+          "title": "Descomposición",
+          "text": "Each method should have one clear task and can be called from main."
+        },
+        {
+          "title": "Parámetros",
+          "text": "Parameters receive values when the method is called."
+        },
+        {
+          "title": "Procedimientos",
+          "text": "A void method has no return value."
+        }
+      ],
+      "exampleTitle": "Modular programming: methods and procedures",
+      "exampleLead": "Split programs into reusable methods. A void method performs actions without returning a value.",
+      "example": "public class Demo30 {\n    static void greet(String name) {\n        System.out.println(\"Hello \" + name);\n    }\n    public static void main(String[] args) {\n        greet(\"Java\");\n    }\n}",
+      "explain": [
+        "Each method should have one clear task and can be called from main.",
+        "Parameters receive values when the method is called.",
+        "A void method has no return value."
+      ],
+      "task": "Create a greet(String name) method that prints \"Hello \" and the name, then call it with \"Java\" from main.",
+      "think": "Write the program and check the result.",
+      "steps": [
+        "Write the program and check the result.",
+        "Compare the output with the example."
+      ],
+      "hints": [
+        "Split programs into reusable methods. A void method performs actions without returning a value.",
+        "You can use this pattern: `static void greet(String name) {`"
+      ],
+      "recall": [
+        {
+          "do": "Modular programming: methods and procedures",
+          "code": "static void greet(String name) {\n    System.out.println(\"Hello \" + name);\n}"
+        }
+      ],
+      "filename": "Exercise30.java",
+      "starter": "public class Exercise30 {\n    \n    public static void main(String[] args) {\n        \n    }\n}",
+      "output": "Hello Java",
+      "outputNote": "Write the program and check the result.",
+      "solution": "public class Exercise30 {\n    static void greet(String name) {\n        System.out.println(\"Hello \" + name);\n    }\n    public static void main(String[] args) {\n        greet(\"Java\");\n    }\n}"
+    },
+    {
+      "id": "method-returns",
+      "title": "Functions: parameters and return values",
+      "time": "5 min",
+      "idea": "A method can compute a result and return it with return.",
+      "theory": [
+        {
+          "title": "Tipo de retorno",
+          "text": "Declare the result type before the method name."
+        },
+        {
+          "title": "return",
+          "text": "The return statement sends the result back to the caller."
+        },
+        {
+          "title": "Ámbito",
+          "text": "Local variables and parameters belong to the method where they are declared."
+        }
+      ],
+      "exampleTitle": "Functions: parameters and return values",
+      "exampleLead": "A method can compute a result and return it with return.",
+      "example": "public class Demo31 {\n    static int add(int a, int b) {\n        return a + b;\n    }\n    public static void main(String[] args) {\n        System.out.println(add(3, 4));\n    }\n}",
+      "explain": [
+        "Declare the result type before the method name.",
+        "The return statement sends the result back to the caller.",
+        "Local variables and parameters belong to the method where they are declared."
+      ],
+      "task": "Write an add(int a, int b) method that returns the sum and print add(3, 4).",
+      "think": "Write the program and check the result.",
+      "steps": [
+        "Write the program and check the result.",
+        "Compare the output with the example."
+      ],
+      "hints": [
+        "A method can compute a result and return it with return.",
+        "You can use this pattern: `static int add(int a, int b) {`"
+      ],
+      "recall": [
+        {
+          "do": "Functions: parameters and return values",
+          "code": "static int add(int a, int b) {\n    return a + b;\n}"
+        }
+      ],
+      "filename": "Exercise31.java",
+      "starter": "public class Exercise31 {\n    \n    public static void main(String[] args) {\n        \n    }\n}",
+      "output": "7",
+      "outputNote": "Write the program and check the result.",
+      "solution": "public class Exercise31 {\n    static int add(int a, int b) {\n        return a + b;\n    }\n    public static void main(String[] args) {\n        System.out.println(add(3, 4));\n    }\n}"
+    },
+    {
+      "id": "recursion",
+      "title": "Recursion and base cases",
+      "time": "5 min",
+      "idea": "A recursive method calls itself but needs a base case to stop.",
+      "theory": [
+        {
+          "title": "Caso base",
+          "text": "The base case is the condition that stops recursive calls."
+        },
+        {
+          "title": "Paso recursivo",
+          "text": "Each call must move closer to the base case."
+        },
+        {
+          "title": "Pila de llamadas",
+          "text": "Pending calls are resolved as recursion unwinds."
+        }
+      ],
+      "exampleTitle": "Recursion and base cases",
+      "exampleLead": "A recursive method calls itself but needs a base case to stop.",
+      "example": "public class Demo32 {\n    static int sumTo(int n) {\n        if (n <= 0) return 0;\n        return n + sumTo(n - 1);\n    }\n    public static void main(String[] args) {\n        System.out.println(sumTo(4));\n    }\n}",
+      "explain": [
+        "The base case is the condition that stops recursive calls.",
+        "Each call must move closer to the base case.",
+        "Pending calls are resolved as recursion unwinds."
+      ],
+      "task": "Implement sumTo(int n) to recursively sum from 1 to n, with base case n <= 0, and print sumTo(4).",
+      "think": "Write the program and check the result.",
+      "steps": [
+        "Write the program and check the result.",
+        "Compare the output with the example."
+      ],
+      "hints": [
+        "A recursive method calls itself but needs a base case to stop.",
+        "You can use this pattern: `if (n <= 0) return 0;`"
+      ],
+      "recall": [
+        {
+          "do": "Recursion and base cases",
+          "code": "if (n <= 0) return 0;\nreturn n + sumTo(n - 1);"
+        }
+      ],
+      "filename": "Exercise32.java",
+      "starter": "public class Exercise32 {\n    \n    public static void main(String[] args) {\n        \n    }\n}",
+      "output": "10",
+      "outputNote": "Write the program and check the result.",
+      "solution": "public class Exercise32 {\n    static int sumTo(int n) {\n        if (n <= 0) return 0;\n        return n + sumTo(n - 1);\n    }\n    public static void main(String[] args) {\n        System.out.println(sumTo(4));\n    }\n}"
     },
     {
       "id": "problem-statistics",

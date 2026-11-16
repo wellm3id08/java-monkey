@@ -988,23 +988,27 @@
     practice: ({ lesson, mix }) => ({
       cls: 'wide practice',
       html: `
-        <p class="eyebrow rise">${mix ? `${t('mixLabel')} · ${esc(lesson.title)}` : t('yourTurn')}</p>
-        <h2 class="big sm" data-words>${inline(lesson.task)}</h2>
-        <p class="muted rise" style="--delay:300ms">${inline(lesson.think)}</p>
-        <div class="file rise" style="--delay:450ms">
-          <span>${esc(lesson.filename)}</span>
-          <span class="tools">
-            <button class="link" type="button" data-act="reset">${t('reset')}</button>
-            <button class="link" type="button" data-act="download">${t('download')}</button>
-          </span>
+        <div class="practice-task">
+          <p class="eyebrow rise">${mix ? `${t('mixLabel')} · ${esc(lesson.title)}` : t('yourTurn')}</p>
+          <h2 class="big sm" data-words>${inline(lesson.task)}</h2>
+          <p class="muted rise" style="--delay:300ms">${inline(lesson.think)}</p>
         </div>
-        <div class="ed-box rise" style="--delay:550ms">${editorHtml({ label: lesson.filename })}</div>
-        <div class="aids rise" style="--delay:650ms">
-          ${['plan', 'hint', 'output', 'solution']
-            .map((name, i) => `<button class="chip" type="button" data-act="aid" data-aid="${name}">${t(name)}${kbd(i + 1)}</button>`)
-            .join('')}
-        </div>
-        <div class="panel" id="panel" hidden></div>`,
+        <div class="practice-work">
+          <div class="file rise" style="--delay:450ms">
+            <span>${esc(lesson.filename)}</span>
+            <span class="tools">
+              <button class="link" type="button" data-act="reset">${t('reset')}</button>
+              <button class="link" type="button" data-act="download">${t('download')}</button>
+            </span>
+          </div>
+          <div class="ed-box rise" style="--delay:550ms">${editorHtml({ label: lesson.filename })}</div>
+          <div class="aids rise" style="--delay:650ms">
+            ${['plan', 'hint', 'output', 'solution']
+              .map((name, i) => `<button class="chip" type="button" data-act="aid" data-aid="${name}">${t(name)}${kbd(i + 1)}</button>`)
+              .join('')}
+          </div>
+          <div class="panel" id="panel" hidden></div>
+        </div>`,
       dock: { primary: { act: 'next', label: t(mix ? 'next' : 'markDone') }, flow: true },
       setup(stage) {
         bindEditor(
