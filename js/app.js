@@ -79,6 +79,22 @@
       </div>
     </div>`;
 
+
+  const javaRunnerHtml = () => `
+    <section class="java-runner rise" style="--delay:400ms" aria-label="${esc(t('runnerTitle'))}">
+      <div class="runner-head">
+        <span class="runner-title">${esc(t('runnerTitle'))}</span>
+        <span class="runner-actions">
+          <a class="runner-credit" href="https://cheerpj.com/" target="_blank" rel="noopener noreferrer">${esc(t('runnerCredit'))}</a>
+          <button class="runner-run" type="button" data-act="runJava">${esc(t('runnerRun'))}</button>
+        </span>
+      </div>
+      <label class="runner-label" for="java-runner-input">${esc(t('runnerInput'))}<span>${esc(t('runnerInputHint'))}</span></label>
+      <textarea class="runner-input" id="java-runner-input" data-role="runner-input" rows="2" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
+      <span class="runner-label">${esc(t('runnerConsole'))}</span>
+      <pre class="runner-output" data-role="runner-output" aria-live="polite">${esc(t('runnerReady'))}</pre>
+    </section>`;
+
   const switchHtml = (act, on, label) =>
     `<button class="switch" type="button" role="switch" data-act="${act}" aria-checked="${on}" aria-label="${esc(label)}"><i></i></button>`;
 
@@ -318,7 +334,7 @@
       </header>`;
   }
 
-  const wordmark = () => `<button class="wordmark" type="button" data-act="home"><i></i>Java Monkey</button>`;
+  const wordmark = () => `<button class="wordmark" type="button" data-act="home"><svg class="brand-monkey" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 7.2C8.8 4.8 10.1 3.5 12 3.5s3.2 1.3 3.8 3.7c1.9.2 3.2 1.8 3.2 3.8 0 1.5-.7 2.8-1.9 3.5-.5 3.4-2.4 5.5-5.1 5.5s-4.6-2.1-5.1-5.5A4 4 0 0 1 5 11c0-2 1.3-3.6 3.2-3.8Z"/><path d="M8.8 12.2c.8-1.1 1.9-1.7 3.2-1.7s2.4.6 3.2 1.7c.6.8.6 2.1.1 3-.7 1.2-1.8 1.8-3.3 1.8s-2.6-.6-3.3-1.8c-.5-.9-.5-2.2.1-3Z"/><circle cx="9.5" cy="9.8" r=".8"/><circle cx="14.5" cy="9.8" r=".8"/><path d="M10.4 14.3c.5.4 1 .6 1.6.6s1.1-.2 1.6-.6"/></svg>Java Monkey</button>`;
   const backButton = (act = 'home') =>
     `<button class="icon-btn" type="button" data-act="${act}" aria-label="${esc(t('back'))}">${icons.back}</button>`;
 
@@ -979,9 +995,12 @@
       cls: 'wide practice',
       html: `
         <div class="practice-task">
-          <p class="eyebrow rise">${mix ? `${t('mixLabel')} · ${esc(lesson.title)}` : t('yourTurn')}</p>
-          <h2 class="big sm" data-words>${inline(lesson.task)}</h2>
-          <p class="muted rise" style="--delay:300ms">${inline(lesson.think)}</p>
+          <div class="practice-copy">
+            <p class="eyebrow rise">${mix ? `${t('mixLabel')} · ${esc(lesson.title)}` : t('yourTurn')}</p>
+            <h2 class="big sm" data-words>${inline(lesson.task)}</h2>
+            <p class="muted rise" style="--delay:300ms">${inline(lesson.think)}</p>
+          </div>
+          ${javaRunnerHtml()}
         </div>
         <div class="practice-work">
           <div class="file rise" style="--delay:450ms">
@@ -1394,6 +1413,57 @@
     nav('#/');
   }
 
+  async function runJava(target) {
+    if (!target || target.disabled) return;
+    const runner = target.closest('.java-runner');
+    if (!runner) return;
+    const output = $('[data-role="runner-output"]', runner);
+    const input = $('[data-role="runner-input"]', runner);
+    const step = player?.steps[player.index];
+    if (!runner || !output || !input || step?.kind !== 'practice' || !player.editor) return;
+
+    const show = (text, state = '') => {
+      if (!runner.isConnected) return;
+      runner.dataset.state = state;
+      output.textContent = text;
+      output.scrollTop = 0;
+    };
+
+    target.disabled = true;
+    show(t('runnerLoading'), 'busy');
+
+    try {
+      const result = await JM.javaRunner.run({
+        fileName: step.lesson.filename,
+        source: player.editor.value(),
+        input: input.value,
+        onStatus: status => {
+          if (status === 'loading') show(t('runnerLoading'), 'busy');
+          if (status === 'running') show(t('runnerRunning'), 'busy');
+        },
+      });
+
+      if (result.status === 'ok') {
+        show(result.output || t('runnerNoOutput'), 'ok');
+      } else if (result.status === 'compile_error') {
+        show(`${t('runnerCompileError')}
+${result.output}`, 'error');
+      } else if (result.status === 'runtime_error') {
+        show(`${t('runnerRuntimeError')}
+${result.output}`, 'error');
+      } else {
+        show(`${t('runnerSystemError')}
+${result.output}`.trim(), 'error');
+      }
+    } catch (error) {
+      if (error.code === 'timeout') show(t('runnerTimeout'), 'error');
+      else if (error.code === 'unsupported') show(t('runnerUnsupported'), 'error');
+      else show(t('runnerSystemError'), 'error');
+    } finally {
+      if (target.isConnected) target.disabled = false;
+    }
+  }
+
   // Actions ------------------------------------------------------------------
 
   async function act(name, target) {
@@ -1614,6 +1684,9 @@
       case 'download':
         download(player.editor.value(), player.steps[player.index].lesson.filename);
         break;
+      case 'runJava':
+        await runJava(target);
+        break;
     }
   }
 
@@ -1732,6 +1805,7 @@
         else if (role === 'note-drawer') act('noteDrawerAdd');
         else if (role === 'note-prompt') act('notePromptSave');
         else if (role === 'sync-token') act('syncConnect', $('[data-act="syncConnect"]', layer));
+        else if (role === 'runner-input') act('runJava', event.target.closest('.java-runner')?.querySelector('[data-act="runJava"]'));
         else if (event.target.dataset.note) event.target.blur();
         else if (player && !layer.innerHTML) $('#primary')?.click();
       } else if (event.target.dataset.note && key === 'Enter' && !event.shiftKey) {

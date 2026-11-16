@@ -1,4 +1,4 @@
-# <img src="favicon.svg" alt="" width="28"> Java Monkey
+# Java Monkey
 
 Learn Java in small steps. Each lesson shows one idea at a time, gives you a visible code reference while you type, and ends with a short exercise.
 
@@ -11,7 +11,7 @@ Learn Java in small steps. Each lesson shows one idea at a time, gives you a vis
 ![Java Monkey home screen: "Learn Java, one small step at a time."](docs/screenshot.jpg)
 
 > [!IMPORTANT]
-> Your progress and saved code stay in your browser. Nothing is uploaded to a server.
+> Your progress and saved code stay in your browser. Java exercises are compiled and executed locally in a Web Worker; the page only downloads the Java runtime from the CheerpJ CDN.
 
 ## How it works
 
@@ -20,7 +20,7 @@ Learn Java in small steps. Each lesson shows one idea at a time, gives you a vis
 - **Fair grading:** spacing, comments, variable names and literal values are free (`final double rate = 23;` counts for `final double PI = 3.14159;`), and `x++`, `x += 1` and `x = x + 1` are equivalent. Wrong answers get a specific hint: a missing `;`, a wrong capital letter, a typo in a method name, an unclosed bracket or quote.
 - **Spaced review:** every snippet you type goes into a Leitner box. Snippets you struggled with come back sooner in the dedicated review mode; starting a new lesson no longer repeats a card from the previous lesson.
 - **Mixed practice:** rounds that shuffle snippets and full exercises from finished lessons only. Weaker snippets come up more often and two steps from the same lesson never follow each other.
-- **Practice:** a responsive split workspace with scrollable instructions on the left and a full-height code editor on the right (stacked on narrow screens); a full editor with auto-closing brackets and quotes, auto-indent and tabs. Plan, hints, expected output and solution are one key away. Download your code as a `.java` file.
+- **Practice:** a responsive split workspace with scrollable instructions on the left and a full-height code editor on the right (stacked on narrow screens); a full editor with auto-closing brackets and quotes, auto-indent and tabs. A minimal Java 21 runner compiles and executes the current code in the browser, with optional `Scanner` input and real compiler/runtime output. Plan, hints, expected output and solution are one key away. Download your code as a `.java` file.
 - **Templates:** Eclipse-style templates (`imprimir`, `leerint`, `para`, `menu`…). Type a name and press Tab, or Ctrl+Space for the list. Linked placeholders change together, Tab jumps between them, and imports such as `java.util.Scanner` are added for you. Turn packs or single templates on and off at any time, import your own Eclipse `.xml`, and open the cheat sheet with K.
 - **Notes:** a drawer peeks from the bottom of every lesson for writing down doubts; after each lesson a prompt asks if anything is unclear. All notes live in the Notes page, searchable, with a Google search button for each one.
 - **Sync:** connect a GitHub token with only the `gist` scope and your progress, notes and settings are kept in a private gist, merged across devices. You can also export and import a file.
@@ -31,11 +31,13 @@ Learn Java in small steps. Each lesson shows one idea at a time, gives you a vis
 
 ## Running the project
 
-Plain HTML, CSS and JavaScript. No build step. Open `index.html`, or serve the folder:
+Plain HTML, CSS and JavaScript. No deployment build step. The Java runner needs HTTP Range requests, so test it through a compatible local server instead of opening `index.html` directly:
 
 ```bash
-python3 -m http.server
+npx http-server -p 8080
 ```
+
+GitHub Pages can host the project as static files. The runner resolves its JAR from the current project path, so it also works when the site is published under `username.github.io/repository/`.
 
 To compile a downloaded exercise, install [JDK 21 or newer](https://adoptium.net/):
 
@@ -43,6 +45,18 @@ To compile a downloaded exercise, install [JDK 21 or newer](https://adoptium.net
 javac Exercise01.java
 java Exercise01
 ```
+
+## Browser Java runner
+
+The practice screen uses CheerpJ 5.0 with Java 21 inside `js/java-worker.js`. The worker keeps compilation away from the UI thread and is terminated if a program runs for more than six seconds, so an accidental infinite loop does not lock the page.
+
+`runtime/java-monkey-runner.jar` contains the small bridge that invokes the standard Java compiler, captures `System.out`/`System.err`, feeds optional input into `System.in`, and runs the compiled `main` method. Its source is in `runtime/src/`. Rebuild the JAR with JDK 21 after changing that source:
+
+```bash
+./scripts/build-runtime.sh
+```
+
+CheerpJ is loaded from its official CDN and has its own licensing terms. The visible “Built with CheerpJ” credit in the runner is intentional.
 
 ## Content
 
