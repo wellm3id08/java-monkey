@@ -1,6 +1,8 @@
 public class Exercise10 {
     public static void main(String[] args) {
-        int option = 1;
-        // Write the switch statement
+        int number = -3;
+        // Check whether it is positive
+        // Otherwise, check whether it is negative
+        // If neither condition is true, it is zero
     }
 }

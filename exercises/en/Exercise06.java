@@ -1,10 +1,8 @@
-import java.util.Scanner;
-
 public class Exercise06 {
     public static void main(String[] args) {
-        Scanner keyboard = new Scanner(System.in);
-        // Prompt for and read the number
-        // Display its square
-        keyboard.close();
+        int number = 17;
+        // Display the remainder when divided by 2
+        // Increase the number by one
+        // Display the updated number
     }
 }

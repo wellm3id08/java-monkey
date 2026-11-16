@@ -677,18 +677,6 @@
 
   function lessonSteps(lesson) {
     const steps = [];
-    const all = lessons();
-    const previous = all[all.indexOf(lesson) - 1];
-
-    // Warm-up: recall the weakest snippet of the previous lesson before starting.
-    if (previous && state.done.has(previous.id)) {
-      const known = cards();
-      const options = previous.recall
-        .map((item, index) => ({ item, key: `${previous.id}#${index}` }))
-        .filter(({ item }) => typeable(item))
-        .sort((a, b) => (known[a.key]?.box ?? 0) - (known[b.key]?.box ?? 0));
-      if (options.length) steps.push({ kind: 'type', lesson: previous, ...options[0], warmup: true });
-    }
 
     steps.push({ kind: 'intro', lesson });
     lesson.theory.forEach(item => steps.push({ kind: 'read', lesson, item }));
@@ -940,50 +928,52 @@
       setup: stage => typeOut($('.code', stage), item.code, 350),
     }),
 
-    type: step => ({
-      cls: 'wide',
-      html: `
-        <p class="eyebrow rise">${esc(step.warmup ? t('warmup', { title: step.lesson.title }) : step.mix ? `${t('mixLabel')} · ${step.lesson.title}` : step.review ? step.lesson.title : t('fromMemory'))}</p>
-        <h2 class="big sm" data-words>${esc(step.item.do)}</h2>
-        <div class="rise" style="--delay:250ms">${editorHtml({ line: true, label: step.item.do })}</div>
-        <div class="msg" id="msg" aria-live="polite">${step.item.code.includes('\n') && finePointer ? `<p class="note-line">${t('multilineHint')}</p>` : ''}</div>
-        <div id="answer"></div>`,
-      dock: { primary: { act: 'check', label: t('check') }, extra: { act: 'reveal', label: t('showAnswer') } },
-      setup(stage) {
-        const root = $('.ed', stage);
-        const multiline = step.item.code.includes('\n');
-        const editor = bindEditor(
-          JM.editor(root, {
-            value: '',
-            templates: activeTemplates,
-            onChange: value => {
-              scheduleFit();
-              if (player.solved) return;
-              root.classList.remove('err');
-              // Solve live only on an exact match; a looser answer is accepted when the learner checks it,
-              // otherwise a half-typed string like "H" would pass before "Hello" is finished.
-              const result = JM.grade(value, step.item.code);
-              if (result.ok && result.exact) solve(result);
+    type: step => {
+      const guided = !step.mix && !step.review;
+      return {
+        cls: 'wide',
+        html: `
+          <p class="eyebrow rise">${esc(step.mix ? `${t('mixLabel')} · ${step.lesson.title}` : step.review ? step.lesson.title : t('guidedTyping'))}</p>
+          <h2 class="big sm" data-words>${esc(step.item.do)}</h2>
+          ${guided ? `<div class="rise" style="--delay:180ms"><p class="muted">${t('copyReference')}</p>${codeView(step.item.code, 'static')}</div>` : ''}
+          <div class="rise" style="--delay:250ms">${editorHtml({ line: true, label: step.item.do })}</div>
+          <div class="msg" id="msg" aria-live="polite">${step.item.code.includes('\n') && finePointer ? `<p class="note-line">${t('multilineHint')}</p>` : ''}</div>
+          <div id="answer"></div>`,
+        dock: { primary: { act: 'check', label: t('check') }, extra: guided ? null : { act: 'reveal', label: t('showAnswer') } },
+        setup(stage) {
+          const root = $('.ed', stage);
+          const multiline = step.item.code.includes('\n');
+          const editor = bindEditor(
+            JM.editor(root, {
+              value: '',
+              templates: activeTemplates,
+              onChange: value => {
+                scheduleFit();
+                if (player.solved) return;
+                root.classList.remove('err');
+                const result = JM.grade(value, step.item.code);
+                if (result.ok && result.exact) solve(result);
+              },
+            })
+          );
+          root.addEventListener(
+            'keydown',
+            event => {
+              if (event.key !== 'Enter' || event.isComposing || editor.busy()) return;
+              if (!multiline || event.ctrlKey || event.metaKey) {
+                event.preventDefault();
+                event.stopPropagation();
+                if (player.solved) advance(1);
+                else if (player.revealed && !JM.grade(editor.value(), step.item.code).ok) advance(1);
+                else check();
+              }
             },
-          })
-        );
-        root.addEventListener(
-          'keydown',
-          event => {
-            if (event.key !== 'Enter' || event.isComposing || editor.busy()) return;
-            if (!multiline || event.ctrlKey || event.metaKey) {
-              event.preventDefault();
-              event.stopPropagation();
-              if (player.solved) advance(1);
-              else if (player.revealed && !JM.grade(editor.value(), step.item.code).ok) advance(1);
-              else check();
-            }
-          },
-          true
-        );
-        editor.input.focus({ preventScroll: true });
-      },
-    }),
+            true
+          );
+          editor.input.focus({ preventScroll: true });
+        },
+      };
+    },
 
     practice: ({ lesson, mix }) => ({
       cls: 'wide practice',

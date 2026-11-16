@@ -1,10 +1,8 @@
-import java.util.Scanner;
-
 public class Ejercicio06 {
     public static void main(String[] args) {
-        Scanner teclado = new Scanner(System.in);
-        // Pregunta y lee el número
-        // Muestra su cuadrado
-        teclado.close();
+        int numero = 17;
+        // Muestra el resto al dividir entre 2
+        // Aumenta el número en uno
+        // Muestra el número actualizado
     }
 }

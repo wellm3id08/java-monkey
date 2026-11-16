@@ -23,8 +23,7 @@ JM.content.es = {
         "comparisons",
         "logical-operators",
         "if-conditionals",
-        "switch-selection",
-        "advanced-control"
+        "switch-selection"
       ]
     },
     {
@@ -33,7 +32,8 @@ JM.content.es = {
         "while-loop",
         "do-while-loop",
         "for-loop",
-        "loop-control"
+        "loop-control",
+        "advanced-control"
       ]
     },
     {
@@ -189,7 +189,7 @@ JM.content.es = {
       "id": "programming-languages",
       "title": "Lenguajes, compilación y pseudocódigo",
       "time": "5 min",
-      "idea": "Un algoritmo se puede representar con pseudocódigo antes de convertirlo en un programa Java.",
+      "idea": "El pseudocódigo describe los pasos sin depender de Java. Después puedes traducir cada paso usando únicamente la sintaxis que ya conoces.",
       "theory": [
         {
           "title": "Lenguajes de alto y bajo nivel",
@@ -204,35 +204,37 @@ JM.content.es = {
           "text": "Usa Algoritmo, Leer, Escribir, Si, Segun, Mientras, Repetir y Para para describir pasos."
         }
       ],
-      "exampleTitle": "Lenguajes, compilación y pseudocódigo",
-      "exampleLead": "Un algoritmo se puede representar con pseudocódigo antes de convertirlo en un programa Java.",
-      "example": "public class Demo27 {\n    public static void main(String[] args) {\n        int number = 4;\n        if (number > 0) {\n            System.out.println(\"Positive\");\n        }\n    }\n}",
+      "exampleTitle": "De pseudocódigo a una instrucción Java",
+      "exampleLead": "El pseudocódigo `Escribir \"Hola desde Java\"` se traduce a una instrucción que muestra esa misma línea.",
+      "example": "public class Demo03 {\n    public static void main(String[] args) {\n        System.out.println(\"Hola desde Java\");\n    }\n}",
       "explain": [
-        "Los lenguajes de alto nivel facilitan expresar algoritmos; los de bajo nivel son más cercanos al hardware.",
-        "El compilador de Java convierte el código fuente en bytecode; la JVM lo ejecuta.",
-        "Usa Algoritmo, Leer, Escribir, Si, Segun, Mientras, Repetir y Para para describir pasos."
+        "`Escribir` en pseudocódigo significa mostrar información; en Java ya sabes hacerlo con `System.out.println`.",
+        "El compilador comprueba el código Java y genera bytecode; la JVM ejecuta ese bytecode.",
+        "Palabras como `Leer`, `Si`, `Mientras` o `Para` aparecen en pseudocódigo, pero se aprenderán en Java cuando llegue su lección."
       ],
-      "task": "Traduce a Java este pseudocódigo: asigna 4 a un número y muestra \"Positive\" si es mayor que 0.",
-      "think": "Escribe el programa y comprueba el resultado.",
+      "task": "Traduce este pseudocódigo a Java usando solo lo aprendido hasta ahora: `Escribir \"Hola desde Java\"`.",
+      "think": "No necesitas variables, condiciones ni bucles. ¿Qué instrucción Java ya has usado para mostrar una línea de texto?",
       "steps": [
-        "Escribe el programa y comprueba el resultado.",
-        "Compara la salida con el ejemplo."
+        "Conserva la clase y el método `main` de la plantilla.",
+        "Busca el paso `Escribir` del pseudocódigo.",
+        "Sustitúyelo por un `System.out.println` con el mismo texto.",
+        "Ejecuta el programa y comprueba que aparece una sola línea."
       ],
       "hints": [
-        "Un algoritmo se puede representar con pseudocódigo antes de convertirlo en un programa Java.",
-        "Puedes usar este patrón: `if (number > 0) {`"
+        "La traducción es directa: `Escribir` equivale aquí a mostrar una línea.",
+        "Dentro de `main` escribe `System.out.println(\"Hola desde Java\");`."
       ],
       "recall": [
         {
-          "do": "Lenguajes, compilación y pseudocódigo",
-          "code": "if (number > 0) {\n    System.out.println(\"Positive\");\n}"
+          "do": "Traducir `Escribir` a Java",
+          "code": "System.out.println(\"Hola\");"
         }
       ],
-      "filename": "Ejercicio27.java",
-      "starter": "public class Ejercicio27 {\n    public static void main(String[] args) {\n        \n    }\n}",
-      "output": "Positive",
-      "outputNote": "Escribe el programa y comprueba el resultado.",
-      "solution": "public class Ejercicio27 {\n    public static void main(String[] args) {\n        int number = 4;\n        if (number > 0) {\n            System.out.println(\"Positive\");\n        }\n    }\n}"
+      "filename": "Ejercicio03.java",
+      "starter": "public class Ejercicio03 {\n    public static void main(String[] args) {\n        // Traduce aquí la instrucción Escribir\n    }\n}",
+      "output": "Hola desde Java",
+      "outputNote": "Debe aparecer exactamente una línea.",
+      "solution": "public class Ejercicio03 {\n    public static void main(String[] args) {\n        System.out.println(\"Hola desde Java\");\n    }\n}"
     },
     {
       "id": "variables-constants",
@@ -250,27 +252,28 @@ JM.content.es = {
         },
         {
           "title": "Constante con `final`",
-          "text": "`final double PI = 3.14159;` indica que ese valor no se debe reasignar."
+          "text": "`final int MAX_ENTRADAS = 10;` indica que ese valor no se debe reasignar."
         }
       ],
-      "exampleTitle": "Calcular un total",
-      "exampleLead": "Se guarda un precio, una cantidad y el resultado de multiplicarlos.",
-      "example": "public class Demo03 {\n    public static void main(String[] args) {\n        double precio = 3.5;\n        int cantidad = 4;\n        double total = precio * cantidad;\n        System.out.println(\"Total: \" + total);\n    }\n}",
+      "exampleTitle": "Guardar datos con nombres claros",
+      "exampleLead": "Cada variable guarda un dato y la constante representa un valor que no cambia.",
+      "example": "public class Demo04 {\n    public static void main(String[] args) {\n        String evento = \"Concierto\";\n        int entradas = 3;\n        final int MAX_ENTRADAS = 10;\n        System.out.println(evento);\n        System.out.println(entradas);\n        System.out.println(MAX_ENTRADAS);\n    }\n}",
       "explain": [
         "El tipo aparece antes del nombre.",
         "`total` guarda el resultado de la operación, no la fórmula.",
         "Usa nombres descriptivos: `precio` dice más que `p`."
       ],
-      "task": "Calcula el precio total de 3 entradas que cuestan 8 euros cada una.",
-      "think": "¿Qué dos valores conoces? ¿Qué obtienes al combinarlos? ¿Cuál necesita decimales?",
+      "task": "Crea `String evento = \"Concierto\"`, `int entradas = 3` y la constante `final int MAX_ENTRADAS = 10`. Muestra los tres valores, uno por línea.",
+      "think": "En esta actividad solo debes declarar, guardar y mostrar datos. Todavía no necesitas hacer cálculos.",
       "steps": [
-        "Pon nombre a los dos valores conocidos y elige un tipo para cada uno.",
-        "Guarda el resultado de combinarlos en una tercera variable.",
-        "Muestra una etiqueta y el resultado en la misma línea."
+        "Declara el texto `evento`.",
+        "Declara el entero `entradas`.",
+        "Declara `MAX_ENTRADAS` con `final`.",
+        "Muestra las tres variables con `println`."
       ],
       "hints": [
-        "Un precio puede tener decimales, un número de entradas no. Eso decide entre `double` e `int`.",
-        "`double precio = ___;` `int cantidad = ___;` `double total = precio ___ cantidad;` y une el texto con `total` usando `+`."
+        "El tipo se escribe antes del nombre: `String evento`, `int entradas`.",
+        "Una constante entera puede declararse como `final int MAX_ENTRADAS = 10;`."
       ],
       "recall": [
         {
@@ -283,14 +286,14 @@ JM.content.es = {
         },
         {
           "do": "Crear una constante",
-          "code": "final double PI = 3.14159;"
+          "code": "final int MAX_ENTRADAS = 10;"
         }
       ],
-      "filename": "Ejercicio03.java",
-      "starter": "public class Ejercicio03 {\n    public static void main(String[] args) {\n        // Declara precio y cantidad\n        // Calcula total\n        // Muestra el resultado\n    }\n}",
-      "output": "Total: 24.0",
-      "outputNote": "El total debe cambiar si cambias el precio o la cantidad.",
-      "solution": "public class Ejercicio03 {\n    public static void main(String[] args) {\n        double precio = 8.0;\n        int cantidad = 3;\n        double total = precio * cantidad;\n        System.out.println(\"Total: \" + total);\n    }\n}"
+      "filename": "Ejercicio04.java",
+      "starter": "public class Ejercicio04 {\n    public static void main(String[] args) {\n        // Declara evento, entradas y MAX_ENTRADAS\n        // Muestra los tres valores\n    }\n}",
+      "output": "Concierto\n3\n10",
+      "outputNote": "Cada valor debe aparecer en su propia línea.",
+      "solution": "public class Ejercicio04 {\n    public static void main(String[] args) {\n        String evento = \"Concierto\";\n        int entradas = 3;\n        final int MAX_ENTRADAS = 10;\n        System.out.println(evento);\n        System.out.println(entradas);\n        System.out.println(MAX_ENTRADAS);\n    }\n}"
     },
     {
       "id": "data-types",
@@ -311,29 +314,30 @@ JM.content.es = {
           "text": "`(double) 5 / 2` produce `2.5`. Convertir a un tipo más pequeño puede perder información: `(int) 3.9` da `3`."
         }
       ],
-      "exampleTitle": "Entero frente a decimal",
-      "exampleLead": "Observa cómo cambia el resultado cuando forzamos una operación decimal.",
-      "example": "public class Demo04 {\n    public static void main(String[] args) {\n        int a = 5;\n        int b = 2;\n        System.out.println(a / b);\n        System.out.println((double) a / b);\n    }\n}",
+      "exampleTitle": "Convertir entre tipos numéricos",
+      "exampleLead": "Algunas conversiones son automáticas y otras necesitan un cast explícito.",
+      "example": "public class Demo05 {\n    public static void main(String[] args) {\n        int unidades = 7;\n        double unidadesDecimales = unidades;\n        double precio = 7.8;\n        int precioEntero = (int) precio;\n        System.out.println(unidadesDecimales);\n        System.out.println(precioEntero);\n    }\n}",
       "explain": [
-        "La primera salida es `2`.",
-        "La segunda salida es `2.5`, porque convertimos `a` a `double` antes de dividir.",
-        "`String` se usa para texto, pero no es un tipo primitivo."
+        "Un `int` puede guardarse en un `double` sin cast porque `double` puede representar ese valor.",
+        "Para convertir un `double` a `int` debes escribir un cast como `(int) precio`.",
+        "El cast a `int` elimina la parte decimal; no redondea."
       ],
-      "task": "Calcula la media de 7 y 8 como un número decimal.",
-      "think": "Al dividir dos valores `int`, ¿qué se pierde? ¿Dónde debe hacerse la conversión?",
+      "task": "Guarda `double valor = 7.8`, conviértelo a `int` con un cast y muestra primero el valor original y después el entero.",
+      "think": "¿Qué información se pierde al convertir de `double` a `int`?",
       "steps": [
-        "Guarda 7 y 8 en dos variables `int`.",
-        "Súmalas y divide entre 2 de forma que se conserven los decimales.",
-        "Guarda el resultado en una variable que admita decimales y muéstralo."
+        "Declara `double valor = 7.8`.",
+        "Crea un `int entero` usando `(int) valor`.",
+        "Muestra `valor`.",
+        "Muestra `entero` y comprueba que la parte decimal desaparece."
       ],
       "hints": [
-        "Entre dos enteros, `15 / 2` da `7`. Al menos un lado de la división debe ser `double`.",
-        "Pon `(double)` delante de la suma: `(double) (a + b) / 2`, y guárdalo en un `double`."
+        "La conversión explícita se escribe delante del valor.",
+        "Usa `int entero = (int) valor;`."
       ],
       "recall": [
         {
-          "do": "Conservar decimales en una división",
-          "code": "double media = (double) suma / cantidad;"
+          "do": "Convertir `double` a `int`",
+          "code": "int entero = (int) valor;"
         },
         {
           "do": "Crear un valor verdadero/falso",
@@ -344,11 +348,11 @@ JM.content.es = {
           "code": "char nota = 'A';"
         }
       ],
-      "filename": "Ejercicio04.java",
-      "starter": "public class Ejercicio04 {\n    public static void main(String[] args) {\n        int a = 7;\n        int b = 8;\n        // Calcula una media decimal\n        // Muestra la media\n    }\n}",
-      "output": "Media: 7.5",
-      "outputNote": "Si te sale 7, revisa que la división no se esté haciendo solo con enteros.",
-      "solution": "public class Ejercicio04 {\n    public static void main(String[] args) {\n        int a = 7;\n        int b = 8;\n        double media = (double) (a + b) / 2;\n        System.out.println(\"Media: \" + media);\n    }\n}"
+      "filename": "Ejercicio05.java",
+      "starter": "public class Ejercicio05 {\n    public static void main(String[] args) {\n        double valor = 7.8;\n        // Convierte valor a int\n        // Muestra los dos valores\n    }\n}",
+      "output": "7.8\n7",
+      "outputNote": "El segundo valor no conserva la parte decimal.",
+      "solution": "public class Ejercicio05 {\n    public static void main(String[] args) {\n        double valor = 7.8;\n        int entero = (int) valor;\n        System.out.println(valor);\n        System.out.println(entero);\n    }\n}"
     },
     {
       "id": "arithmetic-operators",
@@ -371,7 +375,7 @@ JM.content.es = {
       ],
       "exampleTitle": "Operaciones y resto",
       "exampleLead": "Los paréntesis permiten indicar qué se calcula primero.",
-      "example": "public class Demo05 {\n    public static void main(String[] args) {\n        int a = 10;\n        int b = 3;\n        System.out.println(a + b);\n        System.out.println(a % b);\n        a += 2;\n        System.out.println(a);\n    }\n}",
+      "example": "public class Demo06 {\n    public static void main(String[] args) {\n        int a = 10;\n        int b = 3;\n        System.out.println(a + b);\n        System.out.println(a % b);\n        a += 2;\n        System.out.println(a);\n    }\n}",
       "explain": [
         "La salida es `13`, `1` y `12`, cada valor en una línea.",
         "`%` no es un porcentaje: obtiene el resto de la división.",
@@ -402,11 +406,11 @@ JM.content.es = {
           "code": "total += 5;"
         }
       ],
-      "filename": "Ejercicio05.java",
-      "starter": "public class Ejercicio05 {\n    public static void main(String[] args) {\n        int numero = 17;\n        // Muestra el resto al dividir entre 2\n        // Aumenta el número en uno\n        // Muestra el número actualizado\n    }\n}",
+      "filename": "Ejercicio06.java",
+      "starter": "public class Ejercicio06 {\n    public static void main(String[] args) {\n        int numero = 17;\n        // Muestra el resto al dividir entre 2\n        // Aumenta el número en uno\n        // Muestra el número actualizado\n    }\n}",
       "output": "1\n18",
       "outputNote": "El resto es 1 y, después del incremento, el valor es 18.",
-      "solution": "public class Ejercicio05 {\n    public static void main(String[] args) {\n        int numero = 17;\n        System.out.println(numero % 2);\n        numero++;\n        System.out.println(numero);\n    }\n}"
+      "solution": "public class Ejercicio06 {\n    public static void main(String[] args) {\n        int numero = 17;\n        System.out.println(numero % 2);\n        numero++;\n        System.out.println(numero);\n    }\n}"
     },
     {
       "id": "scanner-input",
@@ -429,7 +433,7 @@ JM.content.es = {
       ],
       "exampleTitle": "Pedir una edad",
       "exampleLead": "El programa pregunta, lee un número y calcula la edad del año que viene.",
-      "example": "import java.util.Scanner;\n\npublic class Demo06 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"Edad: \");\n        int edad = teclado.nextInt();\n        System.out.println(\"El año que viene: \" + (edad + 1));\n        teclado.close();\n    }\n}",
+      "example": "import java.util.Scanner;\n\npublic class Demo07 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"Edad: \");\n        int edad = teclado.nextInt();\n        System.out.println(\"El año que viene: \" + (edad + 1));\n        teclado.close();\n    }\n}",
       "explain": [
         "`System.out.print` no baja de línea, por eso puedes escribir la respuesta junto a la pregunta.",
         "`nextInt()` espera un número entero.",
@@ -465,11 +469,11 @@ JM.content.es = {
           "code": "teclado.close();"
         }
       ],
-      "filename": "Ejercicio06.java",
-      "starter": "import java.util.Scanner;\n\npublic class Ejercicio06 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        // Pregunta y lee el número\n        // Muestra su cuadrado\n        teclado.close();\n    }\n}",
+      "filename": "Ejercicio07.java",
+      "starter": "import java.util.Scanner;\n\npublic class Ejercicio07 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        // Pregunta y lee el número\n        // Muestra su cuadrado\n        teclado.close();\n    }\n}",
       "output": "Número: 4\nCuadrado: 16",
       "outputNote": "Introduce 4 en la consola. El cuadrado es 4 multiplicado por 4.",
-      "solution": "import java.util.Scanner;\n\npublic class Ejercicio06 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"Número: \");\n        int numero = teclado.nextInt();\n        System.out.println(\"Cuadrado: \" + (numero * numero));\n        teclado.close();\n    }\n}"
+      "solution": "import java.util.Scanner;\n\npublic class Ejercicio07 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"Número: \");\n        int numero = teclado.nextInt();\n        System.out.println(\"Cuadrado: \" + (numero * numero));\n        teclado.close();\n    }\n}"
     },
     {
       "id": "comparisons",
@@ -492,7 +496,7 @@ JM.content.es = {
       ],
       "exampleTitle": "Comparar dos números",
       "exampleLead": "La comparación se puede guardar en un `boolean` o mostrar directamente.",
-      "example": "public class Demo07 {\n    public static void main(String[] args) {\n        int edad = 17;\n        System.out.println(edad >= 18);\n        System.out.println(edad != 18);\n    }\n}",
+      "example": "public class Demo08 {\n    public static void main(String[] args) {\n        int edad = 17;\n        System.out.println(edad >= 18);\n        System.out.println(edad != 18);\n    }\n}",
       "explain": [
         "La primera salida es `false`, porque 17 no es mayor o igual que 18.",
         "La segunda es `true`, porque 17 es distinto de 18.",
@@ -523,11 +527,11 @@ JM.content.es = {
           "code": "boolean adulto = edad >= 18;"
         }
       ],
-      "filename": "Ejercicio07.java",
-      "starter": "public class Ejercicio07 {\n    public static void main(String[] args) {\n        int numero = 6;\n        // Muestra si numero es mayor que cero\n    }\n}",
+      "filename": "Ejercicio08.java",
+      "starter": "public class Ejercicio08 {\n    public static void main(String[] args) {\n        int numero = 6;\n        // Muestra si numero es mayor que cero\n    }\n}",
       "output": "true",
       "outputNote": "Con 6 debe salir true; con -2 debe salir false.",
-      "solution": "public class Ejercicio07 {\n    public static void main(String[] args) {\n        int numero = 6;\n        System.out.println(numero > 0);\n    }\n}"
+      "solution": "public class Ejercicio08 {\n    public static void main(String[] args) {\n        int numero = 6;\n        System.out.println(numero > 0);\n    }\n}"
     },
     {
       "id": "logical-operators",
@@ -585,7 +589,7 @@ JM.content.es = {
       "theoryNote": "Para `!`, no hace falta una segunda condición: simplemente invierte una. Memoriza primero estas tres ideas: && necesita ambas; || necesita alguna; ! da la vuelta al valor.",
       "exampleTitle": "Combinar dos condiciones",
       "exampleLead": "La persona solo puede entrar si tiene entrada y tiene 18 años o más.",
-      "example": "public class Demo08 {\n    public static void main(String[] args) {\n        int edad = 20;\n        boolean tieneEntrada = false;\n        boolean puedeEntrar = edad >= 18 && tieneEntrada;\n        System.out.println(puedeEntrar);\n        System.out.println(!tieneEntrada);\n    }\n}",
+      "example": "public class Demo09 {\n    public static void main(String[] args) {\n        int edad = 20;\n        boolean tieneEntrada = false;\n        boolean puedeEntrar = edad >= 18 && tieneEntrada;\n        System.out.println(puedeEntrar);\n        System.out.println(!tieneEntrada);\n    }\n}",
       "explain": [
         "`edad >= 18` es `true`.",
         "`tieneEntrada` es `false`; `true && false` da `false`.",
@@ -616,11 +620,11 @@ JM.content.es = {
           "code": "!a"
         }
       ],
-      "filename": "Ejercicio08.java",
-      "starter": "public class Ejercicio08 {\n    public static void main(String[] args) {\n        boolean llueve = false;\n        int temperatura = 20;\n        // Calcula podemosSalir con ! y &&\n        // Muestra el resultado\n    }\n}",
+      "filename": "Ejercicio09.java",
+      "starter": "public class Ejercicio09 {\n    public static void main(String[] args) {\n        boolean llueve = false;\n        int temperatura = 20;\n        // Calcula podemosSalir con ! y &&\n        // Muestra el resultado\n    }\n}",
       "output": "true",
       "outputNote": "Si llueve pasa a true, la salida debe ser false aunque haga calor.",
-      "solution": "public class Ejercicio08 {\n    public static void main(String[] args) {\n        boolean llueve = false;\n        int temperatura = 20;\n        boolean podemosSalir = !llueve && temperatura >= 18;\n        System.out.println(podemosSalir);\n    }\n}"
+      "solution": "public class Ejercicio09 {\n    public static void main(String[] args) {\n        boolean llueve = false;\n        int temperatura = 20;\n        boolean podemosSalir = !llueve && temperatura >= 18;\n        System.out.println(podemosSalir);\n    }\n}"
     },
     {
       "id": "if-conditionals",
@@ -644,7 +648,7 @@ JM.content.es = {
       "theoryNote": "Operador ternario: para una decisión muy sencilla, `String resultado = edad >= 18 ? \"Mayor\" : \"Menor\";` sustituye a un if/else corto. Aprende primero el if normal.",
       "exampleTitle": "Clasificar una nota",
       "exampleLead": "Java comprueba primero la condición de arriba y se queda con el primer caso verdadero.",
-      "example": "public class Demo09 {\n    public static void main(String[] args) {\n        int nota = 7;\n        if (nota >= 9) {\n            System.out.println(\"Sobresaliente\");\n        } else if (nota >= 5) {\n            System.out.println(\"Aprobado\");\n        } else {\n            System.out.println(\"Suspenso\");\n        }\n    }\n}",
+      "example": "public class Demo10 {\n    public static void main(String[] args) {\n        int nota = 7;\n        if (nota >= 9) {\n            System.out.println(\"Sobresaliente\");\n        } else if (nota >= 5) {\n            System.out.println(\"Aprobado\");\n        } else {\n            System.out.println(\"Suspenso\");\n        }\n    }\n}",
       "explain": [
         "Con nota 7, la primera condición falla.",
         "La segunda condición `nota >= 5` se cumple y muestra Aprobado.",
@@ -676,11 +680,11 @@ JM.content.es = {
           "code": "if (n > 0) {\n    // positivo\n} else if (n < 0) {\n    // negativo\n} else {\n    // cero\n}"
         }
       ],
-      "filename": "Ejercicio09.java",
-      "starter": "public class Ejercicio09 {\n    public static void main(String[] args) {\n        int numero = -3;\n        // Comprueba si es positivo\n        // Si no, comprueba si es negativo\n        // Si no se cumple ninguna, es cero\n    }\n}",
+      "filename": "Ejercicio10.java",
+      "starter": "public class Ejercicio10 {\n    public static void main(String[] args) {\n        int numero = -3;\n        // Comprueba si es positivo\n        // Si no, comprueba si es negativo\n        // Si no se cumple ninguna, es cero\n    }\n}",
       "output": "Negativo",
       "outputNote": "Con -3 debe mostrar Negativo; con 0 debe mostrar Cero.",
-      "solution": "public class Ejercicio09 {\n    public static void main(String[] args) {\n        int numero = -3;\n        if (numero > 0) {\n            System.out.println(\"Positivo\");\n        } else if (numero < 0) {\n            System.out.println(\"Negativo\");\n        } else {\n            System.out.println(\"Cero\");\n        }\n    }\n}"
+      "solution": "public class Ejercicio10 {\n    public static void main(String[] args) {\n        int numero = -3;\n        if (numero > 0) {\n            System.out.println(\"Positivo\");\n        } else if (numero < 0) {\n            System.out.println(\"Negativo\");\n        } else {\n            System.out.println(\"Cero\");\n        }\n    }\n}"
     },
     {
       "id": "switch-selection",
@@ -703,7 +707,7 @@ JM.content.es = {
       ],
       "exampleTitle": "Mostrar un día de la semana",
       "exampleLead": "Cada número conduce a una respuesta distinta.",
-      "example": "public class Demo10 {\n    public static void main(String[] args) {\n        int dia = 2;\n        switch (dia) {\n            case 1:\n                System.out.println(\"Lunes\");\n                break;\n            case 2:\n                System.out.println(\"Martes\");\n                break;\n            default:\n                System.out.println(\"Otro día\");\n        }\n    }\n}",
+      "example": "public class Demo11 {\n    public static void main(String[] args) {\n        int dia = 2;\n        switch (dia) {\n            case 1:\n                System.out.println(\"Lunes\");\n                break;\n            case 2:\n                System.out.println(\"Martes\");\n                break;\n            default:\n                System.out.println(\"Otro día\");\n        }\n    }\n}",
       "explain": [
         "Con `dia = 2` se ejecuta el segundo `case`.",
         "`break` sale del `switch`.",
@@ -727,60 +731,11 @@ JM.content.es = {
           "code": "switch (opcion) {\n    case 1:\n        System.out.println(\"Uno\");\n        break;\n    default:\n        System.out.println(\"Otra\");\n}"
         }
       ],
-      "filename": "Ejercicio10.java",
-      "starter": "public class Ejercicio10 {\n    public static void main(String[] args) {\n        int opcion = 1;\n        // Escribe el switch\n    }\n}",
+      "filename": "Ejercicio11.java",
+      "starter": "public class Ejercicio11 {\n    public static void main(String[] args) {\n        int opcion = 1;\n        // Escribe el switch\n    }\n}",
       "output": "Jugar",
       "outputNote": "Cambia opcion a 2 y después a 9 para probar los tres casos.",
-      "solution": "public class Ejercicio10 {\n    public static void main(String[] args) {\n        int opcion = 1;\n        switch (opcion) {\n            case 1:\n                System.out.println(\"Jugar\");\n                break;\n            case 2:\n                System.out.println(\"Salir\");\n                break;\n            default:\n                System.out.println(\"Opción desconocida\");\n        }\n    }\n}"
-    },
-    {
-      "id": "advanced-control",
-      "title": "Operador ternario y bucles etiquetados",
-      "time": "5 min",
-      "idea": "El operador ternario selecciona un valor y las etiquetas permiten controlar bucles anidados.",
-      "theory": [
-        {
-          "title": "Operador ternario",
-          "text": "La expresión condición ? valorSi : valorNo elige entre dos valores."
-        },
-        {
-          "title": "Etiquetas",
-          "text": "Una etiqueta antes de un bucle permite usar break etiqueta o continue etiqueta."
-        },
-        {
-          "title": "Uso responsable",
-          "text": "Prefiere if y bucles normales cuando resulten más claros."
-        }
-      ],
-      "exampleTitle": "Operador ternario y bucles etiquetados",
-      "exampleLead": "El operador ternario selecciona un valor y las etiquetas permiten controlar bucles anidados.",
-      "example": "public class Demo33 {\n    public static void main(String[] args) {\n        int number = 3;\n        String result = number % 2 == 0 ? \"Even\" : \"Odd\";\n        System.out.println(result);\n    }\n}",
-      "explain": [
-        "La expresión condición ? valorSi : valorNo elige entre dos valores.",
-        "Una etiqueta antes de un bucle permite usar break etiqueta o continue etiqueta.",
-        "Prefiere if y bucles normales cuando resulten más claros."
-      ],
-      "task": "Usa el operador ternario para mostrar \"Odd\" si el número 3 es impar o \"Even\" si es par.",
-      "think": "Escribe el programa y comprueba el resultado.",
-      "steps": [
-        "Escribe el programa y comprueba el resultado.",
-        "Compara la salida con el ejemplo."
-      ],
-      "hints": [
-        "El operador ternario selecciona un valor y las etiquetas permiten controlar bucles anidados.",
-        "Puedes usar este patrón: `String result = number % 2 == 0 ? \"Even\" : \"Odd\";`"
-      ],
-      "recall": [
-        {
-          "do": "Operador ternario y bucles etiquetados",
-          "code": "String result = number % 2 == 0 ? \"Even\" : \"Odd\";"
-        }
-      ],
-      "filename": "Ejercicio33.java",
-      "starter": "public class Ejercicio33 {\n    public static void main(String[] args) {\n        \n    }\n}",
-      "output": "Odd",
-      "outputNote": "Escribe el programa y comprueba el resultado.",
-      "solution": "public class Ejercicio33 {\n    public static void main(String[] args) {\n        int number = 3;\n        String result = number % 2 == 0 ? \"Even\" : \"Odd\";\n        System.out.println(result);\n    }\n}"
+      "solution": "public class Ejercicio11 {\n    public static void main(String[] args) {\n        int opcion = 1;\n        switch (opcion) {\n            case 1:\n                System.out.println(\"Jugar\");\n                break;\n            case 2:\n                System.out.println(\"Salir\");\n                break;\n            default:\n                System.out.println(\"Opción desconocida\");\n        }\n    }\n}"
     },
     {
       "id": "while-loop",
@@ -803,7 +758,7 @@ JM.content.es = {
       ],
       "exampleTitle": "Contar hasta cinco",
       "exampleLead": "El contador aumenta en cada vuelta hasta que deja de cumplir la condición.",
-      "example": "public class Demo11 {\n    public static void main(String[] args) {\n        int i = 1;\n        while (i <= 5) {\n            System.out.println(i);\n            i++;\n        }\n    }\n}",
+      "example": "public class Demo12 {\n    public static void main(String[] args) {\n        int i = 1;\n        while (i <= 5) {\n            System.out.println(i);\n            i++;\n        }\n    }\n}",
       "explain": [
         "`i` empieza en 1.",
         "Mientras `i <= 5`, se muestra y se incrementa.",
@@ -826,11 +781,11 @@ JM.content.es = {
           "code": "while (contador < 3) {\n    contador++;\n}"
         }
       ],
-      "filename": "Ejercicio11.java",
-      "starter": "public class Ejercicio11 {\n    public static void main(String[] args) {\n        int i = 5;\n        // Escribe el while\n    }\n}",
+      "filename": "Ejercicio12.java",
+      "starter": "public class Ejercicio12 {\n    public static void main(String[] args) {\n        int i = 5;\n        // Escribe el while\n    }\n}",
       "output": "5\n4\n3\n2\n1",
       "outputNote": "Si aparece siempre el mismo número, revisa que el contador se reduzca.",
-      "solution": "public class Ejercicio11 {\n    public static void main(String[] args) {\n        int i = 5;\n        while (i >= 1) {\n            System.out.println(i);\n            i--;\n        }\n    }\n}"
+      "solution": "public class Ejercicio12 {\n    public static void main(String[] args) {\n        int i = 5;\n        while (i >= 1) {\n            System.out.println(i);\n            i--;\n        }\n    }\n}"
     },
     {
       "id": "do-while-loop",
@@ -853,7 +808,7 @@ JM.content.es = {
       ],
       "exampleTitle": "Mostrar tres intentos",
       "exampleLead": "Aunque la condición se comprueba después, el contador hace que el bucle pare.",
-      "example": "public class Demo12 {\n    public static void main(String[] args) {\n        int intento = 1;\n        do {\n            System.out.println(\"Intento \" + intento);\n            intento++;\n        } while (intento <= 3);\n    }\n}",
+      "example": "public class Demo13 {\n    public static void main(String[] args) {\n        int intento = 1;\n        do {\n            System.out.println(\"Intento \" + intento);\n            intento++;\n        } while (intento <= 3);\n    }\n}",
       "explain": [
         "El bloque se ejecuta con intento igual a 1.",
         "Después `intento++` aumenta el contador.",
@@ -876,11 +831,11 @@ JM.content.es = {
           "code": "do {\n    cuenta--;\n} while (cuenta > 0);"
         }
       ],
-      "filename": "Ejercicio12.java",
-      "starter": "public class Ejercicio12 {\n    public static void main(String[] args) {\n        int cuenta = 3;\n        // Escribe el do-while\n    }\n}",
+      "filename": "Ejercicio13.java",
+      "starter": "public class Ejercicio13 {\n    public static void main(String[] args) {\n        int cuenta = 3;\n        // Escribe el do-while\n    }\n}",
       "output": "3\n2\n1",
       "outputNote": "El bloque se ejecuta primero; la comprobación va al final.",
-      "solution": "public class Ejercicio12 {\n    public static void main(String[] args) {\n        int cuenta = 3;\n        do {\n            System.out.println(cuenta);\n            cuenta--;\n        } while (cuenta >= 1);\n    }\n}"
+      "solution": "public class Ejercicio13 {\n    public static void main(String[] args) {\n        int cuenta = 3;\n        do {\n            System.out.println(cuenta);\n            cuenta--;\n        } while (cuenta >= 1);\n    }\n}"
     },
     {
       "id": "for-loop",
@@ -903,7 +858,7 @@ JM.content.es = {
       ],
       "exampleTitle": "Contar de uno en uno",
       "exampleLead": "Este bucle muestra los números del 1 al 3.",
-      "example": "public class Demo13 {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 3; i++) {\n            System.out.println(i);\n        }\n    }\n}",
+      "example": "public class Demo14 {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 3; i++) {\n            System.out.println(i);\n        }\n    }\n}",
       "explain": [
         "Los tres componentes del `for` van separados por punto y coma.",
         "Si empiezas en 1 y la condición es `i <= 3`, aparecen 1, 2 y 3.",
@@ -930,11 +885,11 @@ JM.content.es = {
           "code": "for (int i = 0; i <= 10; i += 2) {\n    // ...\n}"
         }
       ],
-      "filename": "Ejercicio13.java",
-      "starter": "public class Ejercicio13 {\n    public static void main(String[] args) {\n        // Escribe el for de los pares\n    }\n}",
+      "filename": "Ejercicio14.java",
+      "starter": "public class Ejercicio14 {\n    public static void main(String[] args) {\n        // Escribe el for de los pares\n    }\n}",
       "output": "2\n4\n6\n8\n10",
       "outputNote": "Deben aparecer cinco números: el primero es 2 y el último 10.",
-      "solution": "public class Ejercicio13 {\n    public static void main(String[] args) {\n        for (int i = 2; i <= 10; i += 2) {\n            System.out.println(i);\n        }\n    }\n}"
+      "solution": "public class Ejercicio14 {\n    public static void main(String[] args) {\n        for (int i = 2; i <= 10; i += 2) {\n            System.out.println(i);\n        }\n    }\n}"
     },
     {
       "id": "loop-control",
@@ -957,7 +912,7 @@ JM.content.es = {
       ],
       "exampleTitle": "Saltar el número tres",
       "exampleLead": "El bucle sigue contando, pero no muestra el 3.",
-      "example": "public class Demo14 {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 5; i++) {\n            if (i == 3) {\n                continue;\n            }\n            System.out.println(i);\n        }\n    }\n}",
+      "example": "public class Demo15 {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 5; i++) {\n            if (i == 3) {\n                continue;\n            }\n            System.out.println(i);\n        }\n    }\n}",
       "explain": [
         "Cuando `i` vale 3, `continue` salta el `println`.",
         "El bucle sigue con 4 y 5.",
@@ -984,11 +939,66 @@ JM.content.es = {
           "code": "if (i % 2 == 0) {\n    continue;\n}"
         }
       ],
-      "filename": "Ejercicio14.java",
-      "starter": "public class Ejercicio14 {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 10; i++) {\n            // Si i vale 7, termina el bucle\n            // Si no, muestra i\n        }\n    }\n}",
+      "filename": "Ejercicio15.java",
+      "starter": "public class Ejercicio15 {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 10; i++) {\n            // Si i vale 7, termina el bucle\n            // Si no, muestra i\n        }\n    }\n}",
       "output": "1\n2\n3\n4\n5\n6",
       "outputNote": "El 7 no aparece: el bucle se detiene antes de imprimirlo.",
-      "solution": "public class Ejercicio14 {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 10; i++) {\n            if (i == 7) {\n                break;\n            }\n            System.out.println(i);\n        }\n    }\n}"
+      "solution": "public class Ejercicio15 {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 10; i++) {\n            if (i == 7) {\n                break;\n            }\n            System.out.println(i);\n        }\n    }\n}"
+    },
+    {
+      "id": "advanced-control",
+      "title": "Operador ternario y bucles etiquetados",
+      "time": "5 min",
+      "idea": "El operador ternario elige entre dos valores en una expresión. Las etiquetas permiten salir de un bucle exterior cuando trabajas con bucles anidados.",
+      "theory": [
+        {
+          "title": "Operador ternario",
+          "text": "La expresión condición ? valorSi : valorNo elige entre dos valores."
+        },
+        {
+          "title": "Etiquetas",
+          "text": "Una etiqueta antes de un bucle permite usar break etiqueta o continue etiqueta."
+        },
+        {
+          "title": "Uso responsable",
+          "text": "Prefiere if y bucles normales cuando resulten más claros."
+        }
+      ],
+      "exampleTitle": "Elegir un texto con el operador ternario",
+      "exampleLead": "Como ya conoces condiciones, ahora puedes expresar una elección sencilla en una sola expresión.",
+      "example": "public class Demo16 {\n    public static void main(String[] args) {\n        int number = 3;\n        String result = number % 2 == 0 ? \"Even\" : \"Odd\";\n        System.out.println(result);\n    }\n}",
+      "explain": [
+        "La condición va antes de `?`; el valor si se cumple va después y el valor alternativo va tras `:`.",
+        "Una etiqueta se escribe antes de un bucle, por ejemplo `outer:`; `break outer;` termina ese bucle desde uno interior.",
+        "Usa estas herramientas solo cuando hagan el código más claro que un `if` o un bucle normal."
+      ],
+      "task": "Con `int numero = 3`, crea `String resultado` con el operador ternario: debe valer `\"Even\"` si el número es par y `\"Odd\"` si es impar. Después muestra `resultado`.",
+      "think": "La condición de número par ya la conoces: el resto al dividir entre 2 debe ser 0. ¿Qué valor corresponde a cada lado del ternario?",
+      "steps": [
+        "Parte de `int numero = 3`.",
+        "Escribe la condición `numero % 2 == 0`.",
+        "Añade `? \"Even\" : \"Odd\"` para obtener un `String`.",
+        "Muestra el resultado y comprueba que aparece `Odd`."
+      ],
+      "hints": [
+        "El ternario tiene la forma `condicion ? valorSi : valorNo`.",
+        "La línea completa es `String resultado = numero % 2 == 0 ? \"Even\" : \"Odd\";`."
+      ],
+      "recall": [
+        {
+          "do": "Elegir entre dos valores con un ternario",
+          "code": "String resultado = numero % 2 == 0 ? \"Even\" : \"Odd\";"
+        },
+        {
+          "do": "Salir de dos bucles con una etiqueta",
+          "code": "outer:\nfor (int fila = 0; fila < 3; fila++) {\n    for (int columna = 0; columna < 3; columna++) {\n        if (fila == 1 && columna == 1) {\n            break outer;\n        }\n    }\n}"
+        }
+      ],
+      "filename": "Ejercicio16.java",
+      "starter": "public class Ejercicio16 {\n    public static void main(String[] args) {\n        int numero = 3;\n        // Crea resultado con el operador ternario\n        // Muestra resultado\n    }\n}",
+      "output": "Odd",
+      "outputNote": "Con el valor 3 debe aparecer `Odd`.",
+      "solution": "public class Ejercicio16 {\n    public static void main(String[] args) {\n        int numero = 3;\n        String resultado = numero % 2 == 0 ? \"Even\" : \"Odd\";\n        System.out.println(resultado);\n    }\n}"
     },
     {
       "id": "text-and-letters",
@@ -1011,7 +1021,7 @@ JM.content.es = {
       ],
       "exampleTitle": "Preguntar por el ticket",
       "exampleLead": "El programa hace una pregunta de sí/no y reacciona a la primera letra de la respuesta.",
-      "example": "import java.util.Scanner;\n\npublic class Demo15 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"¿Quieres el ticket? (S/N): \");\n        char respuesta = Character.toUpperCase(teclado.next().charAt(0));\n        if (respuesta == 'S') {\n            System.out.println(\"Imprimiendo ticket...\");\n        } else {\n            System.out.println(\"Sin ticket.\");\n        }\n        teclado.close();\n    }\n}",
+      "example": "import java.util.Scanner;\n\npublic class Demo17 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"¿Quieres el ticket? (S/N): \");\n        char respuesta = Character.toUpperCase(teclado.next().charAt(0));\n        if (respuesta == 'S') {\n            System.out.println(\"Imprimiendo ticket...\");\n        } else {\n            System.out.println(\"Sin ticket.\");\n        }\n        teclado.close();\n    }\n}",
       "explain": [
         "Primero se pasa la letra a mayúscula, así que `s` y `S` funcionan.",
         "Comillas simples para un carácter, comillas dobles para texto.",
@@ -1037,17 +1047,13 @@ JM.content.es = {
         {
           "do": "Comparar una letra",
           "code": "if (respuesta == 'S') {\n    // sí\n}"
-        },
-        {
-          "do": "Comparar texto",
-          "code": "if (word.equals(\"si\")) {\n    // mismo texto\n}"
         }
       ],
-      "filename": "Ejercicio15.java",
-      "starter": "import java.util.Scanner;\n\npublic class Ejercicio15 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double recargo = 0;\n        // Pregunta \"¿Equipaje especial? (S/N): \" y lee una letra\n        // Si la respuesta es sí, el recargo es 5.0\n        // Muestra el recargo\n        teclado.close();\n    }\n}",
+      "filename": "Ejercicio17.java",
+      "starter": "import java.util.Scanner;\n\npublic class Ejercicio17 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double recargo = 0;\n        // Pregunta \"¿Equipaje especial? (S/N): \" y lee una letra\n        // Si la respuesta es sí, el recargo es 5.0\n        // Muestra el recargo\n        teclado.close();\n    }\n}",
       "output": "¿Equipaje especial? (S/N): s\nRecargo de equipaje: 5.0",
       "outputNote": "Escribe s (minúscula) para comprobar que también funciona. Con n el recargo es 0.0.",
-      "solution": "import java.util.Scanner;\n\npublic class Ejercicio15 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double recargo = 0;\n        System.out.print(\"¿Equipaje especial? (S/N): \");\n        char respuesta = Character.toUpperCase(teclado.next().charAt(0));\n        if (respuesta == 'S') {\n            recargo = 5.0;\n        }\n        System.out.println(\"Recargo de equipaje: \" + recargo);\n        teclado.close();\n    }\n}"
+      "solution": "import java.util.Scanner;\n\npublic class Ejercicio17 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double recargo = 0;\n        System.out.print(\"¿Equipaje especial? (S/N): \");\n        char respuesta = Character.toUpperCase(teclado.next().charAt(0));\n        if (respuesta == 'S') {\n            recargo = 5.0;\n        }\n        System.out.println(\"Recargo de equipaje: \" + recargo);\n        teclado.close();\n    }\n}"
     },
     {
       "id": "validate-input",
@@ -1071,7 +1077,7 @@ JM.content.es = {
       "theoryNote": "Si al escribir `4.5` aparece un `InputMismatchException`, tu ordenador espera una coma. Añade `import java.util.Locale;` y escribe `teclado.useLocale(Locale.US);` justo después de crear el Scanner.",
       "exampleTitle": "Dos formas de validar",
       "exampleLead": "El primer valor termina el programa si es incorrecto. El segundo se vuelve a pedir hasta que sea válido.",
-      "example": "import java.util.Scanner;\n\npublic class Demo16 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"Jugadores (1 a 4): \");\n        int jugadores = teclado.nextInt();\n        if (jugadores < 1 || jugadores > 4) {\n            System.out.println(\"Error: elige entre 1 y 4\");\n            teclado.close();\n            return;\n        }\n        System.out.print(\"Vidas (más de 0): \");\n        int vidas = teclado.nextInt();\n        while (vidas <= 0) {\n            System.out.println(\"Las vidas deben ser más de 0\");\n            System.out.print(\"Vidas (más de 0): \");\n            vidas = teclado.nextInt();\n        }\n        System.out.println(jugadores + \" jugadores, \" + vidas + \" vidas\");\n        teclado.close();\n    }\n}",
+      "example": "import java.util.Scanner;\n\npublic class Demo18 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"Jugadores (1 a 4): \");\n        int jugadores = teclado.nextInt();\n        if (jugadores < 1 || jugadores > 4) {\n            System.out.println(\"Error: elige entre 1 y 4\");\n            teclado.close();\n            return;\n        }\n        System.out.print(\"Vidas (más de 0): \");\n        int vidas = teclado.nextInt();\n        while (vidas <= 0) {\n            System.out.println(\"Las vidas deben ser más de 0\");\n            System.out.print(\"Vidas (más de 0): \");\n            vidas = teclado.nextInt();\n        }\n        System.out.println(jugadores + \" jugadores, \" + vidas + \" vidas\");\n        teclado.close();\n    }\n}",
       "explain": [
         "`return;` después del mensaje de error termina `main`, así que no se ejecuta nada más.",
         "El valor se lee una vez antes del `while` y otra vez dentro.",
@@ -1100,11 +1106,11 @@ JM.content.es = {
           "code": "while (precio <= 0) {\n    System.out.print(\"Precio: \");\n    precio = teclado.nextDouble();\n}"
         }
       ],
-      "filename": "Ejercicio16.java",
-      "starter": "import java.util.Scanner;\n\npublic class Ejercicio16 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        // Lee los artículos. Si no es mayor que 0: error y return\n        // Lee el precio. Mientras no sea mayor que 0: vuelve a preguntar\n        // Muestra artículos y precio\n        teclado.close();\n    }\n}",
+      "filename": "Ejercicio18.java",
+      "starter": "import java.util.Scanner;\n\npublic class Ejercicio18 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        // Lee los artículos. Si no es mayor que 0: error y return\n        // Lee el precio. Mientras no sea mayor que 0: vuelve a preguntar\n        // Muestra artículos y precio\n        teclado.close();\n    }\n}",
       "output": "Artículos: 3\nPrecio: -2\nEl precio debe ser mayor que 0\nPrecio: 4.5\n3 artículos a 4.5",
       "outputNote": "Ejecútalo otra vez con 0 artículos: el programa debe terminar después del error.",
-      "solution": "import java.util.Scanner;\n\npublic class Ejercicio16 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"Artículos: \");\n        int articulos = teclado.nextInt();\n        if (articulos <= 0) {\n            System.out.println(\"Error: los artículos deben ser más de 0\");\n            teclado.close();\n            return;\n        }\n        System.out.print(\"Precio: \");\n        double precio = teclado.nextDouble();\n        while (precio <= 0) {\n            System.out.println(\"El precio debe ser mayor que 0\");\n            System.out.print(\"Precio: \");\n            precio = teclado.nextDouble();\n        }\n        System.out.println(articulos + \" artículos a \" + precio);\n        teclado.close();\n    }\n}"
+      "solution": "import java.util.Scanner;\n\npublic class Ejercicio18 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"Artículos: \");\n        int articulos = teclado.nextInt();\n        if (articulos <= 0) {\n            System.out.println(\"Error: los artículos deben ser más de 0\");\n            teclado.close();\n            return;\n        }\n        System.out.print(\"Precio: \");\n        double precio = teclado.nextDouble();\n        while (precio <= 0) {\n            System.out.println(\"El precio debe ser mayor que 0\");\n            System.out.print(\"Precio: \");\n            precio = teclado.nextDouble();\n        }\n        System.out.println(articulos + \" artículos a \" + precio);\n        teclado.close();\n    }\n}"
     },
     {
       "id": "money-percentages",
@@ -1128,7 +1134,7 @@ JM.content.es = {
       "theoryNote": "Si `printf` muestra una coma (`77,44`) y quieres un punto, usa `System.out.printf(Locale.US, \"Total: %.2f%n\", total);` con `import java.util.Locale;`.",
       "exampleTitle": "Una factura pequeña",
       "exampleLead": "Un precio de 80 con un 20 % de descuento y después un 21 % de IVA, una variable por paso.",
-      "example": "public class Demo17 {\n    public static void main(String[] args) {\n        final double IVA = 0.21;\n        double precio = 80.0;\n        double descuento = precio * 0.20;\n        double base = precio - descuento;\n        double iva = base * IVA;\n        double total = base + iva;\n        System.out.printf(\"Precio: %.2f%n\", precio);\n        System.out.printf(\"Descuento: %.2f%n\", descuento);\n        System.out.printf(\"Base: %.2f%n\", base);\n        System.out.printf(\"IVA: %.2f%n\", iva);\n        System.out.printf(\"Total: %.2f%n\", total);\n    }\n}",
+      "example": "public class Demo19 {\n    public static void main(String[] args) {\n        final double IVA = 0.21;\n        double precio = 80.0;\n        double descuento = precio * 0.20;\n        double base = precio - descuento;\n        double iva = base * IVA;\n        double total = base + iva;\n        System.out.printf(\"Precio: %.2f%n\", precio);\n        System.out.printf(\"Descuento: %.2f%n\", descuento);\n        System.out.printf(\"Base: %.2f%n\", base);\n        System.out.printf(\"IVA: %.2f%n\", iva);\n        System.out.printf(\"Total: %.2f%n\", total);\n    }\n}",
       "explain": [
         "El descuento se calcula sobre el precio original.",
         "El impuesto se calcula sobre la base, después del descuento.",
@@ -1160,11 +1166,11 @@ JM.content.es = {
           "code": "System.out.printf(\"Total: %.2f%n\", total);"
         }
       ],
-      "filename": "Ejercicio17.java",
-      "starter": "public class Ejercicio17 {\n    public static void main(String[] args) {\n        final double IVA = 0.21;\n        double precio = 40.0;\n        double recargo = 5.0;\n        // Calcula el descuento del 30 %\n        // Calcula la base: precio - descuento + recargo\n        // Calcula el IVA y el total\n        // Muestra descuento, base, IVA y total con 2 decimales\n    }\n}",
+      "filename": "Ejercicio19.java",
+      "starter": "public class Ejercicio19 {\n    public static void main(String[] args) {\n        final double IVA = 0.21;\n        double precio = 40.0;\n        double recargo = 5.0;\n        // Calcula el descuento del 30 %\n        // Calcula la base: precio - descuento + recargo\n        // Calcula el IVA y el total\n        // Muestra descuento, base, IVA y total con 2 decimales\n    }\n}",
       "output": "Descuento: 12.00\nBase: 33.00\nIVA: 6.93\nTotal: 39.93",
       "outputNote": "Cambia el precio y comprueba que todos los importes cambian con él.",
-      "solution": "public class Ejercicio17 {\n    public static void main(String[] args) {\n        final double IVA = 0.21;\n        double precio = 40.0;\n        double recargo = 5.0;\n        double descuento = precio * 0.30;\n        double base = precio - descuento + recargo;\n        double iva = base * IVA;\n        double total = base + iva;\n        System.out.printf(\"Descuento: %.2f%n\", descuento);\n        System.out.printf(\"Base: %.2f%n\", base);\n        System.out.printf(\"IVA: %.2f%n\", iva);\n        System.out.printf(\"Total: %.2f%n\", total);\n    }\n}"
+      "solution": "public class Ejercicio19 {\n    public static void main(String[] args) {\n        final double IVA = 0.21;\n        double precio = 40.0;\n        double recargo = 5.0;\n        double descuento = precio * 0.30;\n        double base = precio - descuento + recargo;\n        double iva = base * IVA;\n        double total = base + iva;\n        System.out.printf(\"Descuento: %.2f%n\", descuento);\n        System.out.printf(\"Base: %.2f%n\", base);\n        System.out.printf(\"IVA: %.2f%n\", iva);\n        System.out.printf(\"Total: %.2f%n\", total);\n    }\n}"
     },
     {
       "id": "counters-accumulators",
@@ -1187,14 +1193,14 @@ JM.content.es = {
       ],
       "exampleTitle": "Pares y suma",
       "exampleLead": "Lee N números, cuenta los pares y súmalos todos. No se guarda nada.",
-      "example": "import java.util.Scanner;\n\npublic class Demo18 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"¿Cuántos números? \");\n        int n = teclado.nextInt();\n        int suma = 0;\n        int pares = 0;\n        for (int i = 1; i <= n; i++) {\n            System.out.print(\"Número \" + i + \": \");\n            int valor = teclado.nextInt();\n            suma += valor;\n            if (valor % 2 == 0) {\n                pares++;\n            }\n        }\n        System.out.println(\"Suma: \" + suma);\n        System.out.println(\"Pares: \" + pares);\n        teclado.close();\n    }\n}",
+      "example": "import java.util.Scanner;\n\npublic class Demo20 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"¿Cuántos números? \");\n        int n = teclado.nextInt();\n        int suma = 0;\n        int pares = 0;\n        for (int i = 1; i <= n; i++) {\n            System.out.print(\"Número \" + i + \": \");\n            int valor = teclado.nextInt();\n            suma += valor;\n            if (valor % 2 == 0) {\n                pares++;\n            }\n        }\n        System.out.println(\"Suma: \" + suma);\n        System.out.println(\"Pares: \" + pares);\n        teclado.close();\n    }\n}",
       "explain": [
         "`suma` y `pares` viven fuera del bucle, así que conservan su valor entre vueltas.",
         "Cada vuelta lee un valor, lo usa y lo olvida.",
         "`i` es solo el número de vuelta: 1, 2, 3..."
       ],
-      "task": "Pregunta cuántas notas hay. Lee cada nota (0 a 10) y cuenta cuántas son suspensos (menos de 5), aprobados (de 5 a 8) y sobresalientes (más de 8). Muestra los tres contadores, la suma y la media.",
-      "think": "¿Qué debes recordar después de leer cada nota? ¿Qué variables deben existir antes de empezar el bucle?",
+      "task": "Pregunta cuántas notas hay (supón que N es mayor que 0). Lee N notas; en esta actividad puedes suponer que cada nota ya es válida y está entre 0 y 10. Cuenta cuántas son suspensos (menos de 5), aprobados (de 5 a 8) y sobresalientes (más de 8). Muestra los tres contadores, la suma y la media.",
+      "think": "Esta lección practica contadores y acumuladores. No tienes que volver a validar los datos: asume N > 0 y notas entre 0 y 10.",
       "steps": [
         "Crea los tres contadores y la suma, todos a 0, antes del bucle.",
         "Repite N veces y lee una nota por vuelta.",
@@ -1219,11 +1225,11 @@ JM.content.es = {
           "code": "suma += valor;\n// después del bucle\ndouble media = (double) suma / n;"
         }
       ],
-      "filename": "Ejercicio18.java",
-      "starter": "import java.util.Scanner;\n\npublic class Ejercicio18 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"¿Cuántas notas? \");\n        int n = teclado.nextInt();\n        // Crea los contadores y la suma antes del bucle\n        // Bucle: lee cada nota, súmala y cuéntala en su grupo\n        // Muestra los contadores, la suma y la media\n        teclado.close();\n    }\n}",
+      "filename": "Ejercicio20.java",
+      "starter": "import java.util.Scanner;\n\npublic class Ejercicio20 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"¿Cuántas notas? \");\n        int n = teclado.nextInt();\n        // Crea los contadores y la suma antes del bucle\n        // Bucle: lee cada nota, súmala y cuéntala en su grupo\n        // Muestra los contadores, la suma y la media\n        teclado.close();\n    }\n}",
       "output": "¿Cuántas notas? 4\nNota 1: 3\nNota 2: 7\nNota 3: 9\nNota 4: 5\nSuspensos: 1\nAprobados: 2\nSobresalientes: 1\nSuma: 24\nMedia: 6.0",
       "outputNote": "Los números después de \"Nota\" son lo que escribes. La media conserva la parte decimal.",
-      "solution": "import java.util.Scanner;\n\npublic class Ejercicio18 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"¿Cuántas notas? \");\n        int n = teclado.nextInt();\n        int suspensos = 0;\n        int aprobados = 0;\n        int sobresalientes = 0;\n        int suma = 0;\n        for (int i = 1; i <= n; i++) {\n            System.out.print(\"Nota \" + i + \": \");\n            int nota = teclado.nextInt();\n            suma += nota;\n            if (nota < 5) {\n                suspensos++;\n            } else if (nota <= 8) {\n                aprobados++;\n            } else {\n                sobresalientes++;\n            }\n        }\n        double media = (double) suma / n;\n        System.out.println(\"Suspensos: \" + suspensos);\n        System.out.println(\"Aprobados: \" + aprobados);\n        System.out.println(\"Sobresalientes: \" + sobresalientes);\n        System.out.println(\"Suma: \" + suma);\n        System.out.println(\"Media: \" + media);\n        teclado.close();\n    }\n}"
+      "solution": "import java.util.Scanner;\n\npublic class Ejercicio20 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"¿Cuántas notas? \");\n        int n = teclado.nextInt();\n        int suspensos = 0;\n        int aprobados = 0;\n        int sobresalientes = 0;\n        int suma = 0;\n        for (int i = 1; i <= n; i++) {\n            System.out.print(\"Nota \" + i + \": \");\n            int nota = teclado.nextInt();\n            suma += nota;\n            if (nota < 5) {\n                suspensos++;\n            } else if (nota <= 8) {\n                aprobados++;\n            } else {\n                sobresalientes++;\n            }\n        }\n        double media = (double) suma / n;\n        System.out.println(\"Suspensos: \" + suspensos);\n        System.out.println(\"Aprobados: \" + aprobados);\n        System.out.println(\"Sobresalientes: \" + sobresalientes);\n        System.out.println(\"Suma: \" + suma);\n        System.out.println(\"Media: \" + media);\n        teclado.close();\n    }\n}"
     },
     {
       "id": "max-min-position",
@@ -1246,14 +1252,14 @@ JM.content.es = {
       ],
       "exampleTitle": "Encontrar el valor mayor",
       "exampleLead": "Lee N alturas y muestra la mayor y la vuelta en la que apareció primero. La menor es tu ejercicio.",
-      "example": "import java.util.Scanner;\n\npublic class Demo19 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"¿Cuántas alturas? \");\n        int n = teclado.nextInt();\n        int maxima = 0;\n        int posMaxima = 0;\n        for (int i = 1; i <= n; i++) {\n            System.out.print(\"Altura \" + i + \": \");\n            int altura = teclado.nextInt();\n            if (i == 1 || altura > maxima) {\n                maxima = altura;\n                posMaxima = i;\n            }\n        }\n        System.out.println(\"Máxima: \" + maxima + \" (posición \" + posMaxima + \")\");\n        teclado.close();\n    }\n}",
+      "example": "import java.util.Scanner;\n\npublic class Demo21 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"¿Cuántas alturas? \");\n        int n = teclado.nextInt();\n        int maxima = 0;\n        int posMaxima = 0;\n        for (int i = 1; i <= n; i++) {\n            System.out.print(\"Altura \" + i + \": \");\n            int altura = teclado.nextInt();\n            if (i == 1 || altura > maxima) {\n                maxima = altura;\n                posMaxima = i;\n            }\n        }\n        System.out.println(\"Máxima: \" + maxima + \" (posición \" + posMaxima + \")\");\n        teclado.close();\n    }\n}",
       "explain": [
         "`i == 1 || ...` acepta el primer valor sin compararlo con nada.",
         "Valor y posición se actualizan juntos, dentro del mismo `if`.",
         "El `>` estricto mantiene la primera posición cuando los valores se repiten."
       ],
-      "task": "Pregunta cuántas puntuaciones hay y léelas. Muestra la puntuación más alta y la más baja, cada una con la posición en la que apareció primero.",
-      "think": "¿Qué debes recordar entre vueltas para cada uno de los dos resultados? ¿Qué pasa con el primer valor?",
+      "task": "Pregunta cuántas puntuaciones hay (supón que N es mayor que 0) y léelas. Muestra la puntuación más alta y la más baja, cada una con la primera posición en la que apareció.",
+      "think": "Puedes suponer que se introducirá al menos una puntuación; aquí el objetivo es mantener el máximo, el mínimo y sus posiciones.",
       "steps": [
         "Crea cuatro variables antes del bucle: la más alta, su posición, la más baja y su posición.",
         "Repite y lee una puntuación por vuelta.",
@@ -1274,11 +1280,11 @@ JM.content.es = {
           "code": "if (i == 1 || valor < minimo) {\n    minimo = valor;\n    posMinimo = i;\n}"
         }
       ],
-      "filename": "Ejercicio19.java",
-      "starter": "import java.util.Scanner;\n\npublic class Ejercicio19 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"¿Cuántas puntuaciones? \");\n        int n = teclado.nextInt();\n        // Crea las cuatro variables antes del bucle\n        // Bucle: lee cada puntuación y actualiza la más alta y la más baja\n        // Muestra las dos con sus posiciones\n        teclado.close();\n    }\n}",
+      "filename": "Ejercicio21.java",
+      "starter": "import java.util.Scanner;\n\npublic class Ejercicio21 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"¿Cuántas puntuaciones? \");\n        int n = teclado.nextInt();\n        // Crea las cuatro variables antes del bucle\n        // Bucle: lee cada puntuación y actualiza la más alta y la más baja\n        // Muestra las dos con sus posiciones\n        teclado.close();\n    }\n}",
       "output": "¿Cuántas puntuaciones? 5\nPuntos 1: 40\nPuntos 2: 25\nPuntos 3: 90\nPuntos 4: 25\nPuntos 5: 90\nMás alta: 90 (posición 3)\nMás baja: 25 (posición 2)",
       "outputNote": "La más alta aparece dos veces (90) pero se muestra la primera posición. Igual con la más baja.",
-      "solution": "import java.util.Scanner;\n\npublic class Ejercicio19 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"¿Cuántas puntuaciones? \");\n        int n = teclado.nextInt();\n        int maxima = 0;\n        int posMaxima = 0;\n        int minima = 0;\n        int posMinima = 0;\n        for (int i = 1; i <= n; i++) {\n            System.out.print(\"Puntos \" + i + \": \");\n            int puntos = teclado.nextInt();\n            if (i == 1 || puntos > maxima) {\n                maxima = puntos;\n                posMaxima = i;\n            }\n            if (i == 1 || puntos < minima) {\n                minima = puntos;\n                posMinima = i;\n            }\n        }\n        System.out.println(\"Más alta: \" + maxima + \" (posición \" + posMaxima + \")\");\n        System.out.println(\"Más baja: \" + minima + \" (posición \" + posMinima + \")\");\n        teclado.close();\n    }\n}"
+      "solution": "import java.util.Scanner;\n\npublic class Ejercicio21 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"¿Cuántas puntuaciones? \");\n        int n = teclado.nextInt();\n        int maxima = 0;\n        int posMaxima = 0;\n        int minima = 0;\n        int posMinima = 0;\n        for (int i = 1; i <= n; i++) {\n            System.out.print(\"Puntos \" + i + \": \");\n            int puntos = teclado.nextInt();\n            if (i == 1 || puntos > maxima) {\n                maxima = puntos;\n                posMaxima = i;\n            }\n            if (i == 1 || puntos < minima) {\n                minima = puntos;\n                posMinima = i;\n            }\n        }\n        System.out.println(\"Más alta: \" + maxima + \" (posición \" + posMaxima + \")\");\n        System.out.println(\"Más baja: \" + minima + \" (posición \" + posMinima + \")\");\n        teclado.close();\n    }\n}"
     },
     {
       "id": "menu-loop",
@@ -1301,7 +1307,7 @@ JM.content.es = {
       ],
       "exampleTitle": "Un menú con contador",
       "exampleLead": "La opción 1 suma uno, la 2 muestra la cuenta y la 0 sale.",
-      "example": "import java.util.Scanner;\n\npublic class Demo20 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        int cuenta = 0;\n        int opcion;\n        do {\n            System.out.println(\"1) Sumar uno  2) Ver  0) Salir\");\n            System.out.print(\"Opción: \");\n            opcion = teclado.nextInt();\n            switch (opcion) {\n                case 1:\n                    cuenta++;\n                    break;\n                case 2:\n                    System.out.println(\"Cuenta: \" + cuenta);\n                    break;\n                case 0:\n                    System.out.println(\"Adiós\");\n                    break;\n                default:\n                    System.out.println(\"Opción no válida\");\n            }\n        } while (opcion != 0);\n        teclado.close();\n    }\n}",
+      "example": "import java.util.Scanner;\n\npublic class Demo22 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        int cuenta = 0;\n        int opcion;\n        do {\n            System.out.println(\"1) Sumar uno  2) Ver  0) Salir\");\n            System.out.print(\"Opción: \");\n            opcion = teclado.nextInt();\n            switch (opcion) {\n                case 1:\n                    cuenta++;\n                    break;\n                case 2:\n                    System.out.println(\"Cuenta: \" + cuenta);\n                    break;\n                case 0:\n                    System.out.println(\"Adiós\");\n                    break;\n                default:\n                    System.out.println(\"Opción no válida\");\n            }\n        } while (opcion != 0);\n        teclado.close();\n    }\n}",
       "explain": [
         "`cuenta` se declara antes del bucle, así que sobrevive a cada vuelta.",
         "Cada `case` termina con `break;` y `default` recoge las opciones no válidas.",
@@ -1326,11 +1332,11 @@ JM.content.es = {
           "code": "int opcion;\ndo {\n    System.out.println(\"1) ...  0) Salir\");\n    opcion = teclado.nextInt();\n    switch (opcion) {\n        case 1:\n            // ...\n            break;\n        case 0:\n            break;\n        default:\n            System.out.println(\"Opción no válida\");\n    }\n} while (opcion != 0);"
         }
       ],
-      "filename": "Ejercicio20.java",
-      "starter": "import java.util.Scanner;\n\npublic class Ejercicio20 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double saldo = 20.0;\n        int ingresos = 0;\n        int retiradas = 0;\n        double importe;\n        int opcion;\n        // Repite el menú hasta que la opción sea 0\n        // 1 Ingresar: pide el importe (> 0) y súmalo\n        // 2 Retirar: pide el importe (> 0); solo si hay saldo suficiente\n        // 3 Mostrar el saldo y los dos contadores\n        // 0 Salir. Cualquier otra: opción no válida\n        teclado.close();\n    }\n}",
+      "filename": "Ejercicio22.java",
+      "starter": "import java.util.Scanner;\n\npublic class Ejercicio22 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double saldo = 20.0;\n        int ingresos = 0;\n        int retiradas = 0;\n        double importe;\n        int opcion;\n        // Repite el menú hasta que la opción sea 0\n        // 1 Ingresar: pide el importe (> 0) y súmalo\n        // 2 Retirar: pide el importe (> 0); solo si hay saldo suficiente\n        // 3 Mostrar el saldo y los dos contadores\n        // 0 Salir. Cualquier otra: opción no válida\n        teclado.close();\n    }\n}",
       "output": "1) Ingresar  2) Retirar  3) Ver  0) Salir\nOpción: 1\nImporte: 10\nIngresado\n\n1) Ingresar  2) Retirar  3) Ver  0) Salir\nOpción: 2\nImporte: 50\nSaldo insuficiente\n\n1) Ingresar  2) Retirar  3) Ver  0) Salir\nOpción: 2\nImporte: 5\nRetirado\n\n1) Ingresar  2) Retirar  3) Ver  0) Salir\nOpción: 3\nSaldo: 25.0\nIngresos: 1, retiradas: 1\n\n1) Ingresar  2) Retirar  3) Ver  0) Salir\nOpción: 7\nOpción no válida\n\n1) Ingresar  2) Retirar  3) Ver  0) Salir\nOpción: 0\nHasta pronto",
       "outputNote": "Los valores después de \"Opción\" e \"Importe\" son lo que escribes. La retirada de 50 se rechaza.",
-      "solution": "import java.util.Scanner;\n\npublic class Ejercicio20 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double saldo = 20.0;\n        int ingresos = 0;\n        int retiradas = 0;\n        double importe;\n        int opcion;\n        do {\n            System.out.println();\n            System.out.println(\"1) Ingresar  2) Retirar  3) Ver  0) Salir\");\n            System.out.print(\"Opción: \");\n            opcion = teclado.nextInt();\n            switch (opcion) {\n                case 1:\n                    System.out.print(\"Importe: \");\n                    importe = teclado.nextDouble();\n                    if (importe > 0) {\n                        saldo += importe;\n                        ingresos++;\n                        System.out.println(\"Ingresado\");\n                    } else {\n                        System.out.println(\"El importe debe ser mayor que 0\");\n                    }\n                    break;\n                case 2:\n                    System.out.print(\"Importe: \");\n                    importe = teclado.nextDouble();\n                    if (importe <= 0) {\n                        System.out.println(\"El importe debe ser mayor que 0\");\n                    } else if (importe > saldo) {\n                        System.out.println(\"Saldo insuficiente\");\n                    } else {\n                        saldo -= importe;\n                        retiradas++;\n                        System.out.println(\"Retirado\");\n                    }\n                    break;\n                case 3:\n                    System.out.println(\"Saldo: \" + saldo);\n                    System.out.println(\"Ingresos: \" + ingresos + \", retiradas: \" + retiradas);\n                    break;\n                case 0:\n                    System.out.println(\"Hasta pronto\");\n                    break;\n                default:\n                    System.out.println(\"Opción no válida\");\n            }\n        } while (opcion != 0);\n        teclado.close();\n    }\n}"
+      "solution": "import java.util.Scanner;\n\npublic class Ejercicio22 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double saldo = 20.0;\n        int ingresos = 0;\n        int retiradas = 0;\n        double importe;\n        int opcion;\n        do {\n            System.out.println();\n            System.out.println(\"1) Ingresar  2) Retirar  3) Ver  0) Salir\");\n            System.out.print(\"Opción: \");\n            opcion = teclado.nextInt();\n            switch (opcion) {\n                case 1:\n                    System.out.print(\"Importe: \");\n                    importe = teclado.nextDouble();\n                    if (importe > 0) {\n                        saldo += importe;\n                        ingresos++;\n                        System.out.println(\"Ingresado\");\n                    } else {\n                        System.out.println(\"El importe debe ser mayor que 0\");\n                    }\n                    break;\n                case 2:\n                    System.out.print(\"Importe: \");\n                    importe = teclado.nextDouble();\n                    if (importe <= 0) {\n                        System.out.println(\"El importe debe ser mayor que 0\");\n                    } else if (importe > saldo) {\n                        System.out.println(\"Saldo insuficiente\");\n                    } else {\n                        saldo -= importe;\n                        retiradas++;\n                        System.out.println(\"Retirado\");\n                    }\n                    break;\n                case 3:\n                    System.out.println(\"Saldo: \" + saldo);\n                    System.out.println(\"Ingresos: \" + ingresos + \", retiradas: \" + retiradas);\n                    break;\n                case 0:\n                    System.out.println(\"Hasta pronto\");\n                    break;\n                default:\n                    System.out.println(\"Opción no válida\");\n            }\n        } while (opcion != 0);\n        teclado.close();\n    }\n}"
     },
     {
       "id": "string-methods",
@@ -1352,34 +1358,44 @@ JM.content.es = {
         }
       ],
       "exampleTitle": "Cadenas: métodos e inmutabilidad",
-      "exampleLead": "String es una clase inmutable. Sus métodos permiten consultar y transformar texto sin modificar el original.",
-      "example": "public class Demo28 {\n    public static void main(String[] args) {\n        String word = \" Java \";\n        String clean = word.trim();\n        System.out.println(clean.length());\n        System.out.println(clean.toUpperCase());\n    }\n}",
+      "exampleLead": "Partimos de una cadena con espacios para ver que los métodos devuelven nuevos valores sin cambiar el texto original.",
+      "example": "public class Demo23 {\n    public static void main(String[] args) {\n        String word = \" Java \";\n        String clean = word.trim();\n        System.out.println(clean.length());\n        System.out.println(clean.toUpperCase());\n    }\n}",
       "explain": [
         "length(), charAt(), substring(), indexOf(), equals() y equalsIgnoreCase() permiten analizar texto.",
         "toUpperCase(), toLowerCase(), trim() y replace() devuelven otra cadena.",
         "Para comparar contenido usa equals() y no ==."
       ],
-      "task": "Dada la cadena \" Java \", elimina espacios de los extremos y muestra su longitud y su versión en mayúsculas.",
-      "think": "Escribe el programa y comprueba el resultado.",
+      "task": "Parte exactamente de `String palabra = \" Java \";`. Crea `limpia` con `trim()`. Muestra primero la longitud de `limpia` y después `limpia` en mayúsculas, cada resultado en su propia línea.",
+      "think": "`trim()` no modifica `palabra`: devuelve otra cadena. ¿En qué variable vas a guardar ese resultado antes de usar `length()` y `toUpperCase()`?",
       "steps": [
-        "Escribe el programa y comprueba el resultado.",
-        "Compara la salida con el ejemplo."
+        "Declara `palabra` con los espacios del enunciado.",
+        "Guarda `palabra.trim()` en `limpia`.",
+        "Muestra `limpia.length()`.",
+        "Muestra `limpia.toUpperCase()`."
       ],
       "hints": [
-        "String es una clase inmutable. Sus métodos permiten consultar y transformar texto sin modificar el original.",
-        "Puedes usar este patrón: `String clean = word.trim();`"
+        "Guarda el resultado de `trim()` para reutilizarlo.",
+        "Empieza con `String limpia = palabra.trim();`. Después usa `limpia.length()` y `limpia.toUpperCase()`."
       ],
       "recall": [
         {
-          "do": "Cadenas: métodos e inmutabilidad",
-          "code": "String clean = word.trim();\nSystem.out.println(clean.length());"
+          "do": "Eliminar espacios de los extremos",
+          "code": "String limpia = palabra.trim();"
+        },
+        {
+          "do": "Consultar la longitud de un texto",
+          "code": "int longitud = limpia.length();"
+        },
+        {
+          "do": "Crear una versión en mayúsculas",
+          "code": "String mayusculas = limpia.toUpperCase();"
         }
       ],
-      "filename": "Ejercicio28.java",
-      "starter": "public class Ejercicio28 {\n    public static void main(String[] args) {\n        \n    }\n}",
+      "filename": "Ejercicio23.java",
+      "starter": "public class Ejercicio23 {\n    public static void main(String[] args) {\n        String palabra = \" Java \";\n        // Crea limpia con trim()\n        // Muestra la longitud y la versión en mayúsculas\n    }\n}",
       "output": "4\nJAVA",
-      "outputNote": "Escribe el programa y comprueba el resultado.",
-      "solution": "public class Ejercicio28 {\n    public static void main(String[] args) {\n        String word = \" Java \";\n        String clean = word.trim();\n        System.out.println(clean.length());\n        System.out.println(clean.toUpperCase());\n    }\n}"
+      "outputNote": "La longitud de `Java` es 4 y la segunda línea debe ser `JAVA`.",
+      "solution": "public class Ejercicio23 {\n    public static void main(String[] args) {\n        String word = \" Java \";\n        String clean = word.trim();\n        System.out.println(clean.length());\n        System.out.println(clean.toUpperCase());\n    }\n}"
     },
     {
       "id": "string-conversion",
@@ -1402,33 +1418,39 @@ JM.content.es = {
       ],
       "exampleTitle": "Texto: conversiones y expresiones regulares",
       "exampleLead": "Convierte texto a números y valida formatos sencillos con expresiones regulares.",
-      "example": "public class Demo29 {\n    public static void main(String[] args) {\n        String input = \"123\";\n        if (input.matches(\"[0-9]+\")) {\n            int value = Integer.parseInt(input);\n            System.out.println(value + 1);\n        }\n    }\n}",
+      "example": "public class Demo24 {\n    public static void main(String[] args) {\n        String input = \"123\";\n        if (input.matches(\"[0-9]+\")) {\n            int value = Integer.parseInt(input);\n            System.out.println(value + 1);\n        }\n    }\n}",
       "explain": [
         "Integer.parseInt() y Double.parseDouble() convierten texto a números.",
         "En cadenas Java se usan escapes como \\n, \\t y \\\".",
         "matches() comprueba una expresión regular; por ejemplo, [0-9]+ exige uno o más dígitos."
       ],
-      "task": "Comprueba si \"123\" contiene solo dígitos; si es así, conviértelo a entero y muestra el número siguiente.",
-      "think": "Escribe el programa y comprueba el resultado.",
+      "task": "Parte de `String entrada = \"123\"`. Comprueba con `matches(\"[0-9]+\")` que solo contiene dígitos. Solo dentro de ese `if`, conviértela con `Integer.parseInt` y muestra el número siguiente.",
+      "think": "La validación debe ocurrir antes de la conversión. ¿Por qué `parseInt` debe quedar dentro del `if`?",
       "steps": [
-        "Escribe el programa y comprueba el resultado.",
-        "Compara la salida con el ejemplo."
+        "Declara `entrada` con el texto `\"123\"`.",
+        "Comprueba el formato con `entrada.matches(\"[0-9]+\")`.",
+        "Dentro del `if`, convierte el texto a `int`.",
+        "Suma 1 al número convertido y muéstralo."
       ],
       "hints": [
-        "Convierte texto a números y valida formatos sencillos con expresiones regulares.",
-        "Puedes usar este patrón: `if (input.matches(\"[0-9]+\")) {`"
+        "`matches` devuelve un `boolean`, por eso puede usarse directamente como condición del `if`.",
+        "Dentro del bloque usa `int valor = Integer.parseInt(entrada);` y después muestra `valor + 1`."
       ],
       "recall": [
         {
-          "do": "Texto: conversiones y expresiones regulares",
-          "code": "if (input.matches(\"[0-9]+\")) {\n    int value = Integer.parseInt(input);\n}"
+          "do": "Comprobar que un texto contiene solo dígitos",
+          "code": "boolean valido = entrada.matches(\"[0-9]+\");"
+        },
+        {
+          "do": "Convertir texto a entero",
+          "code": "int valor = Integer.parseInt(entrada);"
         }
       ],
-      "filename": "Ejercicio29.java",
-      "starter": "public class Ejercicio29 {\n    public static void main(String[] args) {\n        \n    }\n}",
+      "filename": "Ejercicio24.java",
+      "starter": "public class Ejercicio24 {\n    public static void main(String[] args) {\n        String entrada = \"123\";\n        // Comprueba el formato antes de convertir\n        // Convierte y muestra el número siguiente\n    }\n}",
       "output": "124",
-      "outputNote": "Escribe el programa y comprueba el resultado.",
-      "solution": "public class Ejercicio29 {\n    public static void main(String[] args) {\n        String input = \"123\";\n        if (input.matches(\"[0-9]+\")) {\n            int value = Integer.parseInt(input);\n            System.out.println(value + 1);\n        }\n    }\n}"
+      "outputNote": "Como `123` es válido, el programa debe mostrar `124`.",
+      "solution": "public class Ejercicio24 {\n    public static void main(String[] args) {\n        String input = \"123\";\n        if (input.matches(\"[0-9]+\")) {\n            int value = Integer.parseInt(input);\n            System.out.println(value + 1);\n        }\n    }\n}"
     },
     {
       "id": "java-methods",
@@ -1451,33 +1473,39 @@ JM.content.es = {
       ],
       "exampleTitle": "Programación modular: métodos y procedimientos",
       "exampleLead": "Divide un programa en métodos reutilizables. Un método void realiza acciones sin devolver un valor.",
-      "example": "public class Demo30 {\n    static void greet(String name) {\n        System.out.println(\"Hello \" + name);\n    }\n    public static void main(String[] args) {\n        greet(\"Java\");\n    }\n}",
+      "example": "public class Demo25 {\n    static void greet(String name) {\n        System.out.println(\"Hello \" + name);\n    }\n    public static void main(String[] args) {\n        greet(\"Java\");\n    }\n}",
       "explain": [
         "Cada método debe tener una tarea clara y puede llamarse desde main.",
         "Los parámetros reciben valores cuando se llama al método.",
         "Un método void no tiene un valor de retorno."
       ],
-      "task": "Crea un método greet(String name) que muestre \"Hello \" y el nombre, y llámalo con \"Java\" desde main.",
-      "think": "Escribe el programa y comprueba el resultado.",
+      "task": "Completa el método `greet(String name)` para que muestre `\"Hello \"` seguido del nombre. La llamada `greet(\"Java\")` ya está preparada en `main`.",
+      "think": "El parámetro `name` ya contiene el texto recibido por el método. Solo necesitas usarlo dentro del `println`.",
       "steps": [
-        "Escribe el programa y comprueba el resultado.",
-        "Compara la salida con el ejemplo."
+        "Localiza el cuerpo de `greet`.",
+        "Escribe un `println` que concatene `\"Hello \"` y `name`.",
+        "No cambies la llamada que ya existe en `main`.",
+        "Ejecuta y comprueba que aparece `Hello Java`."
       ],
       "hints": [
-        "Divide un programa en métodos reutilizables. Un método void realiza acciones sin devolver un valor.",
-        "Puedes usar este patrón: `static void greet(String name) {`"
+        "El método es `void`, por lo que no debe devolver ningún valor.",
+        "Dentro de `greet`: `System.out.println(\"Hello \" + name);`."
       ],
       "recall": [
         {
-          "do": "Programación modular: métodos y procedimientos",
+          "do": "Declarar un método `void` con un parámetro",
           "code": "static void greet(String name) {\n    System.out.println(\"Hello \" + name);\n}"
+        },
+        {
+          "do": "Llamar a un método",
+          "code": "greet(\"Java\");"
         }
       ],
-      "filename": "Ejercicio30.java",
-      "starter": "public class Ejercicio30 {\n    \n    public static void main(String[] args) {\n        \n    }\n}",
+      "filename": "Ejercicio25.java",
+      "starter": "public class Ejercicio25 {\n    static void greet(String name) {\n        // Muestra Hello seguido del nombre\n    }\n\n    public static void main(String[] args) {\n        greet(\"Java\");\n    }\n}",
       "output": "Hello Java",
-      "outputNote": "Escribe el programa y comprueba el resultado.",
-      "solution": "public class Ejercicio30 {\n    static void greet(String name) {\n        System.out.println(\"Hello \" + name);\n    }\n    public static void main(String[] args) {\n        greet(\"Java\");\n    }\n}"
+      "outputNote": "La llamada preparada en `main` debe producir `Hello Java`.",
+      "solution": "public class Ejercicio25 {\n    static void greet(String name) {\n        System.out.println(\"Hello \" + name);\n    }\n    public static void main(String[] args) {\n        greet(\"Java\");\n    }\n}"
     },
     {
       "id": "method-returns",
@@ -1500,33 +1528,39 @@ JM.content.es = {
       ],
       "exampleTitle": "Funciones: parámetros y valor de retorno",
       "exampleLead": "Un método puede calcular un resultado y devolverlo con return.",
-      "example": "public class Demo31 {\n    static int add(int a, int b) {\n        return a + b;\n    }\n    public static void main(String[] args) {\n        System.out.println(add(3, 4));\n    }\n}",
+      "example": "public class Demo26 {\n    static int add(int a, int b) {\n        return a + b;\n    }\n    public static void main(String[] args) {\n        System.out.println(add(3, 4));\n    }\n}",
       "explain": [
         "Declara el tipo del resultado antes del nombre del método.",
         "La sentencia return devuelve el resultado a quien llamó al método.",
         "Las variables locales y los parámetros pertenecen al método donde se declaran."
       ],
-      "task": "Escribe un método add(int a, int b) que devuelva la suma y muestra add(3, 4).",
-      "think": "Escribe el programa y comprueba el resultado.",
+      "task": "Completa `add(int a, int b)` para que devuelva la suma de sus dos parámetros. `main` ya muestra el resultado de `add(3, 4)`.",
+      "think": "Como el método declara que devuelve `int`, todos sus caminos deben terminar devolviendo un entero.",
       "steps": [
-        "Escribe el programa y comprueba el resultado.",
-        "Compara la salida con el ejemplo."
+        "Localiza el cuerpo de `add`.",
+        "Escribe una sentencia `return` con la suma de `a` y `b`.",
+        "Deja intacta la llamada de `main`.",
+        "Ejecuta y comprueba que el resultado es 7."
       ],
       "hints": [
-        "Un método puede calcular un resultado y devolverlo con return.",
-        "Puedes usar este patrón: `static int add(int a, int b) {`"
+        "No necesitas imprimir dentro de `add`; el método debe devolver el valor.",
+        "Usa `return a + b;`."
       ],
       "recall": [
         {
-          "do": "Funciones: parámetros y valor de retorno",
+          "do": "Devolver un resultado desde un método",
           "code": "static int add(int a, int b) {\n    return a + b;\n}"
+        },
+        {
+          "do": "Usar el valor devuelto",
+          "code": "int total = add(3, 4);"
         }
       ],
-      "filename": "Ejercicio31.java",
-      "starter": "public class Ejercicio31 {\n    \n    public static void main(String[] args) {\n        \n    }\n}",
+      "filename": "Ejercicio26.java",
+      "starter": "public class Ejercicio26 {\n    static int add(int a, int b) {\n        // Devuelve la suma\n        return 0;\n    }\n\n    public static void main(String[] args) {\n        System.out.println(add(3, 4));\n    }\n}",
       "output": "7",
-      "outputNote": "Escribe el programa y comprueba el resultado.",
-      "solution": "public class Ejercicio31 {\n    static int add(int a, int b) {\n        return a + b;\n    }\n    public static void main(String[] args) {\n        System.out.println(add(3, 4));\n    }\n}"
+      "outputNote": "El método debe devolver 7 para los argumentos 3 y 4.",
+      "solution": "public class Ejercicio26 {\n    static int add(int a, int b) {\n        return a + b;\n    }\n    public static void main(String[] args) {\n        System.out.println(add(3, 4));\n    }\n}"
     },
     {
       "id": "recursion",
@@ -1549,33 +1583,39 @@ JM.content.es = {
       ],
       "exampleTitle": "Recursividad y caso base",
       "exampleLead": "Un método recursivo se llama a sí mismo, pero necesita un caso base para terminar.",
-      "example": "public class Demo32 {\n    static int sumTo(int n) {\n        if (n <= 0) return 0;\n        return n + sumTo(n - 1);\n    }\n    public static void main(String[] args) {\n        System.out.println(sumTo(4));\n    }\n}",
+      "example": "public class Demo27 {\n    static int sumTo(int n) {\n        if (n <= 0) return 0;\n        return n + sumTo(n - 1);\n    }\n    public static void main(String[] args) {\n        System.out.println(sumTo(4));\n    }\n}",
       "explain": [
         "Es la condición que detiene las llamadas recursivas.",
         "Cada llamada debe acercarse al caso base.",
         "Las llamadas pendientes se resuelven al regresar de la recursión."
       ],
-      "task": "Implementa sumTo(int n) para sumar desde 1 hasta n recursivamente, con caso base n <= 0, y muestra sumTo(4).",
-      "think": "Escribe el programa y comprueba el resultado.",
+      "task": "Completa únicamente el paso recursivo de `sumTo(int n)`. El caso base `n <= 0` ya devuelve 0. Para `n > 0`, devuelve `n` más el resultado de `sumTo(n - 1)`. `main` ya llama a `sumTo(4)`.",
+      "think": "Cada llamada debe acercarse al caso base. Si recibes 4, la siguiente llamada debe recibir 3, luego 2, luego 1 y finalmente 0.",
       "steps": [
-        "Escribe el programa y comprueba el resultado.",
-        "Compara la salida con el ejemplo."
+        "Lee el caso base que ya aparece en la plantilla.",
+        "En el caso restante, devuelve `n` más una nueva llamada.",
+        "Haz que la nueva llamada reciba `n - 1`.",
+        "Ejecuta y comprueba que `sumTo(4)` produce 10."
       ],
       "hints": [
-        "Un método recursivo se llama a sí mismo, pero necesita un caso base para terminar.",
-        "Puedes usar este patrón: `if (n <= 0) return 0;`"
+        "No elimines el caso base; es lo que detiene la recursión.",
+        "El paso recursivo es `return n + sumTo(n - 1);`."
       ],
       "recall": [
         {
-          "do": "Recursividad y caso base",
-          "code": "if (n <= 0) return 0;\nreturn n + sumTo(n - 1);"
+          "do": "Caso base de una suma recursiva",
+          "code": "if (n <= 0) {\n    return 0;\n}"
+        },
+        {
+          "do": "Paso recursivo que se acerca al caso base",
+          "code": "return n + sumTo(n - 1);"
         }
       ],
-      "filename": "Ejercicio32.java",
-      "starter": "public class Ejercicio32 {\n    \n    public static void main(String[] args) {\n        \n    }\n}",
+      "filename": "Ejercicio27.java",
+      "starter": "public class Ejercicio27 {\n    static int sumTo(int n) {\n        if (n <= 0) {\n            return 0;\n        }\n        // Devuelve n más la llamada con n - 1\n        return 0;\n    }\n\n    public static void main(String[] args) {\n        System.out.println(sumTo(4));\n    }\n}",
       "output": "10",
-      "outputNote": "Escribe el programa y comprueba el resultado.",
-      "solution": "public class Ejercicio32 {\n    static int sumTo(int n) {\n        if (n <= 0) return 0;\n        return n + sumTo(n - 1);\n    }\n    public static void main(String[] args) {\n        System.out.println(sumTo(4));\n    }\n}"
+      "outputNote": "`4 + 3 + 2 + 1` debe dar 10.",
+      "solution": "public class Ejercicio27 {\n    static int sumTo(int n) {\n        if (n <= 0) return 0;\n        return n + sumTo(n - 1);\n    }\n    public static void main(String[] args) {\n        System.out.println(sumTo(4));\n    }\n}"
     },
     {
       "id": "problem-statistics",
@@ -1598,7 +1638,7 @@ JM.content.es = {
       ],
       "exampleTitle": "El esqueleto",
       "exampleLead": "La capa 1 está escrita y se ejecuta. Las demás capas son solo comentarios: tu plan.",
-      "example": "import java.util.Scanner;\n\npublic class Demo21 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n\n        // Capa 1: leer y validar N\n        System.out.print(\"Días: \");\n        int dias = teclado.nextInt();\n        if (dias <= 0) {\n            System.out.println(\"Error: los días deben ser más de 0\");\n            teclado.close();\n            return;\n        }\n\n        // Capa 2: variables que viven fuera del bucle\n        // Capa 3: bucle que lee cada valor\n        // Capa 4: actualizar contadores, suma, máximo y mínimo dentro del bucle\n        // Capa 5: mostrar los resultados\n\n        teclado.close();\n    }\n}",
+      "example": "import java.util.Scanner;\n\npublic class Demo28 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n\n        // Capa 1: leer y validar N\n        System.out.print(\"Días: \");\n        int dias = teclado.nextInt();\n        if (dias <= 0) {\n            System.out.println(\"Error: los días deben ser más de 0\");\n            teclado.close();\n            return;\n        }\n\n        // Capa 2: variables que viven fuera del bucle\n        // Capa 3: bucle que lee cada valor\n        // Capa 4: actualizar contadores, suma, máximo y mínimo dentro del bucle\n        // Capa 5: mostrar los resultados\n\n        teclado.close();\n    }\n}",
       "explain": [
         "La capa 1 ya termina el programa si N es incorrecto.",
         "Las capas 2 a 5 son las mismas piezas de las lecciones 18 y 19.",
@@ -1607,7 +1647,7 @@ JM.content.es = {
       "task": [
         "Pide el número de días N.",
         "Si N no es mayor que 0, muestra un error y termina.",
-        "Después lee N valores de lluvia en mm enteros (0 o más).",
+        "Después lee N valores de lluvia en mm enteros. En este ejercicio puedes suponer que cada valor de lluvia ya es válido y es 0 o mayor.",
         "Muestra: cuántos días fueron secos (0 mm), flojos (de 1 a 10 mm) y fuertes (más de 10 mm); el día más lluvioso y el más seco con el primer día en que aparecieron; el total; y la media.",
         "Hazlo en una sola pasada, sin guardar los valores."
       ],
@@ -1630,11 +1670,11 @@ JM.content.es = {
           "code": "int n = teclado.nextInt();\nif (n <= 0) {\n    System.out.println(\"Error\");\n    return;\n}\nint suma = 0;\nfor (int i = 1; i <= n; i++) {\n    int valor = teclado.nextInt();\n    suma += valor;\n}\nSystem.out.println(suma);"
         }
       ],
-      "filename": "Ejercicio21.java",
-      "starter": "import java.util.Scanner;\n\npublic class Ejercicio21 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        // Capa 1: pide los días y valídalos (> 0)\n        // Capa 2: crea contadores, total, más lluvioso y más seco (valor y día)\n        // Capa 3: recorre los días y lee cada lluvia\n        // Capa 4: dentro del bucle, actualiza todo\n        // Capa 5: muestra el informe\n        teclado.close();\n    }\n}",
+      "filename": "Ejercicio28.java",
+      "starter": "import java.util.Scanner;\n\npublic class Ejercicio28 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        // Capa 1: pide los días y valídalos (> 0)\n        // Capa 2: crea contadores, total, más lluvioso y más seco (valor y día)\n        // Capa 3: recorre los días y lee cada lluvia\n        // Capa 4: dentro del bucle, actualiza todo\n        // Capa 5: muestra el informe\n        teclado.close();\n    }\n}",
       "output": "Días: 5\nDía 1 (mm): 0\nDía 2 (mm): 12\nDía 3 (mm): 4\nDía 4 (mm): 12\nDía 5 (mm): 0\n\nSecos: 2, flojos: 1, fuertes: 2\nMás lluvioso: 12 mm (día 2)\nMás seco: 0 mm (día 1)\nTotal: 28 mm\nMedia: 5.6",
       "outputNote": "El día más lluvioso es el primer 12 (día 2) y el más seco es el primer 0 (día 1). Prueba también con 0 días.",
-      "solution": "import java.util.Scanner;\n\npublic class Ejercicio21 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"Días: \");\n        int dias = teclado.nextInt();\n        if (dias <= 0) {\n            System.out.println(\"Error: los días deben ser más de 0\");\n            teclado.close();\n            return;\n        }\n        int secos = 0;\n        int flojos = 0;\n        int fuertes = 0;\n        int total = 0;\n        int masLluvioso = 0;\n        int diaMasLluvioso = 0;\n        int masSeco = 0;\n        int diaMasSeco = 0;\n        for (int dia = 1; dia <= dias; dia++) {\n            System.out.print(\"Día \" + dia + \" (mm): \");\n            int mm = teclado.nextInt();\n            total += mm;\n            if (mm == 0) {\n                secos++;\n            } else if (mm <= 10) {\n                flojos++;\n            } else {\n                fuertes++;\n            }\n            if (dia == 1 || mm > masLluvioso) {\n                masLluvioso = mm;\n                diaMasLluvioso = dia;\n            }\n            if (dia == 1 || mm < masSeco) {\n                masSeco = mm;\n                diaMasSeco = dia;\n            }\n        }\n        System.out.println();\n        System.out.println(\"Secos: \" + secos + \", flojos: \" + flojos + \", fuertes: \" + fuertes);\n        System.out.println(\"Más lluvioso: \" + masLluvioso + \" mm (día \" + diaMasLluvioso + \")\");\n        System.out.println(\"Más seco: \" + masSeco + \" mm (día \" + diaMasSeco + \")\");\n        System.out.println(\"Total: \" + total + \" mm\");\n        System.out.println(\"Media: \" + (double) total / dias);\n        teclado.close();\n    }\n}"
+      "solution": "import java.util.Scanner;\n\npublic class Ejercicio28 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        System.out.print(\"Días: \");\n        int dias = teclado.nextInt();\n        if (dias <= 0) {\n            System.out.println(\"Error: los días deben ser más de 0\");\n            teclado.close();\n            return;\n        }\n        int secos = 0;\n        int flojos = 0;\n        int fuertes = 0;\n        int total = 0;\n        int masLluvioso = 0;\n        int diaMasLluvioso = 0;\n        int masSeco = 0;\n        int diaMasSeco = 0;\n        for (int dia = 1; dia <= dias; dia++) {\n            System.out.print(\"Día \" + dia + \" (mm): \");\n            int mm = teclado.nextInt();\n            total += mm;\n            if (mm == 0) {\n                secos++;\n            } else if (mm <= 10) {\n                flojos++;\n            } else {\n                fuertes++;\n            }\n            if (dia == 1 || mm > masLluvioso) {\n                masLluvioso = mm;\n                diaMasLluvioso = dia;\n            }\n            if (dia == 1 || mm < masSeco) {\n                masSeco = mm;\n                diaMasSeco = dia;\n            }\n        }\n        System.out.println();\n        System.out.println(\"Secos: \" + secos + \", flojos: \" + flojos + \", fuertes: \" + fuertes);\n        System.out.println(\"Más lluvioso: \" + masLluvioso + \" mm (día \" + diaMasLluvioso + \")\");\n        System.out.println(\"Más seco: \" + masSeco + \" mm (día \" + diaMasSeco + \")\");\n        System.out.println(\"Total: \" + total + \" mm\");\n        System.out.println(\"Media: \" + (double) total / dias);\n        teclado.close();\n    }\n}"
     },
     {
       "id": "problem-menu",
@@ -1657,7 +1697,7 @@ JM.content.es = {
       ],
       "exampleTitle": "El esqueleto",
       "exampleLead": "El menú ya funciona con la opción 0. Las demás opciones te están esperando.",
-      "example": "import java.util.Scanner;\n\npublic class Demo22 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double credito = 5.0;\n        int opcion;\n        do {\n            System.out.println(\"1) Moneda  2) Comprar  3) Devolver  4) Estado  0) Salir\");\n            System.out.print(\"Opción: \");\n            opcion = teclado.nextInt();\n            switch (opcion) {\n                // case 1, 2, 3, 4: tu trabajo\n                case 0:\n                    System.out.println(\"Hasta pronto\");\n                    break;\n                default:\n                    System.out.println(\"Opción no válida\");\n            }\n        } while (opcion != 0);\n        teclado.close();\n    }\n}",
+      "example": "import java.util.Scanner;\n\npublic class Demo29 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double credito = 5.0;\n        int opcion;\n        do {\n            System.out.println(\"1) Moneda  2) Comprar  3) Devolver  4) Estado  0) Salir\");\n            System.out.print(\"Opción: \");\n            opcion = teclado.nextInt();\n            switch (opcion) {\n                // case 1, 2, 3, 4: tu trabajo\n                case 0:\n                    System.out.println(\"Hasta pronto\");\n                    break;\n                default:\n                    System.out.println(\"Opción no válida\");\n            }\n        } while (opcion != 0);\n        teclado.close();\n    }\n}",
       "explain": [
         "`credito` empieza en 5.0 y se declara fuera del bucle.",
         "Añade los contadores que necesites junto a `credito`.",
@@ -1692,11 +1732,11 @@ JM.content.es = {
           "code": "if (importe > saldo) {\n    System.out.println(\"Saldo insuficiente\");\n} else {\n    saldo -= importe;\n}"
         }
       ],
-      "filename": "Ejercicio22.java",
-      "starter": "import java.util.Scanner;\n\npublic class Ejercicio22 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double credito = 5.0;\n        double importe;\n        int opcion;\n        // Declara los contadores: monedas, compras, rechazadas\n        // Repite el menú hasta 0. Añade una opción cada vez\n        teclado.close();\n    }\n}",
+      "filename": "Ejercicio29.java",
+      "starter": "import java.util.Scanner;\n\npublic class Ejercicio29 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double credito = 5.0;\n        double importe;\n        int opcion;\n        // Declara los contadores: monedas, compras, rechazadas\n        // Repite el menú hasta 0. Añade una opción cada vez\n        teclado.close();\n    }\n}",
       "output": "1) Moneda  2) Comprar  3) Devolver  4) Estado  0) Salir\nOpción: 2\nPrecio del producto: 1.5\n¡Que aproveche! Crédito: 3.5\n\n1) Moneda  2) Comprar  3) Devolver  4) Estado  0) Salir\nOpción: 2\nPrecio del producto: 9\nCrédito insuficiente\n\n1) Moneda  2) Comprar  3) Devolver  4) Estado  0) Salir\nOpción: 1\nImporte de la moneda: -3\nEl importe debe ser mayor que 0\n\n1) Moneda  2) Comprar  3) Devolver  4) Estado  0) Salir\nOpción: 1\nImporte de la moneda: 2\nCrédito: 5.5\n\n1) Moneda  2) Comprar  3) Devolver  4) Estado  0) Salir\nOpción: 4\nCrédito: 5.5\nMonedas: 1\nCompras: 1\nRechazadas: 1\n\n1) Moneda  2) Comprar  3) Devolver  4) Estado  0) Salir\nOpción: 3\nDevuelto: 5.5\n\n1) Moneda  2) Comprar  3) Devolver  4) Estado  0) Salir\nOpción: 0\nHasta pronto",
       "outputNote": "La compra de 9 se rechaza, la moneda de -3 se rechaza y la devolución entrega todo lo que queda.",
-      "solution": "import java.util.Scanner;\n\npublic class Ejercicio22 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double credito = 5.0;\n        int monedas = 0;\n        int compras = 0;\n        int rechazadas = 0;\n        double importe;\n        int opcion;\n        do {\n            System.out.println();\n            System.out.println(\"1) Moneda  2) Comprar  3) Devolver  4) Estado  0) Salir\");\n            System.out.print(\"Opción: \");\n            opcion = teclado.nextInt();\n            switch (opcion) {\n                case 1:\n                    System.out.print(\"Importe de la moneda: \");\n                    importe = teclado.nextDouble();\n                    if (importe > 0) {\n                        credito += importe;\n                        monedas++;\n                        System.out.println(\"Crédito: \" + credito);\n                    } else {\n                        System.out.println(\"El importe debe ser mayor que 0\");\n                    }\n                    break;\n                case 2:\n                    System.out.print(\"Precio del producto: \");\n                    importe = teclado.nextDouble();\n                    if (importe <= 0) {\n                        System.out.println(\"El precio debe ser mayor que 0\");\n                    } else if (importe > credito) {\n                        rechazadas++;\n                        System.out.println(\"Crédito insuficiente\");\n                    } else {\n                        credito -= importe;\n                        compras++;\n                        System.out.println(\"¡Que aproveche! Crédito: \" + credito);\n                    }\n                    break;\n                case 3:\n                    System.out.println(\"Devuelto: \" + credito);\n                    credito = 0;\n                    break;\n                case 4:\n                    System.out.println(\"Crédito: \" + credito);\n                    System.out.println(\"Monedas: \" + monedas);\n                    System.out.println(\"Compras: \" + compras);\n                    System.out.println(\"Rechazadas: \" + rechazadas);\n                    break;\n                case 0:\n                    System.out.println(\"Hasta pronto\");\n                    break;\n                default:\n                    System.out.println(\"Opción no válida\");\n            }\n        } while (opcion != 0);\n        teclado.close();\n    }\n}"
+      "solution": "import java.util.Scanner;\n\npublic class Ejercicio29 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        double credito = 5.0;\n        int monedas = 0;\n        int compras = 0;\n        int rechazadas = 0;\n        double importe;\n        int opcion;\n        do {\n            System.out.println();\n            System.out.println(\"1) Moneda  2) Comprar  3) Devolver  4) Estado  0) Salir\");\n            System.out.print(\"Opción: \");\n            opcion = teclado.nextInt();\n            switch (opcion) {\n                case 1:\n                    System.out.print(\"Importe de la moneda: \");\n                    importe = teclado.nextDouble();\n                    if (importe > 0) {\n                        credito += importe;\n                        monedas++;\n                        System.out.println(\"Crédito: \" + credito);\n                    } else {\n                        System.out.println(\"El importe debe ser mayor que 0\");\n                    }\n                    break;\n                case 2:\n                    System.out.print(\"Precio del producto: \");\n                    importe = teclado.nextDouble();\n                    if (importe <= 0) {\n                        System.out.println(\"El precio debe ser mayor que 0\");\n                    } else if (importe > credito) {\n                        rechazadas++;\n                        System.out.println(\"Crédito insuficiente\");\n                    } else {\n                        credito -= importe;\n                        compras++;\n                        System.out.println(\"¡Que aproveche! Crédito: \" + credito);\n                    }\n                    break;\n                case 3:\n                    System.out.println(\"Devuelto: \" + credito);\n                    credito = 0;\n                    break;\n                case 4:\n                    System.out.println(\"Crédito: \" + credito);\n                    System.out.println(\"Monedas: \" + monedas);\n                    System.out.println(\"Compras: \" + compras);\n                    System.out.println(\"Rechazadas: \" + rechazadas);\n                    break;\n                case 0:\n                    System.out.println(\"Hasta pronto\");\n                    break;\n                default:\n                    System.out.println(\"Opción no válida\");\n            }\n        } while (opcion != 0);\n        teclado.close();\n    }\n}"
     },
     {
       "id": "problem-tariff",
@@ -1719,14 +1759,14 @@ JM.content.es = {
       ],
       "exampleTitle": "El esqueleto",
       "exampleLead": "Los datos de entrada están escritos. El cálculo y el recibo son tuyos.",
-      "example": "import java.util.Scanner;\n\npublic class Demo23 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        final double IVA = 0.21;\n\n        System.out.print(\"Horas aparcado: \");\n        int horas = teclado.nextInt();\n        if (horas < 0) {\n            System.out.println(\"Error: las horas no pueden ser negativas\");\n            teclado.close();\n            return;\n        }\n\n        // Siguiente: los otros datos de entrada\n        // Después: precio base, descuento, recargo, base imponible, IVA, total\n        // Al final: el recibo\n\n        teclado.close();\n    }\n}",
+      "example": "import java.util.Scanner;\n\npublic class Demo30 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        final double IVA = 0.21;\n\n        System.out.print(\"Horas aparcado: \");\n        int horas = teclado.nextInt();\n        if (horas < 0) {\n            System.out.println(\"Error: las horas no pueden ser negativas\");\n            teclado.close();\n            return;\n        }\n\n        // Siguiente: los otros datos de entrada\n        // Después: precio base, descuento, recargo, base imponible, IVA, total\n        // Al final: el recibo\n\n        teclado.close();\n    }\n}",
       "explain": [
         "El primer dato se lee y se valida antes que nada.",
         "El tipo de IVA es una constante, así es fácil de cambiar.",
         "Haz el cálculo solo cuando todos los datos sean válidos."
       ],
       "task": [
-        "Pide las horas aparcado (entero, 0 o más; si no, error y terminar), el tipo de vehículo (1 = Coche, 2 = Moto, 3 = Eléctrico; si no, error y terminar) y si pasó la noche (S/N).",
+        "Pide las horas aparcado (entero, 0 o más; si no, error y terminar), el tipo de vehículo (1 = Coche, 2 = Moto, 3 = Eléctrico; si no, error y terminar) y si pasó la noche (S/N; puedes suponer que esta respuesta es válida).",
         "Precio base: hasta 2 horas cuesta 3.00; más de 2 horas cuesta 3.00 más 1.50 por cada hora extra.",
         "Descuento sobre el precio base: Moto 50 %, Eléctrico 20 %, Coche ninguno.",
         "Recargo nocturno: +6.00.",
@@ -1752,11 +1792,11 @@ JM.content.es = {
           "code": "double precio = 3.0;\nif (horas > 2) {\n    precio += (horas - 2) * 1.5;\n}"
         }
       ],
-      "filename": "Ejercicio23.java",
-      "starter": "import java.util.Scanner;\n\npublic class Ejercicio23 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        final double IVA = 0.21;\n        // Lee y valida las horas\n        // Lee y valida el tipo de vehículo, lee la letra de la noche (S/N)\n        // Calcula: precio base, descuento, recargo, base imponible, IVA, total\n        // Muestra el recibo con 2 decimales\n        teclado.close();\n    }\n}",
+      "filename": "Ejercicio30.java",
+      "starter": "import java.util.Scanner;\n\npublic class Ejercicio30 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        final double IVA = 0.21;\n        // Lee y valida las horas\n        // Lee y valida el tipo de vehículo, lee la letra de la noche (S/N)\n        // Calcula: precio base, descuento, recargo, base imponible, IVA, total\n        // Muestra el recibo con 2 decimales\n        teclado.close();\n    }\n}",
       "output": "Horas aparcado: 4\nVehículo (1 = Coche, 2 = Moto, 3 = Eléctrico): 3\n¿Pasó la noche? (S/N): n\n\nHoras: 4\nPrecio base: 6.00\nDescuento: 1.20\nRecargo: 0.00\nBase imponible: 4.80\nIVA: 1.01\nTOTAL: 5.81",
       "outputNote": "Con 4 horas el precio base es 6.00 y el descuento eléctrico es del 20 %. Prueba con 1 hora, una moto y noche.",
-      "solution": "import java.util.Scanner;\n\npublic class Ejercicio23 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        final double IVA = 0.21;\n\n        System.out.print(\"Horas aparcado: \");\n        int horas = teclado.nextInt();\n        if (horas < 0) {\n            System.out.println(\"Error: las horas no pueden ser negativas\");\n            teclado.close();\n            return;\n        }\n        System.out.print(\"Vehículo (1 = Coche, 2 = Moto, 3 = Eléctrico): \");\n        int tipo = teclado.nextInt();\n        if (tipo < 1 || tipo > 3) {\n            System.out.println(\"Error: tipo de vehículo desconocido\");\n            teclado.close();\n            return;\n        }\n        System.out.print(\"¿Pasó la noche? (S/N): \");\n        char noche = Character.toUpperCase(teclado.next().charAt(0));\n\n        double precioBase = 3.0;\n        if (horas > 2) {\n            precioBase += (horas - 2) * 1.5;\n        }\n        double tasa = 0;\n        if (tipo == 2) {\n            tasa = 0.5;\n        } else if (tipo == 3) {\n            tasa = 0.2;\n        }\n        double descuento = precioBase * tasa;\n        double recargo = 0;\n        if (noche == 'S') {\n            recargo = 6.0;\n        }\n        double imponible = precioBase - descuento + recargo;\n        double iva = imponible * IVA;\n        double total = imponible + iva;\n\n        System.out.println();\n        System.out.printf(\"Horas: %d%n\", horas);\n        System.out.printf(\"Precio base: %.2f%n\", precioBase);\n        System.out.printf(\"Descuento: %.2f%n\", descuento);\n        System.out.printf(\"Recargo: %.2f%n\", recargo);\n        System.out.printf(\"Base imponible: %.2f%n\", imponible);\n        System.out.printf(\"IVA: %.2f%n\", iva);\n        System.out.printf(\"TOTAL: %.2f%n\", total);\n        teclado.close();\n    }\n}"
+      "solution": "import java.util.Scanner;\n\npublic class Ejercicio30 {\n    public static void main(String[] args) {\n        Scanner teclado = new Scanner(System.in);\n        final double IVA = 0.21;\n\n        System.out.print(\"Horas aparcado: \");\n        int horas = teclado.nextInt();\n        if (horas < 0) {\n            System.out.println(\"Error: las horas no pueden ser negativas\");\n            teclado.close();\n            return;\n        }\n        System.out.print(\"Vehículo (1 = Coche, 2 = Moto, 3 = Eléctrico): \");\n        int tipo = teclado.nextInt();\n        if (tipo < 1 || tipo > 3) {\n            System.out.println(\"Error: tipo de vehículo desconocido\");\n            teclado.close();\n            return;\n        }\n        System.out.print(\"¿Pasó la noche? (S/N): \");\n        char noche = Character.toUpperCase(teclado.next().charAt(0));\n\n        double precioBase = 3.0;\n        if (horas > 2) {\n            precioBase += (horas - 2) * 1.5;\n        }\n        double tasa = 0;\n        if (tipo == 2) {\n            tasa = 0.5;\n        } else if (tipo == 3) {\n            tasa = 0.2;\n        }\n        double descuento = precioBase * tasa;\n        double recargo = 0;\n        if (noche == 'S') {\n            recargo = 6.0;\n        }\n        double imponible = precioBase - descuento + recargo;\n        double iva = imponible * IVA;\n        double total = imponible + iva;\n\n        System.out.println();\n        System.out.printf(\"Horas: %d%n\", horas);\n        System.out.printf(\"Precio base: %.2f%n\", precioBase);\n        System.out.printf(\"Descuento: %.2f%n\", descuento);\n        System.out.printf(\"Recargo: %.2f%n\", recargo);\n        System.out.printf(\"Base imponible: %.2f%n\", imponible);\n        System.out.printf(\"IVA: %.2f%n\", iva);\n        System.out.printf(\"TOTAL: %.2f%n\", total);\n        teclado.close();\n    }\n}"
     },
     {
       "id": "one-dimensional-arrays",
@@ -1779,7 +1819,7 @@ JM.content.es = {
       ],
       "exampleTitle": "Recorrer un array",
       "exampleLead": "El bucle utiliza la posición `i` para acceder a cada elemento.",
-      "example": "public class Demo24 {\n    public static void main(String[] args) {\n        int[] numeros = {4, 6, 8};\n        for (int i = 0; i < numeros.length; i++) {\n            System.out.println(numeros[i]);\n        }\n    }\n}",
+      "example": "public class Demo31 {\n    public static void main(String[] args) {\n        int[] numeros = {4, 6, 8};\n        for (int i = 0; i < numeros.length; i++) {\n            System.out.println(numeros[i]);\n        }\n    }\n}",
       "explain": [
         "`int[]` declara un array de enteros.",
         "`numeros[i]` obtiene el elemento situado en la posición i.",
@@ -1811,11 +1851,11 @@ JM.content.es = {
           "code": "for (int i = 0; i < numeros.length; i++) {\n    System.out.println(numeros[i]);\n}"
         }
       ],
-      "filename": "Ejercicio24.java",
-      "starter": "public class Ejercicio24 {\n    public static void main(String[] args) {\n        int[] numeros = {4, 6, 8};\n        int suma = 0;\n        // Recorre el array y suma sus valores\n        // Calcula y muestra la media\n    }\n}",
+      "filename": "Ejercicio31.java",
+      "starter": "public class Ejercicio31 {\n    public static void main(String[] args) {\n        int[] numeros = {4, 6, 8};\n        int suma = 0;\n        // Recorre el array y suma sus valores\n        // Calcula y muestra la media\n    }\n}",
       "output": "Suma: 18\nMedia: 6.0",
       "outputNote": "La suma es 18 y se divide entre los tres elementos.",
-      "solution": "public class Ejercicio24 {\n    public static void main(String[] args) {\n        int[] numeros = {4, 6, 8};\n        int suma = 0;\n        for (int i = 0; i < numeros.length; i++) {\n            suma += numeros[i];\n        }\n        double media = (double) suma / numeros.length;\n        System.out.println(\"Suma: \" + suma);\n        System.out.println(\"Media: \" + media);\n    }\n}"
+      "solution": "public class Ejercicio31 {\n    public static void main(String[] args) {\n        int[] numeros = {4, 6, 8};\n        int suma = 0;\n        for (int i = 0; i < numeros.length; i++) {\n            suma += numeros[i];\n        }\n        double media = (double) suma / numeros.length;\n        System.out.println(\"Suma: \" + suma);\n        System.out.println(\"Media: \" + media);\n    }\n}"
     },
     {
       "id": "two-dimensional-arrays",
@@ -1838,7 +1878,7 @@ JM.content.es = {
       ],
       "exampleTitle": "Leer una posición",
       "exampleLead": "La matriz tiene dos filas y dos columnas.",
-      "example": "public class Demo25 {\n    public static void main(String[] args) {\n        int[][] tabla = {\n            {5, 1},\n            {-2, 3}\n        };\n        System.out.println(tabla[1][0]);\n    }\n}",
+      "example": "public class Demo32 {\n    public static void main(String[] args) {\n        int[][] tabla = {\n            {5, 1},\n            {-2, 3}\n        };\n        System.out.println(tabla[1][0]);\n    }\n}",
       "explain": [
         "`tabla[0]` es la primera fila.",
         "`tabla[1][0]` significa segunda fila y primera columna.",
@@ -1869,11 +1909,11 @@ JM.content.es = {
           "code": "for (int f = 0; f < tabla.length; f++) {\n    for (int c = 0; c < tabla[f].length; c++) {\n        System.out.println(tabla[f][c]);\n    }\n}"
         }
       ],
-      "filename": "Ejercicio25.java",
-      "starter": "public class Ejercicio25 {\n    public static void main(String[] args) {\n        // Crea la matriz de dos filas\n        // Muestra el 4\n        // Muestra el 6\n    }\n}",
+      "filename": "Ejercicio32.java",
+      "starter": "public class Ejercicio32 {\n    public static void main(String[] args) {\n        // Crea la matriz de dos filas\n        // Muestra el 4\n        // Muestra el 6\n    }\n}",
       "output": "4\n6",
       "outputNote": "Primero fila, después columna; la primera posición siempre es 0.",
-      "solution": "public class Ejercicio25 {\n    public static void main(String[] args) {\n        int[][] tabla = {{2, 4}, {6, 8}};\n        System.out.println(tabla[0][1]);\n        System.out.println(tabla[1][0]);\n    }\n}"
+      "solution": "public class Ejercicio32 {\n    public static void main(String[] args) {\n        int[][] tabla = {{2, 4}, {6, 8}};\n        System.out.println(tabla[0][1]);\n        System.out.println(tabla[1][0]);\n    }\n}"
     },
     {
       "id": "final-project",
@@ -1896,7 +1936,7 @@ JM.content.es = {
       ],
       "exampleTitle": "El patrón completo",
       "exampleLead": "Primero se suma, después se calcula la media y por último se toma una decisión.",
-      "example": "public class Demo26 {\n    public static void main(String[] args) {\n        int[] notas = {7, 5, 6};\n        int suma = 0;\n        for (int i = 0; i < notas.length; i++) {\n            suma += notas[i];\n        }\n        double media = (double) suma / notas.length;\n        System.out.println(\"Media: \" + media);\n        if (media >= 5) {\n            System.out.println(\"Aprobado\");\n        } else {\n            System.out.println(\"Suspenso\");\n        }\n    }\n}",
+      "example": "public class Demo33 {\n    public static void main(String[] args) {\n        int[] notas = {7, 5, 6};\n        int suma = 0;\n        for (int i = 0; i < notas.length; i++) {\n            suma += notas[i];\n        }\n        double media = (double) suma / notas.length;\n        System.out.println(\"Media: \" + media);\n        if (media >= 5) {\n            System.out.println(\"Aprobado\");\n        } else {\n            System.out.println(\"Suspenso\");\n        }\n    }\n}",
       "explain": [
         "El bucle suma todas las notas.",
         "La conversión `(double)` permite que la media tenga decimales.",
@@ -1924,11 +1964,11 @@ JM.content.es = {
           "code": "if (media >= 5) {\n    System.out.println(\"Aprobado\");\n} else {\n    System.out.println(\"Suspenso\");\n}"
         }
       ],
-      "filename": "Ejercicio26.java",
-      "starter": "public class Ejercicio26 {\n    public static void main(String[] args) {\n        int[] notas = {3, 8, 9, 5};\n        int suma = 0;\n        // Suma las notas con un for\n        // Calcula la media\n        // Muestra la media y decide si aprueba\n    }\n}",
+      "filename": "Ejercicio33.java",
+      "starter": "public class Ejercicio33 {\n    public static void main(String[] args) {\n        int[] notas = {3, 8, 9, 5};\n        int suma = 0;\n        // Suma las notas con un for\n        // Calcula la media\n        // Muestra la media y decide si aprueba\n    }\n}",
       "output": "Media: 6.25\nAprobado",
       "outputNote": "Prueba también con `{2, 3, 4}`: debe aparecer Suspenso.",
-      "solution": "public class Ejercicio26 {\n    public static void main(String[] args) {\n        int[] notas = {3, 8, 9, 5};\n        int suma = 0;\n        for (int i = 0; i < notas.length; i++) {\n            suma += notas[i];\n        }\n        double media = (double) suma / notas.length;\n        System.out.println(\"Media: \" + media);\n        if (media >= 5) {\n            System.out.println(\"Aprobado\");\n        } else {\n            System.out.println(\"Suspenso\");\n        }\n    }\n}"
+      "solution": "public class Ejercicio33 {\n    public static void main(String[] args) {\n        int[] notas = {3, 8, 9, 5};\n        int suma = 0;\n        for (int i = 0; i < notas.length; i++) {\n            suma += notas[i];\n        }\n        double media = (double) suma / notas.length;\n        System.out.println(\"Media: \" + media);\n        if (media >= 5) {\n            System.out.println(\"Aprobado\");\n        } else {\n            System.out.println(\"Suspenso\");\n        }\n    }\n}"
     }
   ]
 };

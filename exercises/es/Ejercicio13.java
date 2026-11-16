@@ -1,5 +1,6 @@
 public class Ejercicio13 {
     public static void main(String[] args) {
-        // Escribe el for de los pares
+        int cuenta = 3;
+        // Escribe el do-while
     }
 }

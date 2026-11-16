@@ -1,6 +1,6 @@
 # <img src="favicon.svg" alt="" width="28"> Java Monkey
 
-Learn Java in small steps. Each lesson shows one idea at a time, asks you to type the code from memory, and ends with a short exercise.
+Learn Java in small steps. Each lesson shows one idea at a time, gives you a visible code reference while you type, and ends with a short exercise.
 
 [![Live demo](https://img.shields.io/badge/demo-live-2ea44f)](https://wellm3id08.github.io/java-monkey/)
 [![License: MIT](https://img.shields.io/github/license/wellm3id08/java-monkey)](LICENSE)
@@ -16,9 +16,9 @@ Learn Java in small steps. Each lesson shows one idea at a time, asks you to typ
 ## How it works
 
 - **Menu:** continue where you left off, review what is due, or pick any topic.
-- **Lesson flow:** one idea per screen, a worked example, then typing exercises where you write the code from memory on a single blinking line.
+- **Lesson flow:** one idea per screen, a worked example, then guided typing with the target snippet visible as a reference. Memory-only typing is reserved for the separate review and mixed-practice modes.
 - **Fair grading:** spacing, comments, variable names and literal values are free (`final double rate = 23;` counts for `final double PI = 3.14159;`), and `x++`, `x += 1` and `x = x + 1` are equivalent. Wrong answers get a specific hint: a missing `;`, a wrong capital letter, a typo in a method name, an unclosed bracket or quote.
-- **Spaced review:** every snippet you type goes into a Leitner box. Snippets you struggled with come back sooner; each lesson starts with a warm-up from the previous one.
+- **Spaced review:** every snippet you type goes into a Leitner box. Snippets you struggled with come back sooner in the dedicated review mode; starting a new lesson no longer repeats a card from the previous lesson.
 - **Mixed practice:** rounds that shuffle snippets and full exercises from finished lessons only. Weaker snippets come up more often and two steps from the same lesson never follow each other.
 - **Practice:** a responsive split workspace with scrollable instructions on the left and a full-height code editor on the right (stacked on narrow screens); a full editor with auto-closing brackets and quotes, auto-indent and tabs. Plan, hints, expected output and solution are one key away. Download your code as a `.java` file.
 - **Templates:** Eclipse-style templates (`imprimir`, `leerint`, `para`, `menu`…). Type a name and press Tab, or Ctrl+Space for the list. Linked placeholders change together, Tab jumps between them, and imports such as `java.util.Scanner` are added for you. Turn packs or single templates on and off at any time, import your own Eclipse `.xml`, and open the cheat sheet with K.

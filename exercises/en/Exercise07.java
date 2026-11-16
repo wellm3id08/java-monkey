@@ -1,6 +1,10 @@
+import java.util.Scanner;
+
 public class Exercise07 {
     public static void main(String[] args) {
-        int number = 6;
-        // Display whether number is greater than zero
+        Scanner keyboard = new Scanner(System.in);
+        // Prompt for and read the number
+        // Display its square
+        keyboard.close();
     }
 }

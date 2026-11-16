@@ -1,11 +1,12 @@
+import java.util.Scanner;
+
 public class Exercise17 {
     public static void main(String[] args) {
-        final double VAT = 0.21;
-        double price = 40.0;
-        double surcharge = 5.0;
-        // Calculate the 30% discount
-        // Calculate the base: price - discount + surcharge
-        // Calculate the VAT and the total
-        // Display discount, base, VAT and total with 2 decimals
+        Scanner keyboard = new Scanner(System.in);
+        double fee = 0;
+        // Ask "Extra luggage? (Y/N): " and read one letter
+        // If the answer is yes, the fee is 5.0
+        // Display the fee
+        keyboard.close();
     }
 }

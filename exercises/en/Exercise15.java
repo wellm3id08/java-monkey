@@ -1,12 +1,8 @@
-import java.util.Scanner;
-
 public class Exercise15 {
     public static void main(String[] args) {
-        Scanner keyboard = new Scanner(System.in);
-        double fee = 0;
-        // Ask "Extra luggage? (Y/N): " and read one letter
-        // If the answer is yes, the fee is 5.0
-        // Display the fee
-        keyboard.close();
+        for (int i = 1; i <= 10; i++) {
+            // If i is 7, stop the loop
+            // Otherwise, display i
+        }
     }
 }

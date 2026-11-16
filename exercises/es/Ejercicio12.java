@@ -1,6 +1,6 @@
 public class Ejercicio12 {
     public static void main(String[] args) {
-        int cuenta = 3;
-        // Escribe el do-while
+        int i = 5;
+        // Escribe el while
     }
 }

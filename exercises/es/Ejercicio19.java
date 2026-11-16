@@ -1,13 +1,11 @@
-import java.util.Scanner;
-
 public class Ejercicio19 {
     public static void main(String[] args) {
-        Scanner teclado = new Scanner(System.in);
-        System.out.print("¿Cuántas puntuaciones? ");
-        int n = teclado.nextInt();
-        // Crea las cuatro variables antes del bucle
-        // Bucle: lee cada puntuación y actualiza la más alta y la más baja
-        // Muestra las dos con sus posiciones
-        teclado.close();
+        final double IVA = 0.21;
+        double precio = 40.0;
+        double recargo = 5.0;
+        // Calcula el descuento del 30 %
+        // Calcula la base: precio - descuento + recargo
+        // Calcula el IVA y el total
+        // Muestra descuento, base, IVA y total con 2 decimales
     }
 }

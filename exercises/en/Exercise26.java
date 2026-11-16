@@ -1,9 +1,10 @@
 public class Exercise26 {
+    static int add(int a, int b) {
+        // Return the sum
+        return 0;
+    }
+
     public static void main(String[] args) {
-        int[] grades = {3, 8, 9, 5};
-        int sum = 0;
-        // Add the grades with a for loop
-        // Calculate the average
-        // Display the average and decide whether the student passes
+        System.out.println(add(3, 4));
     }
 }

@@ -1,11 +1,12 @@
+import java.util.Scanner;
+
 public class Ejercicio17 {
     public static void main(String[] args) {
-        final double IVA = 0.21;
-        double precio = 40.0;
-        double recargo = 5.0;
-        // Calcula el descuento del 30 %
-        // Calcula la base: precio - descuento + recargo
-        // Calcula el IVA y el total
-        // Muestra descuento, base, IVA y total con 2 decimales
+        Scanner teclado = new Scanner(System.in);
+        double recargo = 0;
+        // Pregunta "¿Equipaje especial? (S/N): " y lee una letra
+        // Si la respuesta es sí, el recargo es 5.0
+        // Muestra el recargo
+        teclado.close();
     }
 }

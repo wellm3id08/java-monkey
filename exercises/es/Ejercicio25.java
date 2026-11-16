@@ -1,7 +1,9 @@
 public class Ejercicio25 {
+    static void greet(String name) {
+        // Muestra Hello seguido del nombre
+    }
+
     public static void main(String[] args) {
-        // Crea la matriz de dos filas
-        // Muestra el 4
-        // Muestra el 6
+        greet("Java");
     }
 }
